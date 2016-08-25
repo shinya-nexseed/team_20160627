@@ -57,6 +57,7 @@ CREATE TABLE `members` (
   `picture_path` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
+  `license` varchar(255) NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

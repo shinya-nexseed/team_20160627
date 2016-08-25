@@ -1,10 +1,7 @@
 <?php
      require('../dbconnect.php');
     session_start();//$_SESSIONを使うため記述
-    echo '<br>';
-    echo '<br>';
-    echo '<br>';
-    echo '<br>';
+    
 
 
     $error = array();
@@ -27,6 +24,13 @@
       if ($_POST['password'] == '') {
         $error['password'] = 'blank';
         // echo'パスワードフォームが空だった時';
+      }
+      if ($_POST['country']=='') {
+        $error['country']='blank';
+        //国籍が空の時
+      }
+      if ($_POST['license']=='') {
+        $error['license']='blank';
       }
       // 選択された画像の名前を取得
       $fileName = $_FILES['picture_path']['name'];
@@ -75,14 +79,6 @@
 
   </head>
   			<body>
-
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-            
         <legend>会員登録</legend>
         <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
           <!-- ニックネーム -->
@@ -131,6 +127,25 @@
           <?php if(!empty($error)): ?>
             <p class="error">恐れいりますが、画像を改めて指定してください</p>
             <?php endif; ?>
+  
+            <br>
+            <!-- 国籍 -->
+            <label>国籍</label>
+            <select name="country">
+              <option value="japan">Japan</option>
+              <option value="america">America</option>  
+            </select>
+
+            <br>
+            <!-- ラインセンスの種類 -->
+            <label>ライセンス</label>
+            <select name="license">
+              <option value="オープンウォーター">オープンウォーター</option>
+              <option value="アドバンス">アドバンス</option>
+              <option value="レスキュー">レスキュー</option>
+              <option value="マスター">マスター</option>
+            </select>
+
            
 			<br>
           <input type="submit" class="btn btn-default" value="確認画面へ">
