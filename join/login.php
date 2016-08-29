@@ -7,10 +7,15 @@ if (!empty($_POST)) {
 			mysqli_real_escape_string($db,$_POST['email']),
 			mysqli_real_escape_string($db,sha1($_POST['password']))
 			);
-		$recode = mysqli_query($db,$sql) or die(mysqli_error($db));
+		$record = mysqli_query($db,$sql) or die(mysqli_error($db));
+		if ($table=mysqli_fetch_assoc($record)) {
+			$_SESSION['id']=$table['id'];
+			$_SESSION['license']=$table['license'];
+
+			//var_dump($table);
 			header('Location:../index.php');
 			exit();
-		}else{
+		}}else{
 			$error['login'] = 'failed';
 		}
 	}
