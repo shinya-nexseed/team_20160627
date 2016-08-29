@@ -56,26 +56,26 @@ function h($value) {
         if ($post = mysqli_fetch_assoc($posts)):
         ?>   
             <br>
-            <textarea name="depth"><?php echo h($post['depth'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="depth"><?php echo h($post['depth'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="lat"><?php echo h($post['lat'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="lat"><?php echo h($post['lat'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="long"><?php echo h($post['long'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="long"><?php echo h($post['long'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="temperature"><?php echo h($post['temperature'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="temperature"><?php echo h($post['temperature'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="surface"><?php echo h($post['surface'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="surface"><?php echo h($post['surface'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="underwater"><?php echo h($post['underwater'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="underwater"><?php echo h($post['underwater'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="suits"><?php echo h($post['suits'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="suits"><?php echo h($post['suits'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-            <textarea name="comment"><?php echo h($post['comment'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <span name="comment"><?php echo h($post['comment'], ENT_QUOTES, 'UTF-8'); ?></span>
             <br>
-             <img src="member_picture/<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?> " width="48" hight="48"
+            <span name="tank"><?php echo h($post['tank'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <br>
+            <img src="member_picture/<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?> " width="48" hight="48"
         alt="<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?>" >
-            <br>
-            <textarea name="tank"><?php echo h($post['tank'], ENT_QUOTES, 'UTF-8'); ?></textarea>
             <br>
             
             [<a href="log_edit.php?id=<?php echo h($post['log_id']); ?>" style="color: #00994C;">編集</a>]
