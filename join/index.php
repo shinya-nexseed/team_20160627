@@ -140,10 +140,10 @@
             <!-- ラインセンスの種類 -->
             <label>ライセンス</label>
             <select name="license">
-              <option value="オープンウォーター">オープンウォーター</option>
-              <option value="アドバンス">アドバンス</option>
-              <option value="レスキュー">レスキュー</option>
-              <option value="マスター">マスター</option>
+              <option value="0">オープンウォーター</option>
+              <option value="1">アドバンス</option>
+              <option value="2">レスキュー</option>
+              <option value="3">マスター</option>
             </select>
 
            

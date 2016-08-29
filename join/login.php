@@ -8,11 +8,6 @@ if (!empty($_POST)) {
 			mysqli_real_escape_string($db,sha1($_POST['password']))
 			);
 		$recode = mysqli_query($db,$sql) or die(mysqli_error($db));
-		// if ($table = mysqli_fetch_assoc($record)) {
-		// 	$_SESSION['id']=$table['id'];
-			//$_SESSION['time']=time();
-
-
 			header('Location:../index.php');
 			exit();
 		}else{
@@ -47,13 +42,8 @@ if (!empty($_POST)) {
  	<p>ログインに失敗しました。正しくご入力してください.</p>
  <?php endif; ?>
 
-
-
-
  <br>
- 
- 
- 
+
  <br>
  
  <label>パスワードを入力してください</label>
