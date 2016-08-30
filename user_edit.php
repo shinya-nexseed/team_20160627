@@ -11,7 +11,7 @@
     // ログインしている場合
 
     // ログインユーザの情報をデータベースより取得
-    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=2');
+    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=1');
                                                           //mysqli_real_escape_string($db,$_SESSION['id'])
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
@@ -94,12 +94,12 @@ var_dump($member);
               }
               // TODO : アップデート処理
                 $sql = sprintf('UPDATE `members` SET `name`="%s", `email`="%s", `password`="%s", 
-                                `picture_path`="%s", `license`="%d",modified=NOW() WHERE `id`=2',
+                                `picture_path`="%s",modified=NOW() WHERE `id`=1',
                        $_POST['name'],
                        $_POST['email'],
                        $_POST['new_password'],
-                       $picture,
-                       $_POST['license']
+                       $picture
+                       //$_POST['license']
                        //$_SESSION['id']
                    );
 
@@ -116,11 +116,12 @@ var_dump($member);
       // 現在のパスワードが間違っていた場合
       } else {
           $error['password'] = 'incorrect';
+          echo "string";
       }
     }
     
   // ユーザー情報の取得
-  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=111');
+  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=1');
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
   echo '<br>';
@@ -164,7 +165,7 @@ var_dump($member);
     <div class="row">
       <div class="col-md-6 col-md-offset-3 content-margin-top">
         <legend>登録情報編集</legend>
-        <form method="post" action="" class="form-horizontal" role="form">
+        <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
           <!-- ニックネーム -->
           <div class="form-group">
             <label class="col-sm-4 control-label">ニックネーム</label>
@@ -201,9 +202,9 @@ var_dump($member);
             <label class="col-sm-4 control-label">ライセンス</label>
             <div class="col-sm-8">
               <?php if (isset($_POST['licence_id'])): ?>
-                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $_POST['licence_id']; ?>">
+                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $_POST['license']; ?>">
               <?php else: ?>
-                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $member['title']; ?>">
+                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $member['license']; ?>">
               <?php endif; ?>
               <!-- <?php if (isset($error['email']) && $error['email'] == 'blank'): ?>
                   <p class="error">* メールアドレスを入力してください。</p>
