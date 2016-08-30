@@ -6,6 +6,12 @@
 
     $error = array();
 
+    $sql = 'SELECT * FROM licenses';
+    $licenses = mysqli_query($db,$sql) or die(mysqli_error($db));
+    // $license = mysqli_fetch_assoc($record);
+    // var_dump($license);
+    
+
     // 送信ボタンが押された時
     if (!empty($_POST)) {
       //エラー項目の確認
@@ -29,9 +35,10 @@
         $error['country']='blank';
         //国籍が空の時
       }
-      if ($_POST['license']=='') {
-        $error['license']='blank';
-      }
+
+    
+      
+      
       // 選択された画像の名前を取得
       $fileName = $_FILES['picture_path']['name'];
       echo $fileName;
@@ -68,6 +75,7 @@
        }
 
       }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -139,14 +147,11 @@
             <br>
             <!-- ラインセンスの種類 -->
             <label>ライセンス</label>
-            <select name="license">
-              <option value="0">オープンウォーター</option>
-              <option value="1">アドバンス</option>
-              <option value="2">レスキュー</option>
-              <option value="3">マスター</option>
-            </select>
-
-           
+          <select name="license">
+          <?php while($license = mysqli_fetch_assoc($licenses)): ?>
+              <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
+          <?php endwhile; ?>
+          </select>
 			<br>
           <input type="submit" class="btn btn-default" value="確認画面へ">
         </form>
