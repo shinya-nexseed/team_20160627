@@ -16,7 +16,7 @@
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
 
-//var_dump($member);
+var_dump($member);
   //}else{
     // ログインしていない場合
 
@@ -26,6 +26,8 @@
   //}
 
   $error = Array();
+
+  //var_dump($_POST);
 
   // $_POSTがある場合 (更新ボタンが押された際の処理)
   if (!empty($_POST)) {
@@ -49,7 +51,7 @@
                    $error['new_password'] = 'length';
                }
               // TODO : 新規パスワードと確認用パスワードが一致するかチェック
-               if ($_POST['new_password'] == $_POST['password']) {
+               if ($_POST['new_password'] != $_POST['confirm_password']) {
                    $error['new_password'] = 'incorrect';
                }
           // 新規パスワードが空の場合は入力された現在のパスワードを代入
