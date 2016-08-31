@@ -36,10 +36,10 @@
 
 
   // 投稿取得
-  $sql = sprintf('SELECT `log_id`, `depth`, `lat`, `long`, `temperature`, `surface`, `underwater`, `suits`, `comment`, `image_path`, `tank`, `member_id`, `created`, `modified` FROM `logs` WHERE `log_id`=%d',
+  $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',
       mysqli_real_escape_string($db, $_REQUEST['id'])
       );
-    $posts = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $logs = mysqli_query($db, $sql) or die(mysqli_error($db));
 
 
 // ショートカット
@@ -80,39 +80,39 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
         <?php
-        if ($post = mysqli_fetch_assoc($posts)):
+        if ($post = mysqli_fetch_assoc($logs)):
         ?>
         <div class="msg">
-          <img src="member_picture/<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?> " width="48" hight="48"
-        alt="<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?>" >
+          <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
+        alt="<?php echo h($post['image_path']); ?>" >
           <p>
             <form action="" method="post">
             <br>
-            <textarea name="depth"><?php echo h($post['depth'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="depth"><?php echo h($post['depth']); ?></textarea>
             <br>
-            <textarea name="lat"><?php echo h($post['lat'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="lat"><?php echo h($post['lat']); ?></textarea>
             <br>
-            <textarea name="long"><?php echo h($post['long'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="long"><?php echo h($post['long']); ?></textarea>
             <br>
-            <textarea name="temperature"><?php echo h($post['temperature'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="temperature"><?php echo h($post['temperature']); ?></textarea>
             <br>
-            <textarea name="surface"><?php echo h($post['surface'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="surface"><?php echo h($post['surface']); ?></textarea>
             <br>
-            <textarea name="underwater"><?php echo h($post['underwater'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="underwater"><?php echo h($post['underwater']); ?></textarea>
             <br>
-            <textarea name="suits"><?php echo h($post['suits'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="suits"><?php echo h($post['suits']); ?></textarea>
             <br>
-            <textarea name="comment"><?php echo h($post['comment'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="comment"><?php echo h($post['comment']); ?></textarea>
             <br>
-            <textarea name="tank"><?php echo h($post['tank'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+            <textarea name="tank"><?php echo h($post['tank']); ?></textarea>
             <br>
            
             <input type="submit" value="更新">
             </form>
           </p>
           <!-- 仮 -->
-            <span class="log_id"> (<?php echo h($post['log_id'], ENT_QUOTES, 'UTF-8'); ?>)</span>
-          <p class="day"><?php echo h($post['created'], ENT_QUOTES, 'UTF-8'); ?>
+            <span class="log_id"> (<?php echo h($post['log_id']); ?>)</span>
+          <p class="day"><?php echo h($post['created']); ?>
             
             [<a href="delete.php?id=<?php echo h($post['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
