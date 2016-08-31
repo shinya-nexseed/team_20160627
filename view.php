@@ -54,33 +54,33 @@ function h($value) {
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
         <?php
-        if ($logs = mysqli_fetch_assoc($logs)):
+        if ($log = mysqli_fetch_assoc($logs)):
         ?>   
             <br>
-            <span name="depth"><?php echo h($logs['depth']); ?></span>
+            <span name="depth"><?php echo h($log['depth']); ?></span>
             <br>
-            <span name="lat"><?php echo h($logs['lat']); ?></span>
+            <span name="lat"><?php echo h($log['lat']); ?></span>
             <br>
-            <span name="long"><?php echo h($logs['long']); ?></span>
+            <span name="long"><?php echo h($log['long']); ?></span>
             <br>
-            <span name="temperature"><?php echo h($logs['temperature']); ?></span>
+            <span name="temperature"><?php echo h($log['temperature']); ?></span>
             <br>
-            <span name="surface"><?php echo h($logs['surface']); ?></span>
+            <span name="surface"><?php echo h($log['surface']); ?></span>
             <br>
-            <span name="underwater"><?php echo h($logs['underwater']); ?></span>
+            <span name="underwater"><?php echo h($log['underwater']); ?></span>
             <br>
-            <span name="suits"><?php echo h($logs['suits']); ?></span>
+            <span name="suits"><?php echo h($log['suits']); ?></span>
             <br>
-            <span name="comment"><?php echo h($logs['comment']); ?></span>
+            <span name="comment"><?php echo h($log['comment']); ?></span>
             <br>
-            <span name="tank"><?php echo h($logs['tank']); ?></span>
+            <span name="tank"><?php echo h($log['tank']); ?></span>
             <br>
-            <img src="member_picture/<?php echo h($logs['image_path']);?> " width="48" hight="48"
-        alt="<?php echo h($logs['image_path']); ?>" >
+            <img src="member_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
+        alt="<?php echo h($log['image_path']); ?>" >
             <br>
             
-            [<a href="log_edit.php?id=<?php echo h($logs['log_id']); ?>" style="color: #00994C;">編集</a>]
-            [<a href="delete.php?id=<?php echo h($logs['log_id']); ?>" style="color: #F33;">削除</a>]
+            [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
+            [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
           <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>
