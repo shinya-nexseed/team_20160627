@@ -32,6 +32,7 @@ var_dump($member);
 	<title>Document</title>
 </head>
 <body>
+<a href="log_add.php">新規ログ付け</a>
 <div>
 	<h2>name</h2>
 	<?php echo $member['name']; ?>
