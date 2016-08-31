@@ -12,6 +12,24 @@
   if (!empty($_POST)) {
     //if ($_POST['lat,long'] !='') {
       // CRUD
+          $fileName = $_FILES['image_path']['name'];
+            if (!empty($fileName)) {
+                $ext = substr($fileName, -3);
+                 // TODO : 画像の拡張子が「jpg」、「gif」、「png」、「JPG」、「PNG」かどうかチェック
+                 if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png' && $ext != 'PNG' && $ext != 'JPG') {
+                    $error['image_path'] = 'type';
+                }
+           }
+           if (empty($error)) {
+              // 画像が選択されていれば
+              if (!empty($fileName)) {
+                  // 画像のアップロード
+                  $picture = date('YmdHis') . $_FILES['image_path']['name'];
+                  move_uploaded_file($_FILES['image_path']['tmp_name'], 'member_picture/' . $picture);
+              // 画像が選択されていなければDBの情報を代入
+              } else {
+                  $picture = $member['image_path'];
+              }
       $sql = sprintf('UPDATE `logs` SET `depth`="%s" ,`lat`="%s", `long`="%s", `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s" WHERE `log_id`=%d',
         $_POST['depth'],
         $_POST['lat'],
@@ -21,7 +39,7 @@
         $_POST['underwater'],
         $_POST['suits'],
         $_POST['comment'],
-        $_POST['image_path'],
+        $picture,
         $_POST['tank'],
         $_REQUEST['id']
         );
@@ -31,6 +49,7 @@
         //exit();
     //}
   }
+}
   //var_dump($_POST['suits']);
 
 
@@ -83,10 +102,10 @@
         if ($post = mysqli_fetch_assoc($logs)):
         ?>
         <div class="msg">
-          <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
+          <!-- <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
         alt="<?php echo h($post['image_path']); ?>" >
-          <p>
-            <form action="" method="post">
+           --><p>
+            <form action="" method="post" enctype="multipart/form-data">
             <br>
             <textarea name="depth"><?php echo h($post['depth']); ?></textarea>
             <br>
@@ -106,7 +125,18 @@
             <br>
             <textarea name="tank"><?php echo h($post['tank']); ?></textarea>
             <br>
-           
+           <!-- <div class="form-group"> -->
+            <label class="col-sm-4 control-label">写真</label>
+            <div class="col-sm-8">
+              <img src="member_picture/<?php echo h($post['image_path']); ?>" width="100" height="100">
+              <input type="file" name="image_path" size="35">
+                  <?php if (isset($error['image_path']) && $error['image_path'] == 'type'): ?>
+              <p class="error">* プロフィール写真には「.gif」「.jpg」「.png」の画像を指定してください。</p>
+                  <?php endif; ?>
+                  <?php if (!empty($error)): ?>
+              <p class="error">* 画像を指定していた場合は恐れ入りますが、画像を改めて指定してください。</p>
+                  <?php endif; ?>
+            </div>
             <input type="submit" value="更新">
             </form>
           </p>
