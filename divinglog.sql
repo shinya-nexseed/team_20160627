@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 8 月 24 日 10:57
+-- Generation Time: 2016 年 8 月 29 日 06:39
 -- サーバのバージョン： 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `divinglog`
 --
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `licenses`
+--
+
+CREATE TABLE `licenses` (
+  `id` int(11) NOT NULL,
+  `license` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `licenses`
+--
+
+INSERT INTO `licenses` (`id`, `license`) VALUES
+(0, 'オープン'),
+(1, 'アドバンス'),
+(2, 'レスキュー'),
+(3, 'マスター')
+;
 
 -- --------------------------------------------------------
 
@@ -56,9 +78,30 @@ CREATE TABLE `members` (
   `email` varchar(255) NOT NULL,
   `picture_path` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
+  `license` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `points`
+--
+
+CREATE TABLE `points` (
+  `id` int(11) NOT NULL,
+  `lat` varchar(255) NOT NULL,
+  `lng` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `points`
+--
+
+INSERT INTO `points` (`id`, `lat`, `lng`) VALUES
+(1, '-34.396999999999984', '150.5396298828125'),
+(2, '-33.851319283882525', '150.380328125');
 
 --
 -- Indexes for dumped tables
@@ -77,6 +120,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `points`
+--
+ALTER TABLE `points`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -90,6 +139,11 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `points`
+--
+ALTER TABLE `points`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
