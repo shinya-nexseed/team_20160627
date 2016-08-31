@@ -10,7 +10,7 @@
   }
 
   // 投稿取得
-  $sql = sprintf('SELECT m.name, m.picture_path, p.* FROM members m, logs p WHERE m.id=p.member_id
+  $sql = sprintf('SELECT m.name, m.picture_path, l.* FROM members m, logs l WHERE m.id=p.member_id
     AND p.log_id=%d ORDER BY p.created DESC',
       mysqli_real_escape_string($db, $_REQUEST['id'])
       );
@@ -56,26 +56,26 @@ function h($value) {
         if ($post = mysqli_fetch_assoc($posts)):
         ?>   
             <br>
-            <span name="depth"><?php echo h($post['depth'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="depth"><?php echo h($post['depth']); ?></span>
             <br>
-            <span name="lat"><?php echo h($post['lat'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="lat"><?php echo h($post['lat']); ?></span>
             <br>
-            <span name="long"><?php echo h($post['long'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="long"><?php echo h($post['long']); ?></span>
             <br>
-            <span name="temperature"><?php echo h($post['temperature'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="temperature"><?php echo h($post['temperature']); ?></span>
             <br>
-            <span name="surface"><?php echo h($post['surface'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="surface"><?php echo h($post['surface']); ?></span>
             <br>
-            <span name="underwater"><?php echo h($post['underwater'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="underwater"><?php echo h($post['underwater']); ?></span>
             <br>
-            <span name="suits"><?php echo h($post['suits'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="suits"><?php echo h($post['suits']); ?></span>
             <br>
-            <span name="comment"><?php echo h($post['comment'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="comment"><?php echo h($post['comment']); ?></span>
             <br>
-            <span name="tank"><?php echo h($post['tank'], ENT_QUOTES, 'UTF-8'); ?></span>
+            <span name="tank"><?php echo h($post['tank']); ?></span>
             <br>
-            <img src="member_picture/<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?> " width="48" hight="48"
-        alt="<?php echo h($post['image_path'], ENT_QUOTES, 'UTF-8'); ?>" >
+            <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
+        alt="<?php echo h($post['image_path']); ?>" >
             <br>
             
             [<a href="log_edit.php?id=<?php echo h($post['log_id']); ?>" style="color: #00994C;">編集</a>]
