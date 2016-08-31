@@ -99,7 +99,7 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
         <?php
-        if ($post = mysqli_fetch_assoc($logs)):
+        if ($logs = mysqli_fetch_assoc($logs)):
         ?>
         <div class="msg">
           <!-- <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
@@ -107,28 +107,28 @@
            --><p>
             <form action="" method="post" enctype="multipart/form-data">
             <br>
-            <textarea name="depth"><?php echo h($post['depth']); ?></textarea>
+            <textarea name="depth"><?php echo h($logs['depth']); ?></textarea>
             <br>
-            <textarea name="lat"><?php echo h($post['lat']); ?></textarea>
+            <textarea name="lat"><?php echo h($logs['lat']); ?></textarea>
             <br>
-            <textarea name="long"><?php echo h($post['long']); ?></textarea>
+            <textarea name="long"><?php echo h($logs['long']); ?></textarea>
             <br>
-            <textarea name="temperature"><?php echo h($post['temperature']); ?></textarea>
+            <textarea name="temperature"><?php echo h($logs['temperature']); ?></textarea>
             <br>
-            <textarea name="surface"><?php echo h($post['surface']); ?></textarea>
+            <textarea name="surface"><?php echo h($logs['surface']); ?></textarea>
             <br>
-            <textarea name="underwater"><?php echo h($post['underwater']); ?></textarea>
+            <textarea name="underwater"><?php echo h($logs['underwater']); ?></textarea>
             <br>
-            <textarea name="suits"><?php echo h($post['suits']); ?></textarea>
+            <textarea name="suits"><?php echo h($logs['suits']); ?></textarea>
             <br>
-            <textarea name="comment"><?php echo h($post['comment']); ?></textarea>
+            <textarea name="comment"><?php echo h($logs['comment']); ?></textarea>
             <br>
-            <textarea name="tank"><?php echo h($post['tank']); ?></textarea>
+            <textarea name="tank"><?php echo h($logs['tank']); ?></textarea>
             <br>
            <!-- <div class="form-group"> -->
             <label class="col-sm-4 control-label">写真</label>
             <div class="col-sm-8">
-              <img src="member_picture/<?php echo h($post['image_path']); ?>" width="100" height="100">
+              <img src="member_picture/<?php echo h($logs['image_path']); ?>" width="100" height="100">
               <input type="file" name="image_path" size="35">
                   <?php if (isset($error['image_path']) && $error['image_path'] == 'type'): ?>
               <p class="error">* プロフィール写真には「.gif」「.jpg」「.png」の画像を指定してください。</p>
@@ -141,10 +141,10 @@
             </form>
           </p>
           <!-- 仮 -->
-            <span class="log_id"> (<?php echo h($post['log_id']); ?>)</span>
-          <p class="day"><?php echo h($post['created']); ?>
+            <span class="log_id"> (<?php echo h($logs['log_id']); ?>)</span>
+          <p class="day"><?php echo h($logs['created']); ?>
             
-            [<a href="delete.php?id=<?php echo h($post['log_id']); ?>" style="color: #F33;">削除</a>]
+            [<a href="delete.php?id=<?php echo h($logs['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
           <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>
