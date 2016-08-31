@@ -16,7 +16,7 @@
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
 
-var_dump($member);
+//var_dump($member);
   //}else{
     // ログインしていない場合
 
@@ -124,6 +124,7 @@ var_dump($member);
   $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=1');
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
+  var_dump($member);
   echo '<br>';
   echo '==================================================';
 ?>
