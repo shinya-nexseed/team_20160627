@@ -10,8 +10,8 @@
   }
 
   // 投稿取得
-  $sql = sprintf('SELECT m.name, m.picture_path, l.* FROM members m, logs l WHERE m.id=p.member_id
-    AND p.log_id=%d ORDER BY p.created DESC',
+  $sql = sprintf('SELECT m.name, m.picture_path, l.* FROM members m, logs l WHERE m.id=l.member_id
+    AND l.log_id=%d ORDER BY l.created DESC',
       mysqli_real_escape_string($db, $_REQUEST['id'])
       );
     $posts = mysqli_query($db, $sql) or die(mysqli_error($db));
