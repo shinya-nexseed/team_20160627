@@ -8,6 +8,10 @@
   //   header('Location: index.php');
   //   exit();
   // }
+  if (empty($_SESSION['id'])) {
+    header('Location: index.php');
+    exit();
+  }
 
   if (!empty($_POST)) {
     //if ($_POST['lat,long'] !='') {
