@@ -2,12 +2,17 @@
 require('dbconnect.php');
 session_start();
 
+	echo $_SESSION['id'];
+	echo "<br>";
+	echo "<br>";
+
 	if (isset($_SESSION['id'])) {
-		// ログインしている場合
-		// ログインユーザの情報をデータベースより取得
-		$sql = sprintf('SELECT * FROM `members` m WHERE 1');
-		$record = mysqli_query($db,$sql) or die(mysqli_error($db));
-		$member = mysqli_fetch_assoc($record);
+	    // ログインしている場合
+	    // ログインユーザの情報をデータベースより取得
+	    $sql = sprintf('SELECT * FROM members WHERE id=%d', $_SESSION['id']);
+	    $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+	    $member = mysqli_fetch_assoc($record);
+	    var_dump($member);
 
 	}
 

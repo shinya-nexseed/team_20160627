@@ -35,7 +35,7 @@
     if (!empty($_POST)) {
         echo "post送信確認";
         var_dump($_POST);
-         echo "<br>";
+        echo "<br>";
         echo "post送信確認完了";
         
         
