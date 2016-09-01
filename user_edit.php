@@ -6,22 +6,24 @@
   echo "<br>";
   echo "<br>";
 
-  //$_SESSION['id'];
+  //var_dump($_SESSION);
   //if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
     // ログインしている場合
 
     // ログインユーザの情報をデータベースより取得
-    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=1');
+    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
                                                           //mysqli_real_escape_string($db,$_SESSION['id'])
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
 
-var_dump($member);
+    $sql = 'SELECT * FROM licenses';
+    $licenses = mysqli_query($db,$sql) or die(mysqli_error($db));
+//var_dump($member);
   //}else{
     // ログインしていない場合
 
     //loginページへリダイレクト
-     //header('location: login.php');
+    // header('location: join/login.php');
      //exit(); 
   //}
 
@@ -32,9 +34,9 @@ var_dump($member);
   // $_POSTがある場合 (更新ボタンが押された際の処理)
   if (!empty($_POST)) {
       // 入力必須である「現在のパスワード」と「DBに登録されているパスワード」の暗号化したものが一致すれば処理実行
-      if ($_POST['password'] == $member['password']) {
-          echo 'パスワード一致 - 処理を開始します。';
-          echo '<br>';
+      if (sha1($_POST['password']) == $member['password']) {
+          //echo 'パスワード一致 - 処理を開始します。';
+          //echo '<br>';
           // ↓↓↓↓↓このif文の中に各項目のバリデーションやエラーが無かった際のアップデート処理を記述していく
           // ニックネームの空チェック
           if ($_POST['name'] == '') {
@@ -95,38 +97,33 @@ var_dump($member);
                   $picture = $member['picture_path'];
               }
               // TODO : アップデート処理
-                $sql = sprintf('UPDATE `members` SET `name`="%s", `email`="%s", `password`="%s", 
-                                `picture_path`="%s",modified=NOW() WHERE `id`=1',
+                $sql = sprintf('UPDATE members SET `name`="%s", `email`="%s", `password`="%s", 
+                                `picture_path`="%s",modified=NOW(),`license_id`=%d WHERE `id`=%d',
                        $_POST['name'],
                        $_POST['email'],
-                       $_POST['new_password'],
-                       $picture
-                       //$_POST['license']
-                       //$_SESSION['id']
+                       sha1($_POST['new_password']),
+                       $picture,
+                       $_POST['license_id'],
+                       $_SESSION['id']
                    );
 
                  mysqli_query($db, $sql) or die(mysqli_error($db));
 
-                  // $sql = sprintf('UPDATE `members` SET `nick_name`="%s" WHERE `member_id` =%d',
-                  //     $_POST['nick_name'],
-                  //     $_SESSION['id']
-                  //   );
-                  // echo $sql;
-                  // echo '<br>';
-                  // mysqli_query($db, $sql) or die(mysqli_error($db));
+                 header('Location: index.php');
+                  exit();
           }
       // 現在のパスワードが間違っていた場合
       } else {
           $error['password'] = 'incorrect';
-          echo "string";
+          //echo "string";
       }
     }
     
   // ユーザー情報の取得
-  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license=l.id AND m.id=1');
+  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
-  var_dump($member);
+  //var_dump($member);
   echo '<br>';
   echo '==================================================';
 ?>
@@ -201,22 +198,12 @@ var_dump($member);
             </div>
           </div>
           <!-- ライセンス -->
-          <div class="form-group">
-            <label class="col-sm-4 control-label">ライセンス</label>
-            <div class="col-sm-8">
-              <?php if (isset($_POST['licence_id'])): ?>
-                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $_POST['license']; ?>">
-              <?php else: ?>
-                  <input type="text" name="licence_id" size="35" maxlength="255" value="<?php echo $member['license']; ?>">
-              <?php endif; ?>
-              <!-- <?php if (isset($error['email']) && $error['email'] == 'blank'): ?>
-                  <p class="error">* メールアドレスを入力してください。</p>
-              <?php endif; ?>
-              <?php if (isset($error['email']) && $error["email"] == 'duplicate'): ?>
-                  <p class="error">* 指定されたメールアドレスはすでに登録されています。</p>
-              <?php endif; ?> -->
-            </div>
-          </div>
+          <label>ライセンス</label>
+          <select name="license_id">
+          <?php while($license = mysqli_fetch_assoc($licenses)): ?>
+              <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
+          <?php endwhile; ?>
+          </select>
           <!-- パスワード -->
           <div class="form-group">
           <label class="col-sm-4 control-label">パスワード</label>
