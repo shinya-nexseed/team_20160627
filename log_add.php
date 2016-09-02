@@ -1,12 +1,6 @@
 <?php
     session_start();
     require('dbconnect.php');
-    
-
-
-    //echo $_SESSION['id'];
-    echo "<br>";
-    echo "<br>";
 
     if (isset($_SESSION['id'])) {
         // ログインしている場合
@@ -14,34 +8,18 @@
         $sql = sprintf('SELECT * FROM members WHERE id=%d', $_SESSION['id']);
         
         $record = mysqli_query($db,$sql) or die(mysqli_error($db));
-        var_dump($record);
-
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
 
         $member = mysqli_fetch_assoc($record);
-        var_dump($member);
-
-        echo "<br>";
-        echo "<br>";
 
     }
     
     // 投稿を記録する
     if (!empty($_POST)) {
-        echo "post送信確認";
-        var_dump($_POST);
-        echo "<br>";
-        echo "post送信確認完了";
-
+ 
         // 選択された画像の名前を取得
         $fileName = $_FILES['image_path']['name'];
         // $_FILESはスーパーグローバル。勝手に生成
         // 選択された画像の拡張子チェック
-        echo "<br>";
-        echo "fileName確認";
-        echo $fileName;
 
         if (!empty($fileName)){
             $ext = substr($fileName, -3);
@@ -78,19 +56,6 @@
 
         );
 
-        echo '<br>';
-        echo '<br>';
-        echo $sql;
-        echo '<br>';
-        echo '<br>';
-
-        // $str = 'こんにちは';
-        // $name = 'けんと';
-
-        // $greeting = sprintf('%s、私の名前は%sです。',
-        //  $str,
-        //  $name
-        // );
         mysqli_query($db, $sql) or die(mysqli_error($db));
     }
 
@@ -218,7 +183,6 @@
 
         <p>
             気温：
-            <br/>
             <?php
             $min = 0;
             $max = 30;
@@ -236,7 +200,6 @@
 
         <p>
             水面温度：
-            <br/>
             <?php
             $min = 0;
             $max = 30;
@@ -254,7 +217,6 @@
 
         <p>
             水中温度：
-            <br/>
             <?php
             $min = 0;
             $max = 30;
@@ -272,15 +234,12 @@
         
         <p>
             スーツの種類：
-            <br/>
-
-             <input type="text" name="suits" width="30">
+            <input type="text" name="suits" width="30">
              
         </p>
         
         <p>
             タンク残量：
-                <br/>
                 <?php
                 echo "<select name='tank'>";
                 echo "<option>不明</option>";
@@ -295,15 +254,12 @@
         
         <p>
             コメント：
-            <br/>
-    
                 <textarea name="comment"></textarea>
 
        </p>
 
         <p>
            写真添付：
-                <br/>
                 <!-- ⑨写真添付 -->
                  <input type="file" name="image_path" size="30" >
             
