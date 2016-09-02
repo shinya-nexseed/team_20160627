@@ -13,9 +13,16 @@
     exit();
   }
 
-  if (!empty($_POST)) {
+   // 投稿取得
+   $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
+     $record = mysqli_query($db, $sql) or die(mysqli_error($db));
+     $logs = mysqli_fetch_assoc($record);
+    
+    //var_dump($logs);
     //if ($_POST['lat,long'] !='') {
       // CRUD
+    if (!empty($_POST)) {
+    
           $fileName = $_FILES['image_path']['name'];
             if (!empty($fileName)) {
                 $ext = substr($fileName, -3);
@@ -32,8 +39,10 @@
                   move_uploaded_file($_FILES['image_path']['tmp_name'], 'member_picture/' . $picture);
               // 画像が選択されていなければDBの情報を代入
               } else {
-                  $picture = $member['image_path'];
+                //var_dump($logs);
+                  $picture = $logs['image_path'];
               }
+            }
       $sql = sprintf('UPDATE `logs` SET `depth`="%s" ,`lat`="%s", `long`="%s", `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s" WHERE `log_id`=%d',
         $_POST['depth'],
         $_POST['lat'],
@@ -49,21 +58,16 @@
         );
         mysqli_query($db, $sql) or die(mysqli_error($db));
 
-        //header('location: index.php');
-        //exit();
+         //header('location: index.php');
+         //exit();
     //}
   }
-}
+//}
   //var_dump($_POST['suits']);
-
-
-
-  // 投稿取得
-  $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',
-      mysqli_real_escape_string($db, $_REQUEST['id'])
-      );
-    $logs = mysqli_query($db, $sql) or die(mysqli_error($db));
-
+   // 投稿取得
+  $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
+    $record = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $log = mysqli_fetch_assoc($record);
 
 // ショートカット
   function h($value) {
@@ -103,7 +107,7 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
         <?php
-        if ($log = mysqli_fetch_assoc($logs)):
+        //if (!empty($error['log']) && 'yes'):
         ?>
         <div class="msg">
           <!-- <img src="member_picture/<?php echo h($post['image_path']); ?> " width="48" hight="48"
@@ -150,9 +154,7 @@
             
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
-          <?php else: ?>
-            <p>その投稿は削除されたか、URLが間違っています</p>
-          <?php endif; ?>
+          
         </div>
         <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
       </div>
