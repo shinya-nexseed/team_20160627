@@ -143,14 +143,14 @@
 
         <p>
             ロケーション：
-            <label for="latitude">緯度</label>
-            <input type="text" id="latitude" size="20" name="latitude" />
-            <!-- <input type="hidden" id="latitude" size="20" name="latitude" /> -->
+            <!-- <label for="latitude">緯度</label> -->
+            <!-- <input type="text" id="latitude" size="20" name="latitude" /> -->
+            <input type="hidden" id="latitude" size="20" name="latitude" />
 
-            <label for="longitude">経度</label>
+            <!-- <label for="longitude">経度</label> -->
 
-            <input type="text" id="longitude" size="20" name="longitude" />
-            <!-- <input type="hidden" id="longitude" size="20" name="longitude" /> -->
+            <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
+            <input type="hidden" id="longitude" size="20" name="longitude" />
 
                <p>日本：
                  <input type="button" id="tokyo" value="東京" onclick="setTokyo()" />
