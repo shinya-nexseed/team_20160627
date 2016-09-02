@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require('function.php');
 require('dbconnect.php');
@@ -12,13 +12,11 @@ $member = islogin($db);
 				mysqli_real_escape_string($db,$_SESSION['license']));
 			$record = mysqli_query($db,$sql) or die(mysqli_error($db));
 		$license = mysqli_fetch_assoc($record);
-		
 	}
-	
+
 	function h($value) {
 		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 	}
-var_dump($member);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +25,7 @@ var_dump($member);
 	<title>Document</title>
 </head>
 <body>
+
 <div>
 	<h2>name</h2>
 	<?php echo $member['name']; ?>
@@ -35,9 +34,10 @@ var_dump($member);
 	<h2>icon</h2>
 	<img src="member_picture/<?php echo h($member['picture_path'],ENT_QUOTES,'UTF-8'); ?>" width='50' height='50'>
 </div>
-	<div>
-		<h2>license</h2>
-		<?php echo $license['license']; ?>
-	</div>
+<div>
+<h2>ライセンス</h2>
+	<?php echo $license['license']; ?>
+</div>
+
 </body>
 </html>
