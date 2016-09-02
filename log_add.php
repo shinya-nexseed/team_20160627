@@ -2,10 +2,7 @@
     session_start();
     require('dbconnect.php');
     
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
+
 
     //echo $_SESSION['id'];
     echo "<br>";
@@ -38,32 +35,6 @@
         echo "<br>";
         echo "post送信確認完了";
 
-        // ----------------------------------------------------------
-        // suitsとcommentに字数制限を設ける
-
-        // $error = array();
-
-        //     // 送信ボタンが押された時
-        // if (!empty($_POST)) {
-        //     //エラー項目の確認
-        //     $suits = strlen($_POST['suits']);
-        //     $comment = strlen($_POST['comment']);
-
-        //     if ( 0 < $suits && $suits < 31) {
-        //       $error['suits'] = 'blank';
-        //       // echo'名前フォームが空だった時';
-        //     }
-        //     if ( 0< $comment && $comment <= 200) {
-        //      $error['comment'] = 'blank';
-        //      // echo'メールフォームが空だった時';
-        //     }
-            
-        // }
-
-
-        // --------------------------------------------------------------
-        
-        
         // 選択された画像の名前を取得
         $fileName = $_FILES['image_path']['name'];
         // $_FILESはスーパーグローバル。勝手に生成
@@ -185,7 +156,7 @@
 
         <p>
             日程：
-            <input type="date" name="date" value="2016-08-26">
+            <input type="date" name="date" value="2016-09-01">
         </p>
 
        <p>
@@ -194,11 +165,11 @@
             $min = 0;
             $max = 50;
             echo "<select name='depth' >";
+            echo "<option>不明</option>";
             for ($i=$min; $i <= $max; $i++) {       
             echo "<br>"; 
             echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
             }
-            echo "<option>不明</option>";
             echo "</select>";
 
             echo "<br>";
@@ -252,11 +223,11 @@
             $min = 0;
             $max = 30;
             echo "<select name='temperature'>";
+            echo "<option>不明</option>";
             for ($i=$min; $i <= $max; $i++) {       
               echo "<br>"; 
               echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
             }
-            echo "<option>不明</option>";
             echo "</select>";
 
             echo "<br>";
@@ -270,11 +241,11 @@
             $min = 0;
             $max = 30;
             echo "<select name='surface'>";
+            echo "<option>不明</option>";
             for ($i=$min; $i <= $max; $i++) {       
                 echo "<br>"; 
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
-            }
-            echo "<option>不明</option>";            
+            }          
             echo "</select>";
 
             echo "<br>";
@@ -288,11 +259,11 @@
             $min = 0;
             $max = 30;
             echo "<select name='underwater'>";
+            echo "<option>不明</option>";
             for ($i=$min; $i <= $max; $i++) {       
                 echo "<br>"; 
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
             }
-            echo "<option>不明</option>";
             echo "</select>";
 
             echo "<br>";
@@ -304,14 +275,7 @@
             <br/>
 
              <input type="text" name="suits" width="30">
-           <!--      <?php if (isset($error['suits'])): ?>
-                <?php if ($error['suits'] == 'blank') : ?>
-                  <p class="error">スーツの種類を入力してください。</p>
-                <?php endif; ?>
-                <?php endif; ?>
-             -->
-               <!--  <br> -->
-
+             
         </p>
         
         <p>
@@ -319,11 +283,11 @@
                 <br/>
                 <?php
                 echo "<select name='tank'>";
+                echo "<option>不明</option>";
                 for ($i= 0; $i <= 20; $i++) {       
                     echo "<br>"; 
                     echo  "<option value='" . $i . "'>" . $i * 10 . "psi/bar" . "</option>";
                 }
-                echo "<option>不明</option>";
                 echo "</select>";   
                 echo "<br>";
                 ?>
@@ -332,22 +296,8 @@
         <p>
             コメント：
             <br/>
-            <!-- コメント -->
-            <!-- <textarea name="comment"></textarea> -->
-            <!-- <?php
-            $words = "comment";
-            $count = count($words);
-            $i = $count;
-            if($i > 0 && $i <= 200){
-            }
-            ?> -->
-            
+    
                 <textarea name="comment"></textarea>
-               <!--  <?php if (isset($error['comment'])): ?>
-                <?php if ($error['comment'] == 'blank') : ?>
-                  <p class="error">コメントを記入してください。</p>
-                <?php endif; ?>
-                <?php endif; ?> -->
 
        </p>
 
