@@ -1,18 +1,13 @@
 <?php 
-require('dbconnect.php');
 session_start();
+require('function.php');
+require('dbconnect.php');
 
-	if (isset($_SESSION['id'])) {
-		// ログインしている場合
-		// ログインユーザの情報をデータベースより取得
-		$sql = sprintf('SELECT * FROM `members` m WHERE 1');
-		$record = mysqli_query($db,$sql) or die(mysqli_error($db));
-		$member = mysqli_fetch_assoc($record);
-
-	}
+islogin($db);
+$member = islogin($db);
 
 	//licenseテーブルからの取得
-	if (isset($_SESSION['license'])) {
+	if (isset($_SESSION['id'])) {
 			$sql = sprintf('SELECT license FROM licenses WHERE id=%d',
 				mysqli_real_escape_string($db,$_SESSION['license']));
 			$record = mysqli_query($db,$sql) or die(mysqli_error($db));

@@ -13,7 +13,7 @@ if (!empty($_POST)) {
 			$_SESSION['license']=$table['license'];
 
 			//var_dump($table);
-			header('Location:../index.php');
+			header('Location:../home.php');
 			exit();
 		}}else{
 			$error['login'] = 'failed';
