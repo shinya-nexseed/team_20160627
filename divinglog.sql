@@ -78,7 +78,7 @@ CREATE TABLE `members` (
   `email` varchar(255) NOT NULL,
   `picture_path` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `license` varchar(255) NOT NULL,
+  `license_id` int(11) NOT NULL,
   `created` datetime NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -10,7 +10,7 @@ session_start();
 
   if (!empty($_POST)) {
     // 登録処理
-    $sql = sprintf('INSERT INTO members SET name="%s",email="%s",password="%s",picture_path="%s",created="%s",country="%s",license="%s"',
+    $sql = sprintf('INSERT INTO members SET name="%s",email="%s",password="%s",picture_path="%s",created="%s",country="%s",license_id="%s"',
       mysqli_real_escape_string($db, $_SESSION['join']['name']),
       mysqli_real_escape_string($db, $_SESSION['join']['email']),
       mysqli_real_escape_string($db, sha1($_SESSION['join']['password'])),
