@@ -50,6 +50,7 @@ INSERT INTO `licenses` (`id`, `license`) VALUES
 
 CREATE TABLE `logs` (
   `log_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `depth` int(11) NOT NULL,
   `lat` varchar(255) NOT NULL,
   `long` varchar(255) NOT NULL,
