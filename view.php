@@ -78,7 +78,7 @@ function h($value) {
             <img src="member_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
         alt="<?php echo h($log['image_path']); ?>" >
             <br>
-            
+            [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
             [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
