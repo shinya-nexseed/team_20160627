@@ -1,12 +1,11 @@
-<?php 
+<?php
 session_start();
-require('dbconnect.php');
 require('function.php');
-	
-	islogin($db);
+require('dbconnect.php');
 
-	$member = islogin($db);
-	
+islogin($db);
+$member = islogin($db);
+
 	//licenseテーブルからの取得
 	if (isset($_SESSION['id'])) {
 			$sql = sprintf('SELECT license FROM licenses WHERE id=%d',
@@ -14,7 +13,7 @@ require('function.php');
 			$record = mysqli_query($db,$sql) or die(mysqli_error($db));
 		$license = mysqli_fetch_assoc($record);
 	}
-	
+
 	function h($value) {
 		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 	}

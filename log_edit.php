@@ -36,7 +36,7 @@
               if (!empty($fileName)) {
                   // 画像のアップロード
                   $picture = date('YmdHis') . $_FILES['image_path']['name'];
-                  move_uploaded_file($_FILES['image_path']['tmp_name'], 'member_picture/' . $picture);
+                  move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $picture);
               // 画像が選択されていなければDBの情報を代入
               } else {
                 //var_dump($logs);
@@ -136,7 +136,7 @@
            <!-- <div class="form-group"> -->
             <label class="col-sm-4 control-label">写真</label>
             <div class="col-sm-8">
-              <img src="member_picture/<?php echo h($log['image_path']); ?>" width="100" height="100">
+              <img src="logs_picture/<?php echo h($log['image_path']); ?>" width="100" height="100">
               <input type="file" name="image_path" size="35">
                   <?php if (isset($error['image_path']) && $error['image_path'] == 'type'): ?>
               <p class="error">* プロフィール写真には「.gif」「.jpg」「.png」の画像を指定してください。</p>
