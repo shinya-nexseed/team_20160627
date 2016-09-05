@@ -61,7 +61,7 @@ function h($value) {
             <br>
             <span name="lat"><?php echo h($log['lat']); ?></span>
             <br>
-            <span name="long"><?php echo h($log['long']); ?></span>
+            <span name="long"><?php echo h($log['lng']); ?></span>
             <br>
             <span name="temperature"><?php echo h($log['temperature']); ?></span>
             <br>
@@ -86,7 +86,7 @@ function h($value) {
             <p>その投稿は削除されたか、URLが間違っています</p>
           <?php endif; ?>
         </div>
-        <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
+        <a href="home.php">&laquo;&nbsp;一覧へ戻る</a>
       </div>
     </div>
   </div>

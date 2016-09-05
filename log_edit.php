@@ -43,10 +43,10 @@
                   $picture = $logs['image_path'];
               }
             }
-      $sql = sprintf('UPDATE `logs` SET `depth`="%s" ,`lat`="%s", `long`="%s", `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s" WHERE `log_id`=%d',
+      $sql = sprintf('UPDATE `logs` SET `depth`="%s" ,`lat`="%s", `lng`="%s", `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s" WHERE `log_id`=%d',
         $_POST['depth'],
         $_POST['lat'],
-        $_POST['long'],
+        $_POST['lng'],
         $_POST['temperature'],
         $_POST['surface'],
         $_POST['underwater'],
@@ -119,7 +119,7 @@
             <br>
             <textarea name="lat"><?php echo h($log['lat']); ?></textarea>
             <br>
-            <textarea name="long"><?php echo h($log['long']); ?></textarea>
+            <textarea name="lng"><?php echo h($log['lng']); ?></textarea>
             <br>
             <textarea name="temperature"><?php echo h($log['temperature']); ?></textarea>
             <br>

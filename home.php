@@ -26,7 +26,7 @@ function h($value) {
  <div>
  	<?php while($log = mysqli_fetch_assoc($record)): ?>
  		<img src="log_picture/<?php echo h($log['image_path'],ENT_QUOTES,'UTF-8'); ?>" width='50' height='50'>
- 		<a href='view.php'><?php echo $log['title']; ?></a>
+ 		<a href='view.php?id=<?php echo h($log['log_id'],ENT_QUOTES,'UTF-8'); ?>'><?php echo $log['title']; ?></a>
  		<br>
  		<?php echo $log['created']; ?>
  		<br>
