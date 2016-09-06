@@ -1,6 +1,7 @@
 <?php
   session_start();
   require('dbconnect.php');
+  require('function.php');
 
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
@@ -156,7 +157,7 @@
           </p>
           
         </div>
-        <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
+        <!-- <a href="mypage.php">&laquo;&nbsp;一覧へ戻る</a> -->
       </div>
     </div>
   </div>
