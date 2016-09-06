@@ -2,17 +2,9 @@
     session_start();
     require('dbconnect.php');
 
-    if (isset($_SESSION['id'])) {
-        // ログインしている場合
-        // ログインユーザの情報をデータベースより取得
-        $sql = sprintf('SELECT * FROM members WHERE id=%d', $_SESSION['id']);
-        
-        $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+    require('function.php');
+    $member = islogin($db);
 
-        $member = mysqli_fetch_assoc($record);
-
-    }
-    
     // 投稿を記録する
     if (!empty($_POST)) {
  
@@ -38,9 +30,9 @@
             move_uploaded_file($_FILES['image_path']['tmp_name'], 'member_picture/' . $image);
         }
 
-                
-        $sql = sprintf('INSERT INTO `logs` SET depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
+        $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
             
+           mysqli_real_escape_string($db, $_POST['title']),
            mysqli_real_escape_string($db, $_POST['depth']),
            mysqli_real_escape_string($db, $_POST['latitude']),
            mysqli_real_escape_string($db, $_POST['longitude']),
@@ -64,8 +56,8 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -121,7 +113,12 @@
 
         <p>
             日程：
-            <input type="date" name="date" value="2016-09-06">
+            <input type="date" name="date" value="2016-09-05">
+        </p>
+
+        <p>
+            タイトル：
+            <input type="text" name="title" width="30">
         </p>
 
        <p>
