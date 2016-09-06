@@ -2,6 +2,7 @@
   session_start();
   require('dbconnect.php');
   require('function.php');
+  $member = islogin($db);
 
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
@@ -9,10 +10,10 @@
   //   header('Location: index.php');
   //   exit();
   // }
-  if (empty($_SESSION['id'])) {
-    header('Location: index.php');
-    exit();
-  }
+  // if (empty($_SESSION['id'])) {
+  //   header('Location: index.php');
+  //   exit();
+  // }
 
    // 投稿取得
    $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
@@ -103,7 +104,12 @@
     <![endif]-->
   </head>
   <body>
-  
+  [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">

@@ -1,6 +1,8 @@
 <?php
   session_start();
   require('dbconnect.php');
+  require('function.php');
+  $member = islogin($db);
 
   echo "<br>";
   echo "<br>";
@@ -161,6 +163,13 @@
     <![endif]-->
   </head>
   <body>
+  <br>
+  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 content-margin-top">

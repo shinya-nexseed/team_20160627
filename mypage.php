@@ -84,11 +84,22 @@
 
 
 <!DOCTYPE html>
-<html>
-<head>
-	<title>divinglog</title>
-</head>
-<body>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+ </head>
+ <body>
+ <?php if($_SESSION['id'] == $_REQUEST['id']): ?>
+ [<a href="user_edit.php" style="color: #F33;">編集</a>]
+ <?php endif; ?>
+ <br>
+ [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
 <img src="member_picture/<?php echo $members['picture_path']; ?>" width="100" height="100">
 </body>
 </html>

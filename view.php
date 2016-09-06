@@ -22,6 +22,8 @@
 function h($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +51,12 @@ function h($value) {
     <![endif]-->
   </head>
   <body>
+  [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   
   <div class="container">
     <div class="row">
@@ -79,8 +87,13 @@ function h($value) {
         alt="<?php echo h($log['image_path']); ?>" >
             <br>
             [<a href="mypage.php?id=<?php echo h($log['member_id']); ?>" style="color: #F33;">プロフィール</a>]
+            <?php if($_SESSION['id'] == $log['member_id']): ?>
             [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
+            <?php endif; ?>
+             <?php if($_SESSION['id'] == $log['member_id']): ?>
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
+            <?php endif; ?>
+            [<a href="home.php" style="color: #F33;">戻る</a>]
           </p>
           <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>

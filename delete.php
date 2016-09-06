@@ -1,6 +1,8 @@
 <?php
 session_start();
 require('dbconnect.php');
+require('function.php');
+$member = islogin($db);
 
  //if (isset($_SESSION['id'])) {
  	$id = $_REQUEST['id'];
