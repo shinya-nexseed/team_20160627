@@ -182,7 +182,7 @@
             気温：
             <?php
             $min = 0;
-            $max = 30;
+            $max = 45;
             echo "<select name='temperature'>";
             echo "<option>不明</option>";
             for ($i=$min; $i <= $max; $i++) {       
