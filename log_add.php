@@ -121,7 +121,7 @@
 
         <p>
             日程：
-            <input type="date" name="date" value="2016-09-01">
+            <input type="date" name="date" value="2016-09-06">
         </p>
 
        <p>
@@ -245,7 +245,7 @@
                 echo "<option>不明</option>";
                 for ($i= 0; $i <= 20; $i++) {       
                     echo "<br>"; 
-                    echo  "<option value='" . $i . "'>" . $i * 10 . "psi/bar" . "</option>";
+                    echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
                 }
                 echo "</select>";   
                 echo "<br>";
