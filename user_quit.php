@@ -11,7 +11,9 @@
 	// DELETE文でmembersテーブルからログインしているmemberの削除
 	// 論理削除で実装すること (後で)
 
-    $sql = sprintf('DELETE FROM members WHERE id=%d',
+    
+
+    $sql = sprintf('UPDATE members SET `delete_flag`=1 WHERE id=%d',
 			mysqli_real_escape_string($db,$id));
 	
 	mysqli_query($db,$sql) or die(mysqli_error($db));
@@ -31,7 +33,7 @@
 	setcookie('email', '', time()-3600);
 	setcookie('password', '', time()-3600);
 
-	// join/index.phpに遷移
+    // join/index.phpに遷移
 	header('Location: join/index.php');
 
 	exit();
