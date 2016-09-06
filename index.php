@@ -26,6 +26,8 @@ $member = islogin($db);
 </head>
 <body>
 
+<a href="log_add.php">新規ログ付け</a>
+
 <div>
 	<h2>name</h2>
 	[<a href="user_edit.php" style="color: #F33;">編集</a>]
