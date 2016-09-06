@@ -75,10 +75,10 @@ function h($value) {
             <br>
             <span name="tank"><?php echo h($log['tank']); ?></span>
             <br>
-            <img src="member_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
+            <img src="logs_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
         alt="<?php echo h($log['image_path']); ?>" >
             <br>
-            [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+            [<a href="mypage.php?id=<?php echo h($log['member_id']); ?>" style="color: #F33;">プロフィール</a>]
             [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
@@ -86,7 +86,7 @@ function h($value) {
             <p>その投稿は削除されたか、URLが間違っています</p>
           <?php endif; ?>
         </div>
-        <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
+        <!-- <a href="home.php">&laquo;&nbsp;一覧へ戻る</a> -->
       </div>
     </div>
   </div>
