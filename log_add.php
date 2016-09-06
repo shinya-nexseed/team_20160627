@@ -7,7 +7,7 @@
 
     // 投稿を記録する
     if (!empty($_POST)) {
- 
+
         // 選択された画像の名前を取得
         $fileName = $_FILES['image_path']['name'];
         // $_FILESはスーパーグローバル。勝手に生成
@@ -27,21 +27,21 @@
             // すべてのフォーム入力を満たした状態でデータが入力されていれば
             // エラーが一件もなければ、画像アップロードなどの処理をする
             $image=date('YmdHis') . $_FILES['image_path']['name'];
-            move_uploaded_file($_FILES['image_path']['tmp_name'], 'member_picture/' . $image);
+            move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $image);
         }
 
         $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
-            
+
            mysqli_real_escape_string($db, $_POST['title']),
            mysqli_real_escape_string($db, $_POST['depth']),
            mysqli_real_escape_string($db, $_POST['latitude']),
            mysqli_real_escape_string($db, $_POST['longitude']),
-           mysqli_real_escape_string($db, $_POST['temperature']),          
+           mysqli_real_escape_string($db, $_POST['temperature']),
            mysqli_real_escape_string($db, $_POST['surface']),
            mysqli_real_escape_string($db, $_POST['underwater']),
            mysqli_real_escape_string($db, $_POST['suits']),
-           mysqli_real_escape_string($db, $_POST['tank']),     
-           mysqli_real_escape_string($db, $_SESSION['id']),    
+           mysqli_real_escape_string($db, $_POST['tank']),
+           mysqli_real_escape_string($db, $_SESSION['id']),
            mysqli_real_escape_string($db, $_POST['comment']),
            mysqli_real_escape_string($db, $fileName)
             // $_POST['image_path']
@@ -70,10 +70,10 @@
 <script src="code3_1.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    
+
     var geocoder;
     var map;
-    
+
     function initialize() {
         geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng(35.697456,139.702148);
@@ -83,17 +83,17 @@
           title: "hoge",
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
-    
+
         map = new google.maps.Map(document.getElementById("map_canvas"), opts);
-    
+
         var marker = new google.maps.Marker({
             position: latlng,
             title:'location',
             draggable:true //ドラッグ可能にする
         });
-        
+
         marker.setMap(map);
-    
+
         //マーカーのドロップ(ドラッグ終了)時のイベント
         google.maps.event.addListener(marker,'dragend',function(ev){
           document.getElementById('latitude').value = ev.latLng.lat();
@@ -107,7 +107,7 @@
 <body onload="initialize()">
 
     <div id="map_canvas" style="width:500px; height:300px"></div>
-    
+
     <form action="" method="post" enctype="multipart/form-data">
     <!-- inputやselectタグで情報を入力 -->
 
@@ -128,8 +128,8 @@
             $max = 50;
             echo "<select name='depth' >";
             echo "<option>不明</option>";
-            for ($i=$min; $i <= $max; $i++) {       
-            echo "<br>"; 
+            for ($i=$min; $i <= $max; $i++) {
+            echo "<br>";
             echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
             }
             echo "</select>";
@@ -152,7 +152,7 @@
                <p>日本：
                  <input type="button" id="tokyo" value="東京" onclick="setTokyo()" />
                  <input type="button" id="kanagawa" value="神奈川" onclick="setKanagawa()" />
-                 <input type="button" id="sizuoka" value="静岡" onclick="setSizuoka()" />      
+                 <input type="button" id="sizuoka" value="静岡" onclick="setSizuoka()" />
                  <input type="button" id="osaka" value="大阪" onclick="setOsaka()" />
                  <input type="button" id="okinawa" value="沖縄" onclick="setOkinawa()" />
                </p>
@@ -185,8 +185,8 @@
             $max = 45;
             echo "<select name='temperature'>";
             echo "<option>不明</option>";
-            for ($i=$min; $i <= $max; $i++) {       
-              echo "<br>"; 
+            for ($i=$min; $i <= $max; $i++) {
+              echo "<br>";
               echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
             }
             echo "</select>";
@@ -202,10 +202,10 @@
             $max = 30;
             echo "<select name='surface'>";
             echo "<option>不明</option>";
-            for ($i=$min; $i <= $max; $i++) {       
-                echo "<br>"; 
+            for ($i=$min; $i <= $max; $i++) {
+                echo "<br>";
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
-            }          
+            }
             echo "</select>";
 
             echo "<br>";
@@ -219,8 +219,8 @@
             $max = 30;
             echo "<select name='underwater'>";
             echo "<option>不明</option>";
-            for ($i=$min; $i <= $max; $i++) {       
-                echo "<br>"; 
+            for ($i=$min; $i <= $max; $i++) {
+                echo "<br>";
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
             }
             echo "</select>";
@@ -228,27 +228,27 @@
             echo "<br>";
             ?>
         </p>
-        
+
         <p>
             スーツの種類：
             <input type="text" name="suits" width="30">
-             
+
         </p>
-        
+
         <p>
             タンク残量：
                 <?php
                 echo "<select name='tank'>";
                 echo "<option>不明</option>";
-                for ($i= 0; $i <= 20; $i++) {       
-                    echo "<br>"; 
+                for ($i= 0; $i <= 20; $i++) {
+                    echo "<br>";
                     echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
                 }
-                echo "</select>";   
+                echo "</select>";
                 echo "<br>";
                 ?>
         </p>
-        
+
         <p>
             コメント：
                 <textarea name="comment"></textarea>
@@ -259,19 +259,19 @@
            写真添付：
                 <!-- ⑨写真添付 -->
                  <input type="file" name="image_path" size="30" >
-            
-        </p> 
+
+        </p>
 
          <!--  <p>
          動画添付：
          <input type="file" name="upfile" size="30" /><br />
-         
+
         </p> -->
 
-        <p> 
+        <p>
             <input type="submit" value="登録">
         </p>
-        
+
     </form>
 
 </body>
