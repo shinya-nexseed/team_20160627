@@ -109,7 +109,12 @@
 
 </head>
 <body onload="initialize()">
-
+[<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   <input id="address" type="textbox" value="東京都">
   <input type="button" value="ジオコーディン" onclick="codeAddress()">
 

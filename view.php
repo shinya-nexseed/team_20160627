@@ -67,10 +67,6 @@ function h($value) {
             <br>
             <span name="depth"><?php echo h($log['depth']); ?></span>
             <br>
-            <span name="lat"><?php echo h($log['lat']); ?></span>
-            <br>
-            <span name="long"><?php echo h($log['long']); ?></span>
-            <br>
             <span name="temperature"><?php echo h($log['temperature']); ?></span>
             <br>
             <span name="surface"><?php echo h($log['surface']); ?></span>
