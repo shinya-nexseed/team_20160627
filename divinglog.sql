@@ -53,7 +53,7 @@ CREATE TABLE `logs` (
   `title` varchar(255) NOT NULL,
   `depth` int(11) NOT NULL,
   `lat` varchar(255) NOT NULL,
-  `long` varchar(255) NOT NULL,
+  `lng` varchar(255) NOT NULL,
   `temperature` int(11) NOT NULL,
   `surface` int(11) NOT NULL,
   `underwater` int(11) NOT NULL,
