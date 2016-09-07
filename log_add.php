@@ -30,7 +30,7 @@
             move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $image);
         }
 
-        $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
+        $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, ltank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
 
            mysqli_real_escape_string($db, $_POST['title']),
            mysqli_real_escape_string($db, $_POST['depth']),
@@ -41,14 +41,18 @@
            mysqli_real_escape_string($db, $_POST['underwater']),
            mysqli_real_escape_string($db, $_POST['suits']),
            mysqli_real_escape_string($db, $_POST['tank']),
+           mysqli_real_escape_string($db, $_POST['ltank']),
            mysqli_real_escape_string($db, $_SESSION['id']),
            mysqli_real_escape_string($db, $_POST['comment']),
-           mysqli_real_escape_string($db, $fileName)
+           mysqli_real_escape_string($db, $image)
             // $_POST['image_path']
 
         );
 
         mysqli_query($db, $sql) or die(mysqli_error($db));
+
+        header('Location: mypage.php?id='.$_SESSION['id']);
+                  exit();
     }
 
 ?>
@@ -105,6 +109,13 @@
 </head>
 
 <body onload="initialize()">
+<br>
+  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
 
     <div id="map_canvas" style="width:500px; height:300px"></div>
 
@@ -184,7 +195,7 @@
             $min = 0;
             $max = 45;
             echo "<select name='temperature'>";
-            echo "<option>不明</option>";
+            echo "<option value='不明'>不明</option>";
             for ($i=$min; $i <= $max; $i++) {
               echo "<br>";
               echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
@@ -201,7 +212,7 @@
             $min = 0;
             $max = 30;
             echo "<select name='surface'>";
-            echo "<option>不明</option>";
+            echo "<option value='不明'>不明</option>";
             for ($i=$min; $i <= $max; $i++) {
                 echo "<br>";
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
@@ -218,7 +229,7 @@
             $min = 0;
             $max = 30;
             echo "<select name='underwater'>";
-            echo "<option>不明</option>";
+            echo "<option value='不明'>不明</option>";
             for ($i=$min; $i <= $max; $i++) {
                 echo "<br>";
                 echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
@@ -236,10 +247,10 @@
         </p>
 
         <p>
-            タンク残量：
+            開始時タンク残量：
                 <?php
                 echo "<select name='tank'>";
-                echo "<option>不明</option>";
+                echo "<option value='不明'>不明</option>";
                 for ($i= 0; $i <= 20; $i++) {
                     echo "<br>";
                     echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
@@ -248,6 +259,21 @@
                 echo "<br>";
                 ?>
         </p>
+
+         <p>
+            終了時タンク残量：
+                <?php
+                echo "<select name='ltank'>";
+                echo "<option value='不明'>不明</option>";
+                for ($i= 0; $i <= 20; $i++) {
+                    echo "<br>";
+                    echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                }
+                echo "</select>";
+                echo "<br>";
+                ?>
+        </p>
+
 
         <p>
             コメント：

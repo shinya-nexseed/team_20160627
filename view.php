@@ -5,7 +5,7 @@
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
   if (empty($_REQUEST['id'])) {
-    header('Location: index.php');
+    header('Location: home.php');
     exit();
   }
 
@@ -51,7 +51,10 @@ function h($value) {
     <![endif]-->
   </head>
   <body>
-  [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+  <br>
+  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
+  <br>
+  [<a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
  <br>
  [<a href="map.php" style="color: #F33;">MAP</a>]
  <br>
@@ -78,6 +81,8 @@ function h($value) {
             <span name="comment"><?php echo h($log['comment']); ?></span>
             <br>
             <span name="tank"><?php echo h($log['tank']); ?></span>
+            <br>
+            <span name="tank"><?php echo h($log['ltank']); ?></span>
             <br>
             <img src="logs_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
         alt="<?php echo h($log['image_path']); ?>" >

@@ -23,7 +23,7 @@ $member = islogin($db);
  	}
  //}
 
-header('Location: index.php');
+header('Location: mypage.php?id='.$_SESSION['id']);
 exit();
 
 

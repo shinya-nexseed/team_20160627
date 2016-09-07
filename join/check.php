@@ -6,7 +6,9 @@ session_start();
     header('Location: index.php');
     exit();
   }
-
+ $sql = sprintf('SELECT * FROM licenses WHERE id="%s"',mysqli_real_escape_string($db,$_SESSION['join']['license']));
+ $result = mysqli_query($db,$sql) or die(mysqli_error($db));
+  $license = mysqli_fetch_assoc($result);
 
   if (!empty($_POST)) {
     // 登録処理
@@ -64,7 +66,7 @@ session_start();
                 </tr>
                 <tr>
                   <td><div class="text-center">ライセンス</div></td>
-                  <td><div class="text-center"><?php echo htmlspecialchars($_SESSION['join']['license'],ENT_QUOTES,'UTF-8'); ?></div></td>
+                  <td><div class="text-center"><?php  echo $license['license']; ?></div></td>
                 </tr>
               </tbody>
             </table>
