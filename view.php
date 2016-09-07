@@ -68,21 +68,42 @@ function h($value) {
         if ($log = mysqli_fetch_assoc($logs)):
         ?>   
             <br>
-            <span name="depth"><?php echo h($log['depth']); ?></span>
+            <span name="depth"><?php 
+            if($log['depth'] == -1000){
+              echo "不明";
+            }else{
+              echo h($log['depth']);
+            } 
+            ?>  
+            </span>
             <br>
-            <span name="temperature"><?php echo h($log['temperature']); ?></span>
+            <span name="temperature"><?php if($log['temperature'] == -1000){
+              echo "不明";
+            }else{echo h($log['temperature']);} ?></span>
             <br>
-            <span name="surface"><?php echo h($log['surface']); ?></span>
+            <span name="surface"><?php if($log['surface'] == -1000){
+              echo "不明";
+            }else{ echo h($log['surface']);} ?></span>
             <br>
-            <span name="underwater"><?php echo h($log['underwater']); ?></span>
+            <span name="underwater"><?php if($log['underwater'] == -1000){
+              echo "不明";
+            }else{ echo h($log['underwater']);} ?></span>
             <br>
-            <span name="suits"><?php echo h($log['suits']); ?></span>
+            <span name="suits"><?php if($log['suits'] == -1000){
+              echo "不明";
+            }else{ echo h($log['suits']);} ?></span>
             <br>
-            <span name="comment"><?php echo h($log['comment']); ?></span>
+            <span name="comment"><?php if($log['comment'] == -1000){
+              echo "不明";
+            }else{ echo h($log['comment']);} ?></span>
             <br>
-            <span name="tank"><?php echo h($log['tank']); ?></span>
+            <span name="tank"><?php if($log['tank'] == -1000){
+              echo "不明";
+            }else{echo h($log['tank']);} ?></span>
             <br>
-            <span name="tank"><?php echo h($log['ltank']); ?></span>
+            <span name="ltank"><?php if($log['ltank'] == -1000){
+              echo "不明";
+            }else{echo h($log['ltank']);} ?></span>
             <br>
             <img src="logs_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
         alt="<?php echo h($log['image_path']); ?>" >

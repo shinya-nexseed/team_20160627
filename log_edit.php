@@ -129,13 +129,20 @@
             $min = 0;
             $max = 50;
             echo "<select name='depth' >";
-            echo "<option>不明</option>";
+            // echo "<option>不明</option>";
+            if($log['depth'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+
             for ($i=$min; $i <= $max; $i++) {
               if($i == $log['depth']){
-              echo  "<option value='" . $i . "'selected>" . $i . "m" . "</option>";
-            }else{
-              echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
-            }
+                echo  "<option value='" . $i . "'selected>" . $i . "m" . "</option>";
+              }else{
+                echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+              }
             }
             echo "</select>";
             ?>
@@ -151,7 +158,12 @@
             $min = 0;
             $max = 45;
             echo "<select name='temperature'>";
-            echo "<option>不明</option>";
+            if($log['temperature'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
             for ($i=$min; $i <= $max; $i++) {
               if($i == $log['temperature']){
                 echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
@@ -169,7 +181,12 @@
             $min = 0;
             $max = 30;
             echo "<select name='surface'>";
-            echo "<option>不明</option>";
+            if($log['surface'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
             for ($i=$min; $i <= $max; $i++) {
                 if($i == $log['surface']){
                 echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
@@ -187,7 +204,12 @@
             $min = 0;
             $max = 30;
             echo "<select name='underwater'>";
-            echo "<option>不明</option>";
+            if($log['underwater'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
             for ($i=$min; $i <= $max; $i++) {
                 if($i == $log['underwater']){
                 echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";  
@@ -202,7 +224,7 @@
             <br>
             スーツの種類
             <br>
-            <textarea name="suits"><?php echo h($log['suits']); ?></textarea>
+            <textarea name="suits"><?php if($log['suits']){}else{echo h($log['suits']);} ?></textarea>
             <br>
             <br>
             コメント
@@ -214,7 +236,12 @@
             <br>
             <?php
                 echo "<select name='tank'>";
-                echo "<option>不明</option>";
+                if($log['tank'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
                 for ($i= 0; $i <= 20; $i++) {
                     // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
                   $j = $i * 10;
@@ -231,8 +258,13 @@
             終了時タンク残量:<?php echo h($log['ltank']); ?>
             <br>
             <?php
-                echo "<select name='tank'>";
-                echo "<option>不明</option>";
+                echo "<select name='ltank'>";
+                if($log['ltank'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
                 for ($i= 0; $i <= 20; $i++) {
                     // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
                   $j = $i * 10;
