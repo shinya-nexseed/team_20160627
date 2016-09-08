@@ -36,8 +36,8 @@ function h($value) {
  [<a href="home.php" style="color: #F33;">HOME</a>]
  <br>
  	<?php while($log = mysqli_fetch_assoc($record)): ?>
- 		<img src="logs_picture/<?php echo h($log['image_path'],ENT_QUOTES,'UTF-8'); ?>" width='50' height='50'>
- 		<a href='view.php?id=<?php echo h($log['log_id'],ENT_QUOTES,'UTF-8'); ?>'><?php echo $log['title']; ?></a>
+ 		<img src="logs_picture/<?php echo h($log['image_path']); ?>" width='50' height='50'>
+ 		<a href='view.php?id=<?php echo h($log['log_id']); ?>'><?php echo $log['title']; ?></a>
  		<br>
  		<?php echo $log['created']; ?>
  		<br>
