@@ -99,10 +99,8 @@
             </div>
             <div class="rgba3">
                     <p><span class="sample1"><?php echo $members['name']; ?></span></p>
-                <p>licence:</p>
-                <p style="margin: 35px;"> <?php echo $members['license']; ?></p>
-                <p>nationality:</p>
-                <p style="margin: 35px;"><?php echo $members['country']; ?></p>
+                <p style="margin: 35px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
+                <p style="margin: 35px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
             </div>
 
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

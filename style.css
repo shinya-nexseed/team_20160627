@@ -16,11 +16,11 @@ body{
 
 .rgba3  {  
     color: rgba(255,255,255,0.6);
-    margin: 30px; padding: 0px;
+    margin: 30px; padding: 0px; height:170px;
 }  
 span.sample1 {
   font-size: 30px;
-  margin: 35px; padding: 0px;
+  margin: 35px; padding: 0px; height:50px;
 }
 
 .icon-circle .fa{
