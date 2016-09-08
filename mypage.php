@@ -103,6 +103,7 @@
  [<a href="user_edit.php" style="color: #F33;">編集</a>]
  <?php endif; ?>
  <br>
+  [<a href="user_quit.php" style="color: #F33;">退会</a>]
  <br>
   [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
   <br>

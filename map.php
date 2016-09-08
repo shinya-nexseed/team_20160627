@@ -112,6 +112,9 @@ session_start()
 
 </head>
 <body onload="initialize()">
+<br>
+  [<a href="user_quit.php" style="color: #F33;">退会</a>]
+<br>
   [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
   <br>
 [<a href="mypage.php?id=<?php echo htmlspecialchars($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
