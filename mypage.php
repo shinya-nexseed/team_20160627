@@ -83,12 +83,73 @@
         
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>divinglog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="auth-box" style="float:right" >
+        <div class="row"></div>
+            <div class="rgba2">
+                <img src="member_picture/<?php echo $members['picture_path']; ?>" width="150" height="150">
+            </div>
+            <div class="rgba3">
+                    <p><span class="sample1"><?php echo $members['name']; ?></span></p>
+                <p>licence:</p>
+                <p style="margin: 35px;"> <?php echo $members['license']; ?></p>
+                <p>nationality:</p>
+                <p style="margin: 35px;"><?php echo $members['country']; ?></p>
+            </div>
+
+                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="sicon">
+
+                                        <table cellpadding="0" cellspacing="0"><tbody>
+                                            <tr>
+                                                <td>    
+                                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                                                        <div class="icon-circle">
+                                                            <a href="https://web.facebook.com" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                                                        <div class="icon-circle">
+                                                            <a href="http://twitter.com" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                                                        <div class="icon-circle">
+                                                            <a href="https://plus.google.com" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                                                        <div class="icon-circle">
+                                                            <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+
+    </div>
+
 <img src="member_picture/<?php echo $members['picture_path']; ?>" width="100" height="100">
 </body>
 </html>
