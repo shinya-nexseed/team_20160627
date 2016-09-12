@@ -5,9 +5,11 @@
 
 
 
+    $res = sprintf('SELECT COUNT(*) AS num FROM logs');
+    $ser = mysqli_real_escape_string($db,$res);
+    $logsSet = mysqli_query($db, $ser) or die(mysqli_error($db));
+    $logsss = mysqli_fetch_assoc($logsSet);
 
-
-    
 
     $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
@@ -44,7 +46,7 @@
      echo $logs['lat'];
      echo '<br>';
 
-     echo $logs['long'];
+     echo $logs['lng'];
      echo '<br>';
 
      echo $logs['temperature'];
@@ -102,6 +104,10 @@
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
             </div>
+
+            <p class="rgba4">
+                <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
+            </p>
 
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
                             <div class="container-fluid">
