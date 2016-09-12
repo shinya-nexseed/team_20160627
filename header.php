@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-	<link href="assets/css/header.css" rel="stylesheet">
 
-</head>
-<body>
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -20,7 +10,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-				Brand
+				DIVINGLOG
 			</a>
 		</div>
 
@@ -35,9 +25,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="http://nexseed.net/" target="_blank">Visit Site</a></li>
 				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				<!-- 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Account
-						<span class="caret"></span></a>
+						<span class="caret"></span></a> -->
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
 							<li class=""><a href="#">Other Link</a></li>
@@ -54,33 +44,15 @@
 	<div class="container-fluid main-container">
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">MAP</a></li>
-				<li><a href="#">PROFILE</a></li>
-				<li><a href="#">NEW LOG</a></li>
+				<li><a href="home.php">HOME</a></li>
+				<li><a href="map.php">MAP</a></li>
+				<?php if(!empty($member['id'])); ?>
+				<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
+				<?php else: ?>
+				<li><a href="login.php">PROFILE</a></li>
+				<?php endif; ?>
+				<li><a href="log_add.php">NEW LOG</a></li>
 			</ul>
 		</div>
-		<!-- <div class="col-md-10 content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Dashboard
-                </div>
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-            </div>
-		</div> -->
-		<!-- <footer class="pull-left footer">
-			<p class="col-md-12">
-				<hr class="divider">
-				Copyright &COPY; 2015 <a href="http://www.pingpong-labs.com">Gravitano</a>
-			</p>
-		</footer> -->
-	</div>
-</body>
-</html>
+		<div class="col-md-10 content">
+           

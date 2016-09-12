@@ -150,6 +150,8 @@
     <link href="assets/css/form.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+
+    <link href="assets/css/header.css" rel="stylesheet">
     <!--
       designフォルダ内では2つパスの位置を戻ってからcssにアクセスしていることに注意！
      -->
@@ -163,15 +165,8 @@
     <![endif]-->
   </head>
   <body>
-  <br>
-  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
-  <br>
-  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+  <?php require('header.php'); ?>
+
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 content-margin-top">
@@ -271,6 +266,7 @@
         </form>
       </div>
     </div>
+  </div>
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

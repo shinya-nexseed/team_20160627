@@ -42,6 +42,7 @@ function h($value) {
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
 
+    <link href="assets/css/header.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,19 +52,12 @@ function h($value) {
     <![endif]-->
   </head>
   <body>
-  <br>
-  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
-  <br>
-  [<a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+  <?php require('header.php'); ?>
+
   
-  <div class="container">
+ <!--  <div class="container">
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 content-margin-top">
+      <div class="col-md-4 col-md-offset-4 content-margin-top"> -->
         <?php
         if ($log = mysqli_fetch_assoc($logs)):
         ?>   
@@ -122,8 +116,9 @@ function h($value) {
           <?php endif; ?>
         </div>
         <!-- <a href="home.php">&laquo;&nbsp;一覧へ戻る</a> -->
+        <!-- </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

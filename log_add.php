@@ -69,6 +69,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="style.css" />
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="assets/css/header.css" rel="stylesheet">
 <title>ログ付け機能</title>
 
 <script type="text/javascript"
@@ -113,13 +116,8 @@
 </head>
 
 <body onload="initialize()">
-<br>
-  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+<?php require('header.php'); ?>
+
 
     <div id="map_canvas" style="width:500px; height:300px"></div>
 

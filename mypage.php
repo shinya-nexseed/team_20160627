@@ -96,6 +96,9 @@
  <html lang="en">
  <head>
     <meta charset="UTF-8">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
     <title>mypage</title>
  </head>
  <body>

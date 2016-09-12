@@ -20,21 +20,15 @@ function h($value) {
  <html lang="en">
  <head>
  	<meta charset="UTF-8">
+ 	<link href="assets/css/bootstrap.css" rel="stylesheet">
+  	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  	<link href="assets/css/header.css" rel="stylesheet">
  	<title>home</title>
  </head>
  <body>
- <div>
- <br>
-  [<a href="user_quit.php" style="color: #F33;">退会</a>]
- <br>
-  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
-  <br>
- [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+ <?php require('header.php'); ?>
+
+
  	<?php while($log = mysqli_fetch_assoc($record)): ?>
  		<img src="logs_picture/<?php echo h($log['image_path']); ?>" width='50' height='50'>
  		<a href='view.php?id=<?php echo h($log['log_id']); ?>'><?php echo $log['title']; ?></a>
@@ -45,6 +39,6 @@ function h($value) {
  		<br>
  	<?php endwhile; ?>
  </div>
- 	
+ </div>
  </body>
  </html>
