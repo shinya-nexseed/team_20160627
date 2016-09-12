@@ -5,7 +5,7 @@
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
   if (empty($_REQUEST['id'])) {
-    header('Location: index.php');
+    header('Location: home.php');
     exit();
   }
 
@@ -22,6 +22,8 @@
 function h($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +51,15 @@ function h($value) {
     <![endif]-->
   </head>
   <body>
+  <br>
+  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
+  <br>
+  [<a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   
   <div class="container">
     <div class="row">
@@ -57,36 +68,60 @@ function h($value) {
         if ($log = mysqli_fetch_assoc($logs)):
         ?>   
             <br>
-            <span name="depth"><?php echo h($log['depth']); ?></span>
+            <span name="depth"><?php 
+            if($log['depth'] == -1000){
+              echo "不明";
+            }else{
+              echo h($log['depth']);
+            } 
+            ?>  
+            </span>
             <br>
-            <span name="lat"><?php echo h($log['lat']); ?></span>
+            <span name="temperature"><?php if($log['temperature'] == -1000){
+              echo "不明";
+            }else{echo h($log['temperature']);} ?></span>
             <br>
-            <span name="long"><?php echo h($log['long']); ?></span>
+            <span name="surface"><?php if($log['surface'] == -1000){
+              echo "不明";
+            }else{ echo h($log['surface']);} ?></span>
             <br>
-            <span name="temperature"><?php echo h($log['temperature']); ?></span>
+            <span name="underwater"><?php if($log['underwater'] == -1000){
+              echo "不明";
+            }else{ echo h($log['underwater']);} ?></span>
             <br>
-            <span name="surface"><?php echo h($log['surface']); ?></span>
+            <span name="suits"><?php if($log['suits'] == -1000){
+              echo "不明";
+            }else{ echo h($log['suits']);} ?></span>
             <br>
-            <span name="underwater"><?php echo h($log['underwater']); ?></span>
+            <span name="comment"><?php if($log['comment'] == -1000){
+              echo "不明";
+            }else{ echo h($log['comment']);} ?></span>
             <br>
-            <span name="suits"><?php echo h($log['suits']); ?></span>
+            <span name="tank"><?php if($log['tank'] == -1000){
+              echo "不明";
+            }else{echo h($log['tank']);} ?></span>
             <br>
-            <span name="comment"><?php echo h($log['comment']); ?></span>
+            <span name="ltank"><?php if($log['ltank'] == -1000){
+              echo "不明";
+            }else{echo h($log['ltank']);} ?></span>
             <br>
-            <span name="tank"><?php echo h($log['tank']); ?></span>
-            <br>
-            <img src="member_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
+            <img src="logs_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
         alt="<?php echo h($log['image_path']); ?>" >
             <br>
-            
+            [<a href="mypage.php?id=<?php echo h($log['member_id']); ?>" style="color: #F33;">プロフィール</a>]
+            <?php if($_SESSION['id'] == $log['member_id']): ?>
             [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
+            <?php endif; ?>
+             <?php if($_SESSION['id'] == $log['member_id']): ?>
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
+            <?php endif; ?>
+            [<a href="home.php" style="color: #F33;">戻る</a>]
           </p>
           <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>
           <?php endif; ?>
         </div>
-        <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
+        <!-- <a href="home.php">&laquo;&nbsp;一覧へ戻る</a> -->
       </div>
     </div>
   </div>

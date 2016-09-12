@@ -30,7 +30,9 @@ $member = islogin($db);
 
 <div>
 	<h2>name</h2>
+	[<a href="user_edit.php" style="color: #F33;">編集</a>]
 	<?php echo $member['name']; ?>
+	[<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
 </div>
 <div>
 	<h2>icon</h2>

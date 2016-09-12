@@ -3,13 +3,10 @@
     session_start();
     require('dbconnect.php');
 
-
-
-    $res = sprintf('SELECT COUNT(*) AS num FROM logs');
+    $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);
     $logsSet = mysqli_query($db, $ser) or die(mysqli_error($db));
     $logsss = mysqli_fetch_assoc($logsSet);
-
 
     $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
@@ -17,13 +14,11 @@
 
     $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db, $sql) or die(mysqli_error($db));
-    while($logs = mysqli_fetch_assoc($result)){
-        }
-    ?>
-        
-
-
-
+    while ($log = mysqli_fetch_assoc($result)) {
+        echo $log['title'];
+        echo '<br>';
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,14 +43,14 @@
             </div>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="sicon">
 
                         <table cellpadding="0" cellspacing="0"><tbody>
                             <tr>
-                                <td>    
+                                <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
                                             <a href="https://web.facebook.com" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
@@ -90,6 +85,5 @@
             </div>
         </div>
     </div>
-    
 </body>
 </html>

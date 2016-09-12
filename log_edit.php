@@ -1,6 +1,8 @@
 <?php
   session_start();
   require('dbconnect.php');
+  require('function.php');
+  $member = islogin($db);
 
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
@@ -8,10 +10,10 @@
   //   header('Location: index.php');
   //   exit();
   // }
-  if (empty($_SESSION['id'])) {
-    header('Location: index.php');
-    exit();
-  }
+  // if (empty($_SESSION['id'])) {
+  //   header('Location: index.php');
+  //   exit();
+  // }
 
    // 投稿取得
    $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
@@ -43,10 +45,10 @@
                   $picture = $logs['image_path'];
               }
             }
-      $sql = sprintf('UPDATE `logs` SET `depth`="%s" ,`lat`="%s", `long`="%s", `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s" WHERE `log_id`=%d',
+      $sql = sprintf('UPDATE `logs` SET `depth`="%s" , `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s",`ltank`="%s" WHERE `log_id`=%d',
         $_POST['depth'],
-        $_POST['lat'],
-        $_POST['long'],
+        // $_POST['lat'],
+        // $_POST['long'],
         $_POST['temperature'],
         $_POST['surface'],
         $_POST['underwater'],
@@ -54,12 +56,13 @@
         $_POST['comment'],
         $picture,
         $_POST['tank'],
+        $_POST['ltank'],
         $_REQUEST['id']
         );
         mysqli_query($db, $sql) or die(mysqli_error($db));
 
-         //header('location: index.php');
-         //exit();
+         header('location: mypage.php?id='.$logs['member_id']);
+         exit();
     //}
   }
 //}
@@ -102,7 +105,12 @@
     <![endif]-->
   </head>
   <body>
-  
+  [<a href="mypage.php?id=<?php echo h($member['id']); ?>" style="color: #F33;">プロフィール</a>]
+ <br>
+ [<a href="map.php" style="color: #F33;">MAP</a>]
+ <br>
+ [<a href="home.php" style="color: #F33;">HOME</a>]
+ <br>
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
@@ -115,23 +123,160 @@
            --><p>
             <form action="" method="post" enctype="multipart/form-data">
             <br>
-            <textarea name="depth"><?php echo h($log['depth']); ?></textarea>
+            水深:<?php echo h($log['depth']); ?>
             <br>
-            <textarea name="lat"><?php echo h($log['lat']); ?></textarea>
+            <?php
+            $min = 0;
+            $max = 50;
+            echo "<select name='depth' >";
+            // echo "<option>不明</option>";
+            if($log['depth'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+
+            for ($i=$min; $i <= $max; $i++) {
+              if($i == $log['depth']){
+                echo  "<option value='" . $i . "'selected>" . $i . "m" . "</option>";
+              }else{
+                echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+              }
+            }
+            echo "</select>";
+            ?>
+            <br>
+            <br>
+            <!-- <textarea name="lat"><?php echo h($log['lat']); ?></textarea>
             <br>
             <textarea name="long"><?php echo h($log['long']); ?></textarea>
+            <br> -->
+            気温:<?php echo h($log['temperature']); ?>
             <br>
-            <textarea name="temperature"><?php echo h($log['temperature']); ?></textarea>
+            <?php
+            $min = 0;
+            $max = 45;
+            echo "<select name='temperature'>";
+            if($log['temperature'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+            for ($i=$min; $i <= $max; $i++) {
+              if($i == $log['temperature']){
+                echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+              }else{
+                echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+              }
+            }
+              echo "</select>";
+            ?>
             <br>
-            <textarea name="surface"><?php echo h($log['surface']); ?></textarea>
             <br>
-            <textarea name="underwater"><?php echo h($log['underwater']); ?></textarea>
+            水面温度:<?php echo h($log['surface']); ?>
             <br>
-            <textarea name="suits"><?php echo h($log['suits']); ?></textarea>
+            <?php
+            $min = 0;
+            $max = 30;
+            echo "<select name='surface'>";
+            if($log['surface'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+            for ($i=$min; $i <= $max; $i++) {
+                if($i == $log['surface']){
+                echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+              }else{
+                echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+              }
+            }
+            echo "</select>";
+            ?>
+            <br>
+            <br>
+            水中温度:<?php echo h($log['underwater']); ?>
+            <br>
+            <?php
+            $min = 0;
+            $max = 30;
+            echo "<select name='underwater'>";
+            if($log['underwater'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+            for ($i=$min; $i <= $max; $i++) {
+                if($i == $log['underwater']){
+                echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";  
+                }else{
+                  echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                }
+                
+            }
+            echo "</select>";
+            ?>
+            <br>
+            <br>
+            スーツの種類
+            <br>
+            <textarea name="suits"><?php if($log['suits']){}else{echo h($log['suits']);} ?></textarea>
+            <br>
+            <br>
+            コメント
             <br>
             <textarea name="comment"><?php echo h($log['comment']); ?></textarea>
             <br>
-            <textarea name="tank"><?php echo h($log['tank']); ?></textarea>
+            <br>
+            開始時タンク残量:<?php echo h($log['tank']); ?>
+            <br>
+            <?php
+                echo "<select name='tank'>";
+                if($log['tank'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+                for ($i= 0; $i <= 20; $i++) {
+                    // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
+                  $j = $i * 10;
+                  if ($j == $log['tank']) {
+                    echo  "<option value='" . $i * 10 . "' selected>" . $i * 10 . "psi/bar" . "</option>";
+                  }else{
+                    echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                  }
+                }
+                echo "</select>";
+                ?>
+            <br>
+            <br>
+            終了時タンク残量:<?php echo h($log['ltank']); ?>
+            <br>
+            <?php
+                echo "<select name='ltank'>";
+                if($log['ltank'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+                for ($i= 0; $i <= 20; $i++) {
+                    // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
+                  $j = $i * 10;
+                  if ($j == $log['ltank']) {
+                    echo  "<option value='" . $i * 10 . "' selected>" . $i * 10 . "psi/bar" . "</option>";
+                  }else{
+                    echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                  }
+                }
+                echo "</select>";
+                ?>
+            <br>
             <br>
            <!-- <div class="form-group"> -->
             <label class="col-sm-4 control-label">写真</label>
@@ -149,20 +294,19 @@
             </form>
           </p>
           <!-- 仮 -->
-            <span class="log_id"> (<?php echo h($log['log_id']); ?>)</span>
-          <p class="day"><?php echo h($log['created']); ?>
+            
             
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
           
         </div>
-        <a href="index.php">&laquo;&nbsp;一覧へ戻る</a>
+        <!-- <a href="mypage.php">&laquo;&nbsp;一覧へ戻る</a> -->
       </div>
     </div>
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
