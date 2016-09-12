@@ -24,7 +24,7 @@
 
     echo $members['license'];
     echo "<br>";
-
+    echo "<br>";
 
      // var_dump($members);
      // echo '<br>';
@@ -97,7 +97,7 @@
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
-                <img src="member_picture/<?php echo $members['picture_path']; ?>" width="150" height="150">
+                <img src="member_picture/<?php echo $members['picture_path']; ?>" width="190" height="190">
             </div>
             <div class="rgba3">
                     <p><span class="sample1"><?php echo $members['name']; ?></span></p>
@@ -105,9 +105,9 @@
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
             </div>
 
-            <p class="rgba4">
+            <div class="rgba4">
                 <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
-            </p>
+            </div>
 
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
                             <div class="container-fluid">
