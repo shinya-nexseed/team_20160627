@@ -5,13 +5,31 @@
     require('function.php');
     $member = islogin($db);
 
+    $error = array();
+
     // 投稿を記録する
     if (!empty($_POST)) {
 
+        // エラー項目の確認
+        if ($_POST['title'] == '') {
+            $error['title'] = 'blank';
+           
+        }
+
         // 選択された画像の名前を取得
-        $fileName = $_FILES['image_path']['name'];
+        if (!empty($_FILES['image_path']['name'])) {
+            $fileName = $_FILES['image_path']['name'];    
+        } else {
+            $fileName = "sample.jpg";
+        }
+
         // $_FILESはスーパーグローバル。勝手に生成
         // 選択された画像の拡張子チェック
+        // else {
+        //     $fileName = sample.jpg
+
+    
+    
 
         if (!empty($fileName)){
             $ext = substr($fileName, -3);
@@ -28,35 +46,39 @@
             // エラーが一件もなければ、画像アップロードなどの処理をする
             $image=date('YmdHis') . $_FILES['image_path']['name'];
             move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $image);
-        }
+
+            }
 
         if (empty($_POST['suits'])) {
             $_POST['suits'] = -1000;
         }
 
-        $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, ltank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
 
-           mysqli_real_escape_string($db, $_POST['title']),
-           mysqli_real_escape_string($db, $_POST['depth']),
-           mysqli_real_escape_string($db, $_POST['latitude']),
-           mysqli_real_escape_string($db, $_POST['longitude']),
-           mysqli_real_escape_string($db, $_POST['temperature']),
-           mysqli_real_escape_string($db, $_POST['surface']),
-           mysqli_real_escape_string($db, $_POST['underwater']),
-           mysqli_real_escape_string($db, $_POST['suits']),
-           mysqli_real_escape_string($db, $_POST['tank']),
-           mysqli_real_escape_string($db, $_POST['ltank']),
-           mysqli_real_escape_string($db, $_SESSION['id']),
-           mysqli_real_escape_string($db, $_POST['comment']),
-           mysqli_real_escape_string($db, $image)
-            // $_POST['image_path']
+        if(empty($error)){
+            $sql = sprintf('INSERT INTO `logs` SET title="%s", depth=%d, lat="%s", lng="%s", temperature="%s", surface=%d, underwater=%d, suits="%s", tank=%d, ltank=%d, member_id=%d, comment="%s", image_path="%s", created=NOW()',
 
-        );
+               mysqli_real_escape_string($db, $_POST['title']),
+               mysqli_real_escape_string($db, $_POST['depth']),
+               mysqli_real_escape_string($db, $_POST['latitude']),
+               mysqli_real_escape_string($db, $_POST['longitude']),
+               mysqli_real_escape_string($db, $_POST['temperature']),
+               mysqli_real_escape_string($db, $_POST['surface']),
+               mysqli_real_escape_string($db, $_POST['underwater']),
+               mysqli_real_escape_string($db, $_POST['suits']),
+               mysqli_real_escape_string($db, $_POST['tank']),
+               mysqli_real_escape_string($db, $_POST['ltank']),
+               mysqli_real_escape_string($db, $_SESSION['id']),
+               mysqli_real_escape_string($db, $_POST['comment']),
+               mysqli_real_escape_string($db, $image)
+                // $_POST['image_path']
 
-        mysqli_query($db, $sql) or die(mysqli_error($db));
+            );
 
-        header('Location: mypage.php?id='.$_SESSION['id']);
-                  exit();
+            mysqli_query($db, $sql) or die(mysqli_error($db));
+
+            header('Location: mypage.php?id='.$_SESSION['id']);
+            exit();
+        }
     }
 
 ?>
@@ -139,7 +161,12 @@
             <div class="form-group">
               　<label class="col-md-4 control-label" for="textinput">タイトル</label>  
               　<div class="col-md-4">
-              　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md">  
+              　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md"> 
+                    <?php if(isset($error['title'])): ?>
+                        <?php if($error['title'] == 'blank'): ?>
+                            <p class="error">タイトルを入力して下さい。</p>
+                        <?php endif; ?>
+                    <?php endif; ?>
               　</div>
             </div>
         
@@ -147,10 +174,6 @@
             <div class="form-group">
               　<label class="col-md-4 control-label" for="textinput">ロケーション</label>  
               　<div class="col-md-4">
-              　    
-                <!-- ---------------------↓大事かもしれない--------------------------------------------------------------- -->
-                <!-- <input class="form-control input-md" id="textinput" name="textinput" type="text">  --> 
-                <!-- --------------------------------------------------------------------- -->
                 
                     <br>
                     <div id="map_canvas" style="width:375px; height:225px"></div>
@@ -164,34 +187,7 @@
     
                     <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
                     <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
-    
-                       <p>日本：
-                         <input type="button" id="tokyo" value="東京" onclick="setTokyo()" />
-                         <input type="button" id="kanagawa" value="神奈川" onclick="setKanagawa()" />
-                         <input type="button" id="sizuoka" value="静岡" onclick="setSizuoka()" />
-                         <input type="button" id="osaka" value="大阪" onclick="setOsaka()" />
-                         <input type="button" id="okinawa" value="沖縄" onclick="setOkinawa()" />
-                       </p>
-                       <p>アジア：
-                         <input type="button" id="cebu" value="セブ" onclick="setCebu()" />
-                         <input type="button" id="palau" value="パラオ" onclick="setPalau()" />
-                         <input type="button" id="bali" value="バリ島" onclick="setBali()" />
-                         <input type="button" id="maldives" value="モルディブ" onclick="setMaldives()" />
-                       </p>
-                       <p>他国：
-                         <input type="button" id="lapaz" value="ラパス" onclick="setLapaz()" />
-                         <input type="button" id="phuket" value="プーケット" onclick="setPhuket()" />
-                         <input type="button" id="koukai" value="紅海" onclick="setKoukai()" />
-                         <input type="button" id="tao" value="タオ島" onclick="setTao()" />
-                         <input type="button" id="jakarta" value="ジャカルタ" onclick="setJakarta()" />
-                       </p>
-                       <p>その他：
-                         <input type="button" id="malta" value="マルタ島" onclick="setMalta()" />
-                         <input type="button" id="belize" value="ベリーズ" onclick="setBelize()" />
-                         <input type="button" id="australia" value="オーストラリア" onclick="setAustralia()" />
-                         <input type="button" id="galapagos" value="ガラパゴス諸島" onclick="setGalapagos()" />
-                       </p>
-                    </div>
+                </div>
             </div>
 
             <!--水深-->
