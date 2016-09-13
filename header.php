@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="home.php">
 				DIVINGLOG
 			</a>
 		</div>
@@ -25,14 +25,14 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="http://nexseed.net/" target="_blank">Visit Site</a></li>
 				<li class="dropdown ">
-				<!-- 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Account
-						<span class="caret"></span></a> -->
+						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
+							<li class="dropdown-header"><a href="#">Other Link</a></li>
+							<li class="dropdown-header"><a href="#">Other Link</a></li>
+							<li class="dropdown-header"><a href="#">Other Link</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Logout</a></li>
 						</ul>
@@ -46,10 +46,10 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="home.php">HOME</a></li>
 				<li><a href="map.php">MAP</a></li>
-				<?php if(!empty($member['id'])); ?>
-				<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
+				<?php if(!empty($member['id'])): ?>
+					<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
 				<?php else: ?>
-				<li><a href="login.php">PROFILE</a></li>
+					<li><a href="login.php">PROFILE</a></li>
 				<?php endif; ?>
 				<li><a href="log_add.php">NEW LOG</a></li>
 			</ul>

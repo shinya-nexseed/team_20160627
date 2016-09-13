@@ -1,5 +1,8 @@
 <?php
-session_start()
+session_start();
+require('dbconnect.php');
+require('function.php');
+$member = hoge($db);
 ?>
 <!DOCTYPE html> 
 <html lang="ja">

@@ -27,6 +27,8 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+
     <title>mypage</title>
  </head>
  <body>
@@ -36,13 +38,6 @@
  [<a href="user_edit.php" style="color: #F33;">編集</a>]
  <?php endif; ?>
  <br>
-
-<html>
-<head>
-	<title>divinglog</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
@@ -88,19 +83,20 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
                                             <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody></table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
