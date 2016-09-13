@@ -2,13 +2,9 @@
   session_start();
   require('dbconnect.php');
   require('function.php');
-  $member = islogin($db);
-
-  echo "<br>";
-  echo "<br>";
-  echo "<br>";
-
-  //var_dump($_SESSION);
+  $member = hoge($db);
+  // var_dump($member);
+   //var_dump($_SESSION);
   //if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
     // ログインしている場合
 
@@ -125,9 +121,8 @@
   $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
-  //var_dump($member);
-  echo '<br>';
-  echo '==================================================';
+  // var_dump($member);
+  
 ?>
 
 
@@ -270,7 +265,7 @@
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
   </body>
 </html>

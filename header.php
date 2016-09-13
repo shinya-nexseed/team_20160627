@@ -31,6 +31,7 @@
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
+							<li class="dropdown-header"><a href="user_edit.php">EDIT</a></li>
 							<li class="dropdown-header"><a href="login.php">LOGOUT</a></li>
 							<li class="dropdown-header"><a href="join/index.php">NEW ACCOUNT</a></li>
 							<li class="divider"></li>
@@ -46,7 +47,7 @@
 				<li><a href="home.php">HOME</a></li>
 				<li><a href="map.php">MAP</a></li>
 				<?php if(!empty($member['id'])): ?>
-					<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
+					<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>"><?php echo $member['id']; ?>PROFILE</a></li>
 				<?php else: ?>
 					<li><a href="login.php">PROFILE</a></li>
 				<?php endif; ?>

@@ -122,7 +122,7 @@ function h($value) {
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+   <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
   </body>
 </html>
