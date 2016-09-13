@@ -1,4 +1,5 @@
 
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -30,11 +31,9 @@
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
-							<li class="dropdown-header"><a href="#">Other Link</a></li>
-							<li class="dropdown-header"><a href="#">Other Link</a></li>
-							<li class="dropdown-header"><a href="#">Other Link</a></li>
+							<li class="dropdown-header"><a href="login.php">LOGOUT</a></li>
+							<li class="dropdown-header"><a href="join/index.php">NEW ACCOUNT</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
 						</ul>
 					</li>
 				</ul>

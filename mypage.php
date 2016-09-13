@@ -15,8 +15,6 @@
     $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db, $sql) or die(mysqli_error($db));
     while ($log = mysqli_fetch_assoc($result)) {
-        echo $log['title'];
-        echo '<br>';
     }
 ?>
 <!DOCTYPE html>
