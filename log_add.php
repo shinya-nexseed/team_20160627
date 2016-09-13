@@ -13,23 +13,10 @@
         // エラー項目の確認
         if ($_POST['title'] == '') {
             $error['title'] = 'blank';
-           
         }
 
-        // 選択された画像の名前を取得
-        if (!empty($_FILES['image_path']['name'])) {
-            $fileName = $_FILES['image_path']['name'];    
-        } else {
-            $fileName = "sample.jpg";
-        }
-
-        // $_FILESはスーパーグローバル。勝手に生成
-        // 選択された画像の拡張子チェック
-        // else {
-        //     $fileName = sample.jpg
-
     
-    
+        $fileName = $_FILES['image_path']['name'];
 
         if (!empty($fileName)){
             $ext = substr($fileName, -3);
@@ -37,16 +24,20 @@
             if ($ext !='jpg' && $ext != 'gif' && $ext !='png'){
                 $error['image'] = 'type';
             }
-
         }
 
         if(empty($error)){
             // 画像をアップロード
             // すべてのフォーム入力を満たした状態でデータが入力されていれば
             // エラーが一件もなければ、画像アップロードなどの処理をする
-            $image=date('YmdHis') . $_FILES['image_path']['name'];
-            move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $image);
 
+            // 選択された画像の名前を取得
+            if (!empty($_FILES['image_path']['name'])) {
+                $image=date('YmdHis') . $_FILES['image_path']['name'];
+                move_uploaded_file($_FILES['image_path']['tmp_name'], 'logs_picture/' . $image);
+            } else {
+                $image = "sample.jpg";
+            }
             }
 
         if (empty($_POST['suits'])) {
@@ -145,201 +136,200 @@
     <div class="container">
         <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
             <fieldset>
-        
-            <legend>〜ログ付け日記〜</legend>
-        
-            <!--日程-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="textinput">日程</label>  
-              　<div class="col-md-4">
-                  　<input id="textinput" name="date" type="date" class="form-control input-md" size="16">
-                  <!-- <span class="add-on"><i class="icon-calendar"></i></span> -->
-              　</div>
-            </div>
-        
-            <!--タイトル-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="textinput">タイトル</label>  
-              　<div class="col-md-4">
-              　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md"> 
-                    <?php if(isset($error['title'])): ?>
-                        <?php if($error['title'] == 'blank'): ?>
-                            <p class="error">タイトルを入力して下さい。</p>
-                        <?php endif; ?>
-                    <?php endif; ?>
-              　</div>
-            </div>
-        
-            <!--ロケーション-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="textinput">ロケーション</label>  
-              　<div class="col-md-4">
-                
-                    <br>
-                    <div id="map_canvas" style="width:375px; height:225px"></div>
-                    <br>
-
-                    <!-- <label for="latitude">緯度</label> -->
-                    <!-- <input type="text" id="latitude" size="20" name="latitude" /> -->
-                    <input type="hidden" id="latitude" id="textinput" size="20" name="latitude" class="form-control input-md"/>
-    
-                    <!-- <label for="longitude">経度</label> -->
-    
-                    <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
-                    <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
+                <legend>〜ログ付け日記〜</legend>
+            
+                <!--日程-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="textinput">日程</label>  
+                  　<div class="col-md-4">
+                      　<input id="textinput" name="date" type="date" class="form-control input-md" size="16">
+                      <!-- <span class="add-on"><i class="icon-calendar"></i></span> -->
+                  　</div>
                 </div>
-            </div>
-
-            <!--水深-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">水深</label>
-              　<div class="col-md-4">
-
-                    <?php
-                    $min = 0;
-                    $max = 50;
-                    echo "<select id='selectbasic' name='depth' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i=$min; $i <= $max; $i++) {
-                    echo "<br>";
-                    echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
-                    }
-                    echo "</select>";
-
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-
-            <!--気温-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">気温</label>
-              　<div class="col-md-4">
-                　　
-                    <?php
-                    $min = 0;
-                    $max = 45;
-                    echo "<select id='selectbasic' name='temperature' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i=$min; $i <= $max; $i++) {
-                    echo "<br>";
-                    echo  "<option value='" . $i . "'>" . $i . "" . "</option>";
-                    }
-                    echo "</select>";
-
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-
-            <!--水面温度-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">水面温度</label>
-              　<div class="col-md-4">
-                　　
-                    <?php
-                    $min = 0;
-                    $max = 30;
-                    echo "<select id='selectbasic' name='surface' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i=$min; $i <= $max; $i++) {
-                    echo "<br>";
-                    echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
-                    }
-                    echo "</select>";
-
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-
-            <!--水中温度-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">水中温度</label>
-              　<div class="col-md-4">
-                　
-                    <?php
-                    $min = 0;
-                    $max = 30;
-                    echo "<select id='selectbasic' name='underwater' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i=$min; $i <= $max; $i++) {
-                    echo "<br>";
-                    echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
-                    }
-                    echo "</select>";
-
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-
-            <!-- スーツの種類 -->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="textinput">スーツの種類</label>  
-              　<div class="col-md-4">
-              　    <input id="textinput" name="suits" type="text" placeholder="例：Aスーツ" width="30" class="form-control input-md">  
-              　</div>
-            </div>
-
-            <!--タンク残量-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">開始時タンク残量</label>
-              　<div class="col-md-4">
-                　　
-                    <?php
-                    echo "<select id='selectbasic' name='tank' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i= 0; $i <= 20; $i++) {
+            
+                <!--タイトル-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="textinput">タイトル</label>  
+                  　<div class="col-md-4">
+                  　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md"> 
+                        <?php if(isset($error['title'])): ?>
+                            <?php if($error['title'] == 'blank'): ?>
+                                <p class="error">タイトルを入力して下さい。</p>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                  　</div>
+                </div>
+            
+                <!--ロケーション-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="textinput">ロケーション</label>  
+                  　<div class="col-md-4">
+                    
+                        <br>
+                        <div id="map_canvas" style="width:375px; height:225px"></div>
+                        <br>
+    
+                        <!-- <label for="latitude">緯度</label> -->
+                        <!-- <input type="text" id="latitude" size="20" name="latitude" /> -->
+                        <input type="hidden" id="latitude" id="textinput" size="20" name="latitude" class="form-control input-md"/>
+        
+                        <!-- <label for="longitude">経度</label> -->
+        
+                        <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
+                        <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
+                    </div>
+                </div>
+    
+                <!--水深-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">水深</label>
+                  　<div class="col-md-4">
+    
+                        <?php
+                        $min = 0;
+                        $max = 50;
+                        echo "<select id='selectbasic' name='depth' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i=$min; $i <= $max; $i++) {
                         echo "<br>";
-                        echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
-                    }
-                    echo "</select>";
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="selectbasic">終了時タンク残量</label>
-              　<div class="col-md-4">
-                　　
-                    <?php
-                    echo "<select id='selectbasic' name='ltank' class='form-control' >";
-                    echo "<option value='-1000'>不明</option>";
-                    for ($i= 0; $i <= 20; $i++) {
+                        echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                        }
+                        echo "</select>";
+    
                         echo "<br>";
-                        echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
-                    }
-                    echo "</select>";
-                    echo "<br>";
-                    ?>
-              　</div>
-            </div>
-        
-            <!--コメント-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="textarea">コメント</label>
-              　<div class="col-md-4">                     
-                　　<textarea class="form-control" id="textarea" name="comment" placeholder="今日のダイビングはどうでしたか?"></textarea>
-              　</div>
-            </div>
-        
-            <!--写真添付--> 
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="filebutton">写真添付</label>
-              　<div class="col-md-4">
-               　　 <input id="filebutton" name="image_path" class="input-file" type="file" size="30">
-             　　</div>
-            </div>
-        
-            <!--登録-->
-            <div class="form-group">
-              　<label class="col-md-4 control-label" for="singlebutton"></label>
-              　<div class="col-md-4">
-                　　<input id="singlebutton" type="submit" value="登録" name="singlebutton" class="btn btn-primary">
-              　</div>
-            </div>
+                        ?>
+                  　</div>
+                </div>
+    
+                <!--気温-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">気温</label>
+                  　<div class="col-md-4">
+                    　　
+                        <?php
+                        $min = 0;
+                        $max = 45;
+                        echo "<select id='selectbasic' name='temperature' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i=$min; $i <= $max; $i++) {
+                        echo "<br>";
+                        echo  "<option value='" . $i . "'>" . $i . "" . "</option>";
+                        }
+                        echo "</select>";
+    
+                        echo "<br>";
+                        ?>
+                  　</div>
+                </div>
+    
+                <!--水面温度-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">水面温度</label>
+                  　<div class="col-md-4">
+                    　　
+                        <?php
+                        $min = 0;
+                        $max = 30;
+                        echo "<select id='selectbasic' name='surface' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i=$min; $i <= $max; $i++) {
+                        echo "<br>";
+                        echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                        }
+                        echo "</select>";
+    
+                        echo "<br>";
+                        ?>
+                  　</div>
+                </div>
+    
+                <!--水中温度-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">水中温度</label>
+                  　<div class="col-md-4">
+                    　
+                        <?php
+                        $min = 0;
+                        $max = 30;
+                        echo "<select id='selectbasic' name='underwater' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i=$min; $i <= $max; $i++) {
+                        echo "<br>";
+                        echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                        }
+                        echo "</select>";
+    
+                        echo "<br>";
+                        ?>
+                  　</div>
+                </div>
+    
+                <!-- スーツの種類 -->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="textinput">スーツの種類</label>  
+                  　<div class="col-md-4">
+                  　    <input id="textinput" name="suits" type="text" placeholder="例：Aスーツ" width="30" class="form-control input-md">  
+                  　</div>
+                </div>
+    
+                <!--タンク残量-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">開始時タンク残量</label>
+                  　<div class="col-md-4">
+                    　　
+                        <?php
+                        echo "<select id='selectbasic' name='tank' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i= 0; $i <= 20; $i++) {
+                            echo "<br>";
+                            echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                        }
+                        echo "</select>";
+                        echo "<br>";
+                        ?>
+                  　</div>
+                </div>
+    
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="selectbasic">終了時タンク残量</label>
+                  　<div class="col-md-4">
+                    　　
+                        <?php
+                        echo "<select id='selectbasic' name='ltank' class='form-control' >";
+                        echo "<option value='-1000'>不明</option>";
+                        for ($i= 0; $i <= 20; $i++) {
+                            echo "<br>";
+                            echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                        }
+                        echo "</select>";
+                        echo "<br>";
+                        ?>
+                  　</div>
+                </div>
+            
+                <!--コメント-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="textarea">コメント</label>
+                  　<div class="col-md-4">                     
+                    　　<textarea class="form-control" id="textarea" name="comment" placeholder="今日のダイビングはどうでしたか?"></textarea>
+                  　</div>
+                </div>
+            
+                <!--写真添付--> 
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="filebutton">写真添付</label>
+                  　<div class="col-md-4">
+                   　　 <input id="filebutton" name="image_path" class="input-file" type="file" size="30">
+                 　　</div>
+                </div>
+            
+                <!--登録-->
+                <div class="form-group">
+                  　<label class="col-md-4 control-label" for="singlebutton"></label>
+                  　<div class="col-md-4">
+                    　　<input id="singlebutton" type="submit" value="登録" name="singlebutton" class="btn btn-primary">
+                  　</div>
+                </div>
             </fieldset>
         </form>
     </div>
