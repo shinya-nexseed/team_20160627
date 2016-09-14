@@ -83,7 +83,6 @@
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>ログ付け機能</title>
 
     <script type="text/javascript"

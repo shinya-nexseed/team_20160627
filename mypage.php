@@ -28,7 +28,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/mypage.css">
 
     <title>mypage</title>
  </head>
@@ -48,7 +48,7 @@
 
             <div class="rgba4">
                 <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
-                
+
             </div>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
