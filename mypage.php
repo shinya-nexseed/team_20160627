@@ -34,6 +34,7 @@
     $test = count($testfollow);
 ?>
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html>
 <head>
 	<title>divinglog</title>
