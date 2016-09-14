@@ -15,7 +15,7 @@
             $error['title'] = 'blank';
         }
 
-    
+
         $fileName = $_FILES['image_path']['name'];
 
         if (!empty($fileName)){
@@ -38,7 +38,7 @@
             } else {
                 $image = "sample.jpg";
             }
-            }
+        }
 
         if (empty($_POST['suits'])) {
             $_POST['suits'] = -1000;
@@ -67,7 +67,8 @@
 
             mysqli_query($db, $sql) or die(mysqli_error($db));
 
-            header('Location: mypage.php?id='.$_SESSION['id']);
+            // header('Location: mypage.php?id='.$_SESSION['id']);
+            header('Location: home.php');
             exit();
         }
     }
@@ -78,8 +79,8 @@
 <html lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  　<link rel="stylesheet" type="text/css" href="">
   　<link rel="stylesheet" href="assets/css/bootstrap.css">
+  　<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <title>ログ付け機能</title>
 
     <script type="text/javascript"
@@ -123,35 +124,26 @@
     </script>
 </head>
 <body onload="initialize()">
-<br>
-  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
-
-    <!-- <div id="map_canvas" style="width:500px; height:300px"></div> -->
 
     <div class="container">
         <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>〜ログ付け日記〜</legend>
-            
+
                 <!--日程-->
                 <div class="form-group">
-                  　<label class="col-md-4 control-label" for="textinput">日程</label>  
+                  　<label class="col-md-4 control-label" for="textinput">日程</label>
                   　<div class="col-md-4">
                       　<input id="textinput" name="date" type="date" class="form-control input-md" size="16">
                       <!-- <span class="add-on"><i class="icon-calendar"></i></span> -->
                   　</div>
                 </div>
-            
+
                 <!--タイトル-->
                 <div class="form-group">
-                  　<label class="col-md-4 control-label" for="textinput">タイトル</label>  
+                  　<label class="col-md-4 control-label" for="textinput">タイトル<span class="required">*</span></label>
                   　<div class="col-md-4">
-                  　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md"> 
+                  　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md">
                         <?php if(isset($error['title'])): ?>
                             <?php if($error['title'] == 'blank'): ?>
                                 <p class="error">タイトルを入力して下さい。</p>
@@ -159,32 +151,32 @@
                         <?php endif; ?>
                   　</div>
                 </div>
-            
+
                 <!--ロケーション-->
                 <div class="form-group">
-                  　<label class="col-md-4 control-label" for="textinput">ロケーション</label>  
+                  　<label class="col-md-4 control-label" for="textinput">ロケーション</label>
                   　<div class="col-md-4">
-                    
+
                         <br>
                         <div id="map_canvas" style="width:375px; height:225px"></div>
                         <br>
-    
+
                         <!-- <label for="latitude">緯度</label> -->
                         <!-- <input type="text" id="latitude" size="20" name="latitude" /> -->
                         <input type="hidden" id="latitude" id="textinput" size="20" name="latitude" class="form-control input-md"/>
-        
+
                         <!-- <label for="longitude">経度</label> -->
-        
+
                         <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
                         <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
                     </div>
                 </div>
-    
+
                 <!--水深-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水深</label>
                   　<div class="col-md-4">
-    
+
                         <?php
                         $min = 0;
                         $max = 50;
@@ -195,12 +187,12 @@
                         echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
                         }
                         echo "</select>";
-    
+
                         echo "<br>";
                         ?>
                   　</div>
                 </div>
-    
+
                 <!--気温-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">気温</label>
@@ -216,12 +208,12 @@
                         echo  "<option value='" . $i . "'>" . $i . "" . "</option>";
                         }
                         echo "</select>";
-    
+
                         echo "<br>";
                         ?>
                   　</div>
                 </div>
-    
+
                 <!--水面温度-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水面温度</label>
@@ -237,12 +229,12 @@
                         echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
                         }
                         echo "</select>";
-    
+
                         echo "<br>";
                         ?>
                   　</div>
                 </div>
-    
+
                 <!--水中温度-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水中温度</label>
@@ -258,20 +250,20 @@
                         echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
                         }
                         echo "</select>";
-    
+
                         echo "<br>";
                         ?>
                   　</div>
                 </div>
-    
+
                 <!-- スーツの種類 -->
                 <div class="form-group">
-                  　<label class="col-md-4 control-label" for="textinput">スーツの種類</label>  
+                  　<label class="col-md-4 control-label" for="textinput">スーツの種類</label>
                   　<div class="col-md-4">
-                  　    <input id="textinput" name="suits" type="text" placeholder="例：Aスーツ" width="30" class="form-control input-md">  
+                  　    <input id="textinput" name="suits" type="text" placeholder="例：Aスーツ" width="30" class="form-control input-md">
                   　</div>
                 </div>
-    
+
                 <!--タンク残量-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">開始時タンク残量</label>
@@ -289,7 +281,7 @@
                         ?>
                   　</div>
                 </div>
-    
+
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">終了時タンク残量</label>
                   　<div class="col-md-4">
@@ -306,23 +298,23 @@
                         ?>
                   　</div>
                 </div>
-            
+
                 <!--コメント-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="textarea">コメント</label>
-                  　<div class="col-md-4">                     
+                  　<div class="col-md-4">
                     　　<textarea class="form-control" id="textarea" name="comment" placeholder="今日のダイビングはどうでしたか?"></textarea>
                   　</div>
                 </div>
-            
-                <!--写真添付--> 
+
+                <!--写真添付-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="filebutton">写真添付</label>
                   　<div class="col-md-4">
                    　　 <input id="filebutton" name="image_path" class="input-file" type="file" size="30">
                  　　</div>
                 </div>
-            
+
                 <!--登録-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="singlebutton"></label>
