@@ -60,21 +60,21 @@ function h($value) {
  <br>
  [<a href="home.php" style="color: #F33;">HOME</a>]
  <br>
-  
+
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
         <?php
         if ($log = mysqli_fetch_assoc($logs)):
-        ?>   
+        ?>
             <br>
-            <span name="depth"><?php 
+            <span name="depth"><?php
             if($log['depth'] == -1000){
               echo "不明";
             }else{
               echo h($log['depth']);
-            } 
-            ?>  
+            }
+            ?>
             </span>
             <br>
             <span name="temperature"><?php if($log['temperature'] == -1000){
@@ -109,6 +109,8 @@ function h($value) {
         alt="<?php echo h($log['image_path']); ?>" >
             <br>
             [<a href="mypage.php?id=<?php echo h($log['member_id']); ?>" style="color: #F33;">プロフィール</a>]
+            <br>
+
             <?php if($_SESSION['id'] == $log['member_id']): ?>
             [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
             <?php endif; ?>
