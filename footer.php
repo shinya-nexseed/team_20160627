@@ -1,17 +1,3 @@
-<?php
-    session_start();
-    require('dbconnect.php');
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
-    <title></title>
-</head>
-<body>
-</body>
 <footer>
     <div class="container text-center">
         <hr/>
@@ -41,4 +27,3 @@
         </div>
     </div>
 </footer>
-</html>
