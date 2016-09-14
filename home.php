@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require('function.php');
 require('dbconnect.php');
@@ -17,21 +17,16 @@ function h($value) {
 
  ?>
  <!DOCTYPE html>
- <html lang="en">
+ <html lang="ja">
  <head>
  	<meta charset="UTF-8">
- 	<title>home</title>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/css/style.css">
-
+  <link href="assets/css/header.css" rel="stylesheet">
+ 	<title>home</title>
  </head>
-
-
  <body>
-
  <section>
   <div class="container gal-container">
 
@@ -94,9 +89,9 @@ function h($value) {
   </div>
 
 </section>
-  
+
   <script src="assets/js/jquery-3.1.0.js"></script>
   <script src="assets/js/bootstrap.js"></script>
-  
+
 </body>
 </html>
