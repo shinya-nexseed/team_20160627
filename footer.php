@@ -18,10 +18,10 @@
         <hr>
         <div class="row">
             <div class="col-lg-12">
-                <ul class="nav nav-pills nav-justified">
-                    <li><a href="/">© 2013 Company Name.</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy</a></li>
+                <ul class="nav nav-pills nav-justified" style="margin-bottom:20px;">
+                    <li>© 2013 Company Name.</li>
+                    <li>Terms of Service</li>
+                    <li>Privacy</li>
                 </ul>
             </div>
         </div>
