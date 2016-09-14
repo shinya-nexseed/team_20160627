@@ -41,7 +41,7 @@
       
       // 選択された画像の名前を取得
       $fileName = $_FILES['picture_path']['name'];
-      echo $fileName;
+      // echo $fileName;
       if (!empty($fileName)) {
         $ext = substr($fileName, -3);
         if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png') {
@@ -55,7 +55,7 @@
            );
          $record = mysqli_query($db,$sql) or die(mysqli_error($db));
          $table = mysqli_fetch_assoc($record);
-         var_dump($table);
+         // var_dump($table);
          if($table['cnt'] > 0){
            $error['email'] = 'duplicate';
          }
@@ -83,78 +83,84 @@
     <meta charset="utf-8">
    
 
-    <title>SeedSNS</title>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="index.css">
 
   </head>
   			<body>
-        <legend>会員登録</legend>
+          <h2>Please Sign Up</h2>
+        <hr class="colorgraph"><br>
         <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
-          <!-- ニックネーム -->
-          
-            <label class="col-sm-4 control-label">ニックネーム</label>
-            
-              <input type="text" name="name" class="form-control" placeholder="例： Seed kun">
-              <?php if (isset($error['name'])): ?>
-              <?php if ($error['name'] == 'blank') : ?>
-                <p class="error">ニックネームを入力してください。</p>
-              <?php endif; ?>
-              <?php endif; ?>
-            
-            <br>
-          <!-- メールアドレス -->
-          
-            <label class="col-sm-4 control-label">メールアドレス</label>
-            
-              <input type="email" name="email" class="form-control" placeholder="例： seed@nex.com">
-              <?php if (isset($error['email'])): ?>
-              <?php if ($error['email'] == 'blank') : ?>
-                <p class="error">メールアドレスを入力してください。</p>
-              <?php endif; ?>
-              <?php endif; ?>
-        
-            <br>
-          <!-- パスワード -->
-          
-            <label class="col-sm-4 control-label">パスワード</label>
-            
-              <input type="password" name="password" class="form-control" placeholder="">
-              <?php if (isset($error['password'])): ?>
-              <?php if ($error['password'] == 'blank') : ?>
-                <p class="error">パスワードを入力してください。</p>
-              <?php endif; ?>
-              <?php endif; ?>
-            <br>
-          <!-- プロフィール写真 -->
-          
-            <label class="col-sm-4 control-label">プロフィール写真</label>
-            
-            <input type="file" name="picture_path" class="form-control">
-            <?php if (isset($error['picture_path']) && $error['picture_path'] == 'type'): ?>
-            <p class="error">写真などは『.gif』または『.jpg』または『.png』の画像を指定してください</p>
-          <?php endif; ?>
-          <?php if(!empty($error)): ?>
-            <p class="error">恐れいりますが、画像を改めて指定してください</p>
-            <?php endif; ?>
-  
-            <br>
-            <!-- 国籍 -->
-            <label>国籍</label>
-            <select name="country">
-              <option value="japan">Japan</option>
-              <option value="america">America</option>  
-            </select>
+          <div style="margin: 0px 360px 0px 340px;" text-align: center;>
+              <!-- ニックネーム -->
+              <div class="form-group">
+                  <label class="col-sm-4 control-label">ニックネーム</label>
+                  
+                    <input type="text" name="name" class="form-control" placeholder="例： Seed kun">
+                    <?php if (isset($error['name'])): ?>
+                    <?php if ($error['name'] == 'blank') : ?>
+                      <p class="error"><small>ニックネームを入力してください。</small></p>
+                    <?php endif; ?>
+                    <?php endif; ?>
+              </div>
+              <!-- メールアドレス -->
+              <div class="form-group">
+                <label class="col-sm-4 control-label">メールアドレス</label>
+                
+                  <input type="email" name="email" class="form-control" placeholder="例： seed@nex.com">
+                  <?php if (isset($error['email'])): ?>
+                  <?php if ($error['email'] == 'blank') : ?>
+                    <p class="error"><small>メールアドレスを入力してください。</small></p>
+                  <?php endif; ?>
+                  <?php endif; ?>
+              </div>
+              <!-- パスワード -->
+              <div class="form-group">
+                <label class="col-sm-4 control-label">パスワード</label>
+                
+                  <input type="password" name="password" class="form-control" placeholder="">
+                  <?php if (isset($error['password'])): ?>
+                  <?php if ($error['password'] == 'blank') : ?>
+                    <p class="error"><small>パスワードを入力してください。</small></p>
+                  <?php endif; ?>
+                  <?php endif; ?>
+              </div>
+              <!-- プロフィール写真 -->
+              <div class="form-group">
+                  <label class="col-sm-4 control-label">プロフィール写真</label>
+                  
+                  <input type="file" name="picture_path" class="form-control">
+                  <?php if (isset($error['picture_path']) && $error['picture_path'] == 'type'): ?>
+                  <p class="error"><small>写真などは『.gif』または『.jpg』または『.png』の画像を指定してください</small></p>
+                <?php endif; ?>
+                <?php if(!empty($error)): ?>
+                  <p class="error"><small>恐れいりますが、画像を改めて指定してください</small></p>
+                  <?php endif; ?>
+              </div>
+                <!-- 国籍 -->
+              <div class="form-group">
+                <label>国籍</label>
+                <select name="country">
+                  <option value="japan">Japan</option>
+                  <option value="america">America</option>  
+                </select>
+              </div>
+                <!-- ラインセンスの種類 -->
+              <div class="form-group">
+                <label>ライセンス</label>
+                <select name="license">
+                  <?php while($license = mysqli_fetch_assoc($licenses)): ?>
+                      <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
+                  <?php endwhile; ?>
+                </select>
+              </div>
+                <input type="submit" value="確認画面へ" style="float:right;">
+          </div><br>
 
-            <br>
-            <!-- ラインセンスの種類 -->
-            <label>ライセンス</label>
-          <select name="license">
-          <?php while($license = mysqli_fetch_assoc($licenses)): ?>
-              <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
-          <?php endwhile; ?>
-          </select>
-			<br>
-          <input type="submit" class="btn btn-default" value="確認画面へ">
+            <hr class="colorgraph" style="clear:both;">
+  			       <br>
+          
         </form>
-     
+  
   </body>
 </html>

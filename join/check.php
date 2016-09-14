@@ -36,43 +36,47 @@ session_start();
     <meta charset="utf-8">
 
     <title>SeedSNS</title>
+    <link rel="stylesheet" href="index.css">
   </head>
           <body>
+            <h2>Please Check</h2>
         <form method="post" action="" class="form-horizontal" role="form">
           <input type="hidden" name="action" value="submit">
           
+          <hr class="colorgraph"><br>
+
             <table class="table table-striped table-condensed">
               <tbody>
                 <!-- 登録内容を表示 -->
-                <tr>
-                  <td><div class="text-center">ニックネーム</div></td>
-                  <td><div class="text-center"><?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES, 'UTF-8'); ?></div></td>
-                </tr>
-                <tr>
-                  <td><div class="text-center">メールアドレス</div></td>
-                  <td><div class="text-center"><?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES, 'UTF-8'); ?></div></td>
-                </tr>
-                <tr>
-                  <td><div class="text-center">パスワード</div></td>
-                  <td><div class="text-center">●●●●●●●●</div></td>
-                </tr>
-                <tr>
-                  <td><div class="text-center">プロフィール</div></td>
-                  <td><div class="text-center"><img src="../member_picture/<?php echo htmlspecialchars($_SESSION['join']['picture_path'], ENT_QUOTES, 'UTF-8'); ?>" width="100" height="100"></div></td>
-                </tr>
-                <tr>
-                  <td><div class="text-center">国籍</div></td>
-                  <td><div class="text-center"><?php echo htmlspecialchars($_SESSION['join']['country'],ENT_QUOTES,'UTF-8'); ?></div></td>
-                </tr>
-                <tr>
-                  <td><div class="text-center">ライセンス</div></td>
-                  <td><div class="text-center"><?php  echo $license['license']; ?></div></td>
-                </tr>
+                <div style="margin: 0px 360px 0px 360px;">
+                  <div class="form-group">
+                    <div class="text-center">ニックネーム： <?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES, 'UTF-8'); ?></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="text-center">メールアドレス： <?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES, 'UTF-8'); ?></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="text-center">パスワード： ●●●●●●●●</div>
+                  </div>
+                  <div class="form-group">
+                    <div class="text-center">プロフィール： <img src="../member_picture/<?php echo htmlspecialchars($_SESSION['join']['picture_path'], ENT_QUOTES, 'UTF-8'); ?>" width="100" height="100"></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="text-center">国籍： <?php echo htmlspecialchars($_SESSION['join']['country'],ENT_QUOTES,'UTF-8'); ?></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="text-center">ライセンス： <?php  echo $license['license']; ?></div>
+                  </div>
+                  <br>
+                
+                  <a href="index.php? action=rewrite" style="float:left;">&laquo;&nbsp;書き直す</a>
+                  <input type="submit" class="btn btn-default" value="会員登録" action='thanks.php' style="float:right;">
+                
+
               </tbody>
             </table>
 
-            <a href="index.php? action=rewrite">&laquo;&nbsp;書き直す</a>
-            <input type="submit" class="btn btn-default" value="会員登録" action='thanks.php'>
+            <hr class="colorgraph" style="clear:both;"><br>
           
         </form>
       
