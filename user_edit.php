@@ -148,6 +148,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
 
     <link href="assets/css/header.css" rel="stylesheet">
+     <link rel="stylesheet" href="assets/css/style.css">
     <!--
       designフォルダ内では2つパスの位置を戻ってからcssにアクセスしていることに注意！
      -->

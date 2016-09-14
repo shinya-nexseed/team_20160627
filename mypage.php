@@ -29,6 +29,7 @@
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mypage.css">
+     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>mypage</title>
  </head>

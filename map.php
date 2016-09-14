@@ -11,6 +11,7 @@ $member = checklogin($db);
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="assets/css/header.css" rel="stylesheet">
+   <link rel="stylesheet" href="assets/css/style.css">
 	<title></title>
 
 	<script type="text/javascript"

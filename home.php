@@ -27,6 +27,8 @@ function h($value) {
  	<title>home</title>
  </head>
  <body>
+ <?php require('header.php'); ?>
+
  <section>
   <div class="container gal-container">
 
