@@ -222,24 +222,24 @@
                   　<label class="col-md-4 control-label" for="selectbasic">気温</label>
                   　<div class="col-md-4">
                     　　<?php
-                        $min = 0;
-                        $max = 45;
-                        echo "<select name='temperature'>";
-                        if($log['temperature'] == -1000){
+                          $min = 0;
+                          $max = 45;
                           echo "<select id='selectbasic' name='temperature' class='form-control' >";
-                          // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
-                        } else {
-                          echo "<option value='-1000'>不明</option>";
-                        }
-                        for ($i=$min; $i <= $max; $i++) {
-                          if($i == $log['temperature']){
-                            echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
-                          }else{
-                            echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                          if($log['temperature'] == -1000){
+                             echo "<option value='-1000' selected>不明</option>";
+                            // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                          } else {
+                            echo "<option value='-1000'>不明</option>";
                           }
-                        }
-                          echo "</select>";
-                        ?>
+                          for ($i=$min; $i <= $max; $i++) {
+                            if($i == $log['temperature']){
+                              echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+                            }else{
+                              echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                            }
+                          }
+                            echo "</select>";
+                      ?>
                   　</div>
                 </div>
 
@@ -311,32 +311,49 @@
                   　<div class="col-md-4">
                     　　
                         <?php
-                        echo "<select id='selectbasic' name='tank' class='form-control' >";
-                        echo "<option value='-1000'>不明</option>";
-                        for ($i= 0; $i <= 20; $i++) {
-                            echo "<br>";
+                          echo "<select id='selectbasic' name='tank' class='form-control' >";
+                             if($log['tank'] == -1000){
+                        echo "<option value='-1000' selected>不明</option>";
+                           // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                                 } else {
+                         echo "<option value='-1000'>不明</option>";
+                                }
+                         for ($i= 0; $i <= 20; $i++) {
+                    // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
+                             $j = $i * 10;
+                            if ($j == $log['tank']) {
+                            echo  "<option value='" . $i * 10 . "' selected>" . $i * 10 . "psi/bar" . "</option>";
+                         }else{
                             echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
-                        }
-                        echo "</select>";
-                        echo "<br>";
-                        ?>
+                         }
+                         }
+                         echo "</select>";
+                         ?>
                   　</div>
                 </div>
 
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">終了時タンク残量</label>
                   　<div class="col-md-4">
-                    　　
-                        <?php
-                        echo "<select id='selectbasic' name='ltank' class='form-control' >";
-                        echo "<option value='-1000'>不明</option>";
-                        for ($i= 0; $i <= 20; $i++) {
-                            echo "<br>";
-                            echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
-                        }
-                        echo "</select>";
-                        echo "<br>";
-                        ?>
+                    　　<?php
+               echo "<select id='selectbasic' name=‘ltank' class='form-control' >";
+                if($log['ltank'] == -1000){
+              echo "<option value='-1000' selected>不明</option>";
+              // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+            } else {
+              echo "<option value='-1000'>不明</option>";
+            }
+                for ($i= 0; $i <= 20; $i++) {
+                    // 条件分岐文を使い登録しているデータと一致する場合はoptionタグにselectedオプションをつける
+                  $j = $i * 10;
+                  if ($j == $log['ltank']) {
+                    echo  "<option value='" . $i * 10 . "' selected>" . $i * 10 . "psi/bar" . "</option>";
+                  }else{
+                    echo  "<option value='" . $i * 10 . "'>" . $i * 10 . "psi/bar" . "</option>";
+                  }
+                }
+                echo "</select>";
+                ?>
                   　</div>
                 </div>
 
@@ -344,7 +361,7 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="textarea">コメント</label>
                   　<div class="col-md-4">
-                    　　<textarea class="form-control" id="textarea" name="comment" placeholder="今日のダイビングはどうでしたか?"></textarea>
+                    　　<textarea class="form-control" id="textarea" name="comment" placeholder="<?php echo $log['comment']; ?>"></textarea>
                   　</div>
                 </div>
 
