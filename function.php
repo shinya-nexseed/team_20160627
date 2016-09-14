@@ -16,7 +16,7 @@
 
 	}
 
-	function hoge($db){
+	function checklogin($db){
 		if (isset($_SESSION['id'])) {
 	        $sql = sprintf('SELECT * FROM members WHERE id=%d',
 	          mysqli_real_escape_string($db, $_SESSION['id'])

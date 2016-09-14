@@ -1,5 +1,5 @@
 
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -33,7 +33,9 @@
 							<li class="dropdown-header">SETTINGS</li>
 							<li class="dropdown-header"><a href="user_edit.php">EDIT</a></li>
 							<li class="dropdown-header"><a href="login.php">LOGOUT</a></li>
+							<?php if(empty($member['id'])): ?>
 							<li class="dropdown-header"><a href="join/index.php">NEW ACCOUNT</a></li>
+							<?php endif; ?>
 							<li class="divider"></li>
 						</ul>
 					</li>

@@ -2,6 +2,8 @@
 <?php
     session_start();
     require('dbconnect.php');
+    require('function.php');
+    $member = checklogin($db);
 
     $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);

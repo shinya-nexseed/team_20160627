@@ -2,7 +2,7 @@
   session_start();
   require('dbconnect.php');
   require('function.php');
-  $member = hoge($db);
+  $member = checklogin($db);
   // var_dump($member);
    //var_dump($_SESSION);
   //if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {

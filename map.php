@@ -2,7 +2,7 @@
 session_start();
 require('dbconnect.php');
 require('function.php');
-$member = hoge($db);
+$member = checklogin($db);
 ?>
 <!DOCTYPE html> 
 <html lang="ja">
