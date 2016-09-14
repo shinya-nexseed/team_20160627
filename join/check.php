@@ -6,7 +6,7 @@ session_start();
     header('Location: index.php');
     exit();
   }
- $sql = sprintf('SELECT * FROM licenses WHERE id="%s"',mysqli_real_escape_string($db,$_SESSION['join']['license']));
+ $sql = sprintf('SELECT * FROM licenses WHERE license_id="%s"',mysqli_real_escape_string($db,$_SESSION['join']['license']));
  $result = mysqli_query($db,$sql) or die(mysqli_error($db));
   $license = mysqli_fetch_assoc($result);
 
@@ -43,7 +43,7 @@ session_start();
             <h2>Please Check</h2>
         <form method="post" action="" class="form-horizontal" role="form">
           <input type="hidden" name="action" value="submit">
-          
+
           <hr class="colorgraph"><br>
 
             <table class="table table-striped table-condensed">
@@ -69,17 +69,17 @@ session_start();
                     <div class="text-center">ライセンス： <?php  echo $license['license']; ?></div>
                   </div>
                   <br>
-                
+
                   <a href="index.php? action=rewrite" style="float:left;">&laquo;&nbsp;書き直す</a>
                   <input type="submit" class="btn btn-primary" value="会員登録" action='thanks.php' style="float:right;">
-                
+
 
               </tbody>
             </table>
 
             <hr class="colorgraph" style="clear:both;"><br>
-          
+
         </form>
-      
+
   </body>
 </html>
