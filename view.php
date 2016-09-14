@@ -41,24 +41,16 @@ function h($value) {
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="assets/css/form.css" rel="stylesheet">
-    <link href="assets/css/timeline.css" rel="stylesheet">
-    <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/view.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-  <?php
-        if ($log = mysqli_fetch_assoc($logs)):
-        ?> 
+
   <?php require("header.php"); ?>
+  <?php
+    if ($log = mysqli_fetch_assoc($logs)):
+  ?>
   <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -102,7 +94,7 @@ function h($value) {
                            終了時タンク残量：<span name="ltank"><?php if($log['ltank'] == -1000){
                              echo "不明";
                            }else{echo h($log['ltank']);} ?></span>
-                           <br> 
+                           <br>
                            <?php if($_SESSION['id'] == $log['member_id']): ?>
             			   [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
             				<?php endif; ?>
@@ -131,9 +123,8 @@ function h($value) {
     </div>
 </div>
 <?php else: ?>
-            <p>その投稿は削除されたか、URLが間違っています</p>
+  <p>その投稿は削除されたか、URLが間違っています</p>
 <?php endif; ?>
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 </body>
