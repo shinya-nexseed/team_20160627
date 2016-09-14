@@ -158,7 +158,7 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="textinput">タイトル<span class="required">*</span></label>
                   　<div class="col-md-4">
-                  　    <input id="textinput" name="title" type="text" placeholder="今日のダイビングを一言で。" class="form-control input-md">
+                  　    <input id="textinput" name="title" type="text" placeholder="<?php echo$log['title']; ?>" class="form-control input-md">
                         <?php if(isset($error['title'])): ?>
                             <?php if($error['title'] == 'blank'): ?>
                                 <p class="error">タイトルを入力して下さい。</p>
@@ -168,24 +168,24 @@
                 </div>
 
                 <!--ロケーション-->
-                <div class="form-group">
+               <!--  <div class="form-group">
                   　<label class="col-md-4 control-label" for="textinput">ロケーション</label>
-                  　<div class="col-md-4">
+                  　<div class="col-md-4"> -->
 
-                        <br>
+                        <!-- <br>
                         <div id="map_canvas" style="width:375px; height:225px"></div>
-                        <br>
+                        <br> -->
 
                         <!-- <label for="latitude">緯度</label> -->
                         <!-- <input type="text" id="latitude" size="20" name="latitude" /> -->
-                        <input type="hidden" id="latitude" id="textinput" size="20" name="latitude" class="form-control input-md"/>
+                        <!-- <input type="hidden" id="latitude" id="textinput" size="20" name="latitude" class="form-control input-md"/> -->
 
                         <!-- <label for="longitude">経度</label> -->
 
                         <!-- <input type="text" id="longitude" size="20" name="longitude" /> -->
-                        <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
+                        <!-- <input type="hidden" id="longitude" id="textinput" size="20" name="longitude" class="form-control input-md"/>
                     </div>
-                </div>
+                </div> -->
 
                 <!--水深-->
                 <div class="form-group">
