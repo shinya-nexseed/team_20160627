@@ -1,10 +1,16 @@
 <?php
-session_start()
+session_start();
+require('dbconnect.php');
+require('function.php');
+$member = checklogin($db);
 ?>
 <!DOCTYPE html> 
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/header.css" rel="stylesheet">
 	<title></title>
 
 	<script type="text/javascript"
@@ -112,17 +118,22 @@ session_start()
 
 </head>
 <body onload="initialize()">
-<br>
+
+
+<?php require('header.php'); ?>
+
+
+<!-- <br>
   [<a href="user_quit.php" style="color: #F33;">退会</a>]
 <br>
   [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
   <br>
-[<a href="mypage.php?id=<?php echo htmlspecialchars($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
+[<a href="mypage.php?id=<?php //echo htmlspecialchars($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
  <br>
  [<a href="map.php" style="color: #F33;">MAP</a>]
  <br>
  [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+ <br> -->
   <input id="address" type="textbox" value="東京都">
   <input type="button" value="ジオコーディン" onclick="codeAddress()">
 
@@ -131,6 +142,9 @@ session_start()
   <form method="post" action="">
 	
   </form>
-
+</div>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery-3.1.0.js"></script>
+<script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

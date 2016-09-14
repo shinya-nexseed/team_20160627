@@ -77,10 +77,12 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  　<link rel="stylesheet" href="assets/css/bootstrap.css">
-  　<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+  <head>
+    <meta charset="UTF-8">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <title>ログ付け機能</title>
 
     <script type="text/javascript"
@@ -104,6 +106,7 @@
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
 
+
             map = new google.maps.Map(document.getElementById("map_canvas"), opts);
 
             var marker = new google.maps.Marker({
@@ -120,16 +123,16 @@
               document.getElementById('longitude').value= ev.latLng.lng();
             });
         }
-
     </script>
-</head>
-<body onload="initialize()">
+  </head>
+  <body onload="initialize()">
+
+    <?php require('header.php'); ?>
 
     <div class="container">
         <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
             <fieldset>
-                <legend>〜ログ付け日記〜</legend>
-
+                <legend>DIVINGLOG</legend>
                 <!--日程-->
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="textinput">日程</label>
@@ -325,5 +328,7 @@
             </fieldset>
         </form>
     </div>
-</body>
+    <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+  </body>
 </html>

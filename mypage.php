@@ -1,6 +1,8 @@
 <?php
     session_start();
     require('dbconnect.php');
+    require('function.php');
+    $member = checklogin($db);
 
     $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);
@@ -34,17 +36,18 @@
     $test = count($testfollow);
 ?>
 <!DOCTYPE html>
-
-<html>
-<head>
+ <html lang="ja">
+ <head>
     <meta charset="UTF-8">
-	<title>divinglog</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/mypage.css">
     <link href="assets/css/custom.css" rel="stylesheet">
-</head>
-<body>
-
+    <title>mypage</title>
+ </head>
+ <body>
+ <?php require('header.php'); ?>
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
@@ -68,6 +71,7 @@
 
             <div class="rgba4">
                 <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
+
             </div>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -99,13 +103,13 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
                                             <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody></table>
                     </div>
@@ -113,7 +117,7 @@
             </div>
         </div>
     </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
 </body>
 </html>
