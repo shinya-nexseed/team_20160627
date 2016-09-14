@@ -37,7 +37,8 @@
 <html>
 <head>
 	<title>divinglog</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
 
@@ -51,14 +52,15 @@
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
                 <br>
-
+                <form>
                 <?php if($_SESSION['id'] != $_REQUEST['id']): ?>
                     <?php if($test==1): ?>
-                        <a href="unfollow.php?id=<?php echo $members['id']; ?>">フォロー解除</a>
+                        <a class="btn btn-unfollow" href="unfollow.php?id=<?php echo $members['id']; ?>">フォロー解除</a>
                     <?php else: ?>
-                        <a href="follow.php?id=<?php echo $members['id']; ?>">フォローする</a>
+                        <a class="btn btn-follow" href="follow.php?id=<?php echo $members['id']; ?>">フォローする</a>
                     <?php endif; ?>
             <?php endif; ?>
+            </form>
             </div>
 
             <div class="rgba4">
@@ -108,5 +110,7 @@
             </div>
         </div>
     </div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
