@@ -45,7 +45,16 @@
                   $picture = $logs['image_path'];
               }
             }
-      $sql = sprintf('UPDATE `logs` SET `depth`="%s" , `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s",`ltank`="%s" WHERE `log_id`=%d',
+
+            if(empty($_POST['title'])){
+              $_POST['title'] = $logs['title'];
+            }
+
+            if(empty($_POST['comment'])){
+              $_POST['comment'] = $logs['comment'];
+            }
+      $sql = sprintf('UPDATE `logs` SET `title`="%s", `depth`="%s" , `temperature`="%s" ,`surface`="%s", `underwater`="%s", `suits`="%s", `comment`="%s", `image_path`="%s", `tank`="%s",`ltank`="%s" WHERE `log_id`=%d',
+        $_POST['title'],
         $_POST['depth'],
         // $_POST['lat'],
         // $_POST['long'],
