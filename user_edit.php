@@ -140,6 +140,7 @@
     <title>divinglog</title>
 
     <!-- Bootstrap -->
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/form.css" rel="stylesheet">
@@ -265,6 +266,7 @@
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
   </body>

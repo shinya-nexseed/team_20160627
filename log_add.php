@@ -67,7 +67,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -302,6 +304,7 @@
         </p>
 
     </form>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 </body>

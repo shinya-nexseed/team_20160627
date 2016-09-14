@@ -133,7 +133,7 @@ function h($value) {
 <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>
 <?php endif; ?>
-
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 </body>
