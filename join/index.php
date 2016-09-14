@@ -84,18 +84,19 @@
    
 
     <title>Sign up</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/join.css">
 
   </head>
   			<body>
           <h2>Please Sign Up</h2>
-        <hr class="colorgraph"><br>
+        <hr class="colorgraph">
         <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
-          <div style="margin: 0px 360px 0px 340px;" text-align: center;>
+          <div style="margin: 0px 390px 0px 400px;">
               <!-- ニックネーム -->
               <div class="form-group">
-                  <label class="col-sm-4 control-label">ニックネーム</label>
-                  
+                  <label class="col-sm-4 control-label" style="margin: 0px 360px 0px 130px;">ニックネーム</label>
                     <input type="text" name="name" class="form-control" placeholder="例： Seed kun">
                     <?php if (isset($error['name'])): ?>
                     <?php if ($error['name'] == 'blank') : ?>
@@ -105,7 +106,7 @@
               </div>
               <!-- メールアドレス -->
               <div class="form-group">
-                <label class="col-sm-4 control-label">メールアドレス</label>
+                <label class="col-sm-4 control-label" style="margin: 0px 360px 0px 130px;">メールアドレス</label>
                 
                   <input type="email" name="email" class="form-control" placeholder="例： seed@nex.com">
                   <?php if (isset($error['email'])): ?>
@@ -116,7 +117,7 @@
               </div>
               <!-- パスワード -->
               <div class="form-group">
-                <label class="col-sm-4 control-label">パスワード</label>
+                <label class="col-sm-4 control-label" style="margin: 0px 360px 0px 110px;">パスワード</label>
                 
                   <input type="password" name="password" class="form-control" placeholder="">
                   <?php if (isset($error['password'])): ?>
@@ -127,7 +128,7 @@
               </div>
               <!-- プロフィール写真 -->
               <div class="form-group">
-                  <label class="col-sm-4 control-label">プロフィール写真</label>
+                  <label class="col-sm-4 control-label" style="margin: 0px 360px 0px 130px;">プロフィール写真</label>
                   
                   <input type="file" name="picture_path" class="form-control">
                   <?php if (isset($error['picture_path']) && $error['picture_path'] == 'type'): ?>
@@ -139,7 +140,7 @@
               </div>
                 <!-- 国籍 -->
               <div class="form-group">
-                <label>国籍</label>
+                <label style="margin: 0px 0px 0px 150px;">国籍 :</label>
                 <select name="country">
                   <option value="japan">Japan</option>
                   <option value="america">America</option>  
@@ -147,14 +148,14 @@
               </div>
                 <!-- ラインセンスの種類 -->
               <div class="form-group">
-                <label>ライセンス</label>
+                <label style="margin: 0px 0px 0px 120px;">ライセンス :</label>
                 <select name="license">
                   <?php while($license = mysqli_fetch_assoc($licenses)): ?>
                       <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
                   <?php endwhile; ?>
                 </select>
               </div>
-                <input type="submit" value="確認画面へ" style="float:right;">
+                  <input class="btn btn-primary" type="submit" value="確認画面へ" style="float:right;">
           </div><br>
 
             <hr class="colorgraph" style="clear:both;">

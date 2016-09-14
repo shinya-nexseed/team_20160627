@@ -36,7 +36,8 @@ session_start();
     <meta charset="utf-8">
 
     <title>SeedSNS</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/join.css">
   </head>
           <body>
             <h2>Please Check</h2>
@@ -70,7 +71,7 @@ session_start();
                   <br>
                 
                   <a href="index.php? action=rewrite" style="float:left;">&laquo;&nbsp;書き直す</a>
-                  <input type="submit" class="btn btn-default" value="会員登録" action='thanks.php' style="float:right;">
+                  <input type="submit" class="btn btn-primary" value="会員登録" action='thanks.php' style="float:right;">
                 
 
               </tbody>

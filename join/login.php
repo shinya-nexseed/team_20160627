@@ -27,17 +27,18 @@ if (!empty($_POST)) {
 	 <head>
 	 	<meta charset="UTF-8">
 	 	<title>login</title>
-	 	 <link rel="stylesheet" href="index.css">
+	 	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	 	 <link rel="stylesheet" href="../assets/css/join.css">
 	 </head>
 	 <body>
 	 	<h2>Welcome!</h2>
 		<hr class="colorgraph"><br>
-			<h2 style="margin: 0px 480px;" text-align: center;>Please login</h2>
+			<h2 style="margin: 0px 520px;" text-align: center;>Please login</h2>
 		<form action="" method="post">
 
-		 	<div style="margin: 0px 360px 0px 300px;" text-align: center;>
+		 	<div style="margin: 0px 360px 0px 320px;" text-align: center;>
 				<div class="form-group">
-				<label>メールアドレスを入力してください</label>
+				<label>メールアドレスを入力してください :</label>
 					 <?php if (isset($_POST['email'])): ?>
 					 	<input type="email" name="email" value="<?php echo htmlspecialchars($_POST['email']); ?>">
 					 <?php else: ?>
@@ -54,7 +55,7 @@ if (!empty($_POST)) {
 				</div>
 
 				<div class="form-group"> 
-				 <label>パスワードを入力してください</label>
+				 <label>パスワードを入力してください :</label>
 					 <?php if(isset($_POST['password'])): ?>
 					 	<input type="password" name="password" value="<?php echo htmlspecialchars($_POST['password']); ?>">
 					 <?php else: ?>
@@ -62,7 +63,7 @@ if (!empty($_POST)) {
 					 <?php endif; ?>
 				</div>
 				 <br>
-				 <input type="submit" value="ログイン" style="float:right;">
+				 <input class="btn btn-primary" type="submit" value="ログイン" style="float:right;">
 			</div><br>
 		</form>
 	 	<hr class="colorgraph" style="clear:both;"><br>
