@@ -191,20 +191,29 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水深</label>
                   　<div class="col-md-4">
-
-                        <?php
-                        $min = 0;
-                        $max = 50;
-                        echo "<select id='selectbasic' name='depth' class='form-control' >";
+                   <?php
+                      $min = 0;
+                      $max = 50;
+                      echo "<select id='selectbasic' name='depth' class='form-control' >";
+                      // echo "<option>不明</option>";
+                      if($log['depth'] == -1000){
+                        echo "<option value='-1000' selected>不明</option>";
+                        // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                      } else {
                         echo "<option value='-1000'>不明</option>";
-                        for ($i=$min; $i <= $max; $i++) {
-                        echo "<br>";
-                        echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                      }
+          
+                      for ($i=$min; $i <= $max; $i++) {
+                        if($i == $log['depth']){
+                          echo  "<option value='" . $i . "'selected>" . $i . "m" . "</option>";
+                        }else{
+                          echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
                         }
-                        echo "</select>";
+                      }
+                      echo "</select>";
+                      ?>
 
-                        echo "<br>";
-                        ?>
+                        
                   　</div>
                 </div>
 
@@ -212,19 +221,24 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">気温</label>
                   　<div class="col-md-4">
-                    　　
-                        <?php
+                    　　<?php
                         $min = 0;
                         $max = 45;
-                        echo "<select id='selectbasic' name='temperature' class='form-control' >";
-                        echo "<option value='-1000'>不明</option>";
-                        for ($i=$min; $i <= $max; $i++) {
-                        echo "<br>";
-                        echo  "<option value='" . $i . "'>" . $i . "" . "</option>";
+                        echo "<select name='temperature'>";
+                        if($log['temperature'] == -1000){
+                          echo "<select id='selectbasic' name='temperature' class='form-control' >";
+                          // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                        } else {
+                          echo "<option value='-1000'>不明</option>";
                         }
-                        echo "</select>";
-
-                        echo "<br>";
+                        for ($i=$min; $i <= $max; $i++) {
+                          if($i == $log['temperature']){
+                            echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+                          }else{
+                            echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                          }
+                        }
+                          echo "</select>";
                         ?>
                   　</div>
                 </div>
@@ -233,20 +247,26 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水面温度</label>
                   　<div class="col-md-4">
-                    　　
-                        <?php
-                        $min = 0;
-                        $max = 30;
-                        echo "<select id='selectbasic' name='surface' class='form-control' >";
-                        echo "<option value='-1000'>不明</option>";
-                        for ($i=$min; $i <= $max; $i++) {
-                        echo "<br>";
-                        echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
-                        }
-                        echo "</select>";
-
-                        echo "<br>";
+                    　　<?php
+                          $min = 0;
+                          $max = 30;
+                          echo "<select id='selectbasic' name='surface' class='form-control' >";
+                          if($log['surface'] == -1000){
+                            echo "<option value='-1000' selected>不明</option>";
+                            // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                          } else {
+                            echo "<option value='-1000'>不明</option>";
+                          }
+                          for ($i=$min; $i <= $max; $i++) {
+                              if($i == $log['surface']){
+                              echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+                            }else{
+                              echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                            }
+                          }
+                            echo "</select>";
                         ?>
+            <br>
                   　</div>
                 </div>
 
@@ -254,20 +274,26 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="selectbasic">水中温度</label>
                   　<div class="col-md-4">
-                    　
-                        <?php
+                    　<?php
                         $min = 0;
                         $max = 30;
                         echo "<select id='selectbasic' name='underwater' class='form-control' >";
-                        echo "<option value='-1000'>不明</option>";
+                        if($log['underwater'] == -1000){
+                          echo "<option value='-1000' selected>不明</option>";
+                          // echo  "<option value='" . $i . "'>" . $i . "m" . "</option>";
+                        } else {
+                          echo "<option value='-1000'>不明</option>";
+                        }
                         for ($i=$min; $i <= $max; $i++) {
-                        echo "<br>";
-                        echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                            if($i == $log['underwater']){
+                            echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
+                            }else{
+                              echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
+                            }
+            
                         }
                         echo "</select>";
-
-                        echo "<br>";
-                        ?>
+                      ?>
                   　</div>
                 </div>
 
@@ -275,7 +301,7 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="textinput">スーツの種類</label>
                   　<div class="col-md-4">
-                  　    <input id="textinput" name="suits" type="text" placeholder="例：Aスーツ" width="30" class="form-control input-md">
+                  　    <input id="textinput" name="suits" type="text" placeholder="<?php if($log['suits']){}else{echo h($log['suits']);} ?>" width="30" class="form-control input-md">
                   　</div>
                 </div>
 
