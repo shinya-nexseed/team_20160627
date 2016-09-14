@@ -75,7 +75,7 @@ $member = hoge($db);
         			  });
                 //クリックしたら指定したurlに遷移するイベント
                     google.maps.event.addListener(marker, 'click', (function(url){
-                      var url = 'view.php?id=' + id
+                      var url = 'viewj.php?id=' + id
                       return function(){ location.href = url; };
                     })(data[i].url));
         		};
@@ -144,6 +144,6 @@ $member = hoge($db);
   </form>
 </div>
 <script src="assets/js/jquery-3.1.0.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

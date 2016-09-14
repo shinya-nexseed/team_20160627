@@ -47,9 +47,9 @@
 				<li><a href="home.php">HOME</a></li>
 				<li><a href="map.php">MAP</a></li>
 				<?php if(!empty($member['id'])): ?>
-					<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>"><?php echo $member['id']; ?>PROFILE</a></li>
+					<li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
 				<?php else: ?>
-					<li><a href="login.php">PROFILE</a></li>
+					<li><a href="join/login.php">PROFILE</a></li>
 				<?php endif; ?>
 				<li><a href="log_add.php">NEW LOG</a></li>
 			</ul>

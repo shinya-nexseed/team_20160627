@@ -9,7 +9,7 @@
     // ログインしている場合
 
     // ログインユーザの情報をデータベースより取得
-    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
+    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
                                                           //mysqli_real_escape_string($db,$_SESSION['id'])
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
@@ -118,7 +118,7 @@
     }
     
   // ユーザー情報の取得
-  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
+  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
   // var_dump($member);

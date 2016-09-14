@@ -8,7 +8,7 @@
     $logsSet = mysqli_query($db, $ser) or die(mysqli_error($db));
     $logsss = mysqli_fetch_assoc($logsSet);
 
-    $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
+    $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
     $members = mysqli_fetch_assoc($result);
 
@@ -32,11 +32,6 @@
  <body>
  <?php require('header.php'); ?>
 
- <?php if($_SESSION['id'] == $_REQUEST['id']): ?>
- [<a href="user_edit.php" style="color: #F33;">編集</a>]
- <?php endif; ?>
- <br>
-
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
@@ -50,6 +45,7 @@
 
             <div class="rgba4">
                 <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
+                
             </div>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
