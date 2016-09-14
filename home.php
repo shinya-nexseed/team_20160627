@@ -31,7 +31,7 @@ function h($value) {
 
  	<?php while($log = mysqli_fetch_assoc($record)): ?>
  		<img src="logs_picture/<?php echo h($log['image_path']); ?>" width='50' height='50'>
- 		<a href='viewj.php?id=<?php echo h($log['log_id']); ?>'><?php echo $log['title']; ?></a>
+ 		<a href='view.php?id=<?php echo h($log['log_id']); ?>'><?php echo $log['title']; ?></a>
  		<br>
  		<?php echo $log['created']; ?>
  		<br>

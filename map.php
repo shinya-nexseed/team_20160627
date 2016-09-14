@@ -75,7 +75,7 @@ $member = hoge($db);
         			  });
                 //クリックしたら指定したurlに遷移するイベント
                     google.maps.event.addListener(marker, 'click', (function(url){
-                      var url = 'viewj.php?id=' + id
+                      var url = 'view.php?id=' + id
                       return function(){ location.href = url; };
                     })(data[i].url));
         		};
