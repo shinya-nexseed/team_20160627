@@ -2,30 +2,38 @@
 <?php
     session_start();
     require('dbconnect.php');
+    require('function.php');
+    $member = checklogin($db);
 
     $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);
     $logsSet = mysqli_query($db, $ser) or die(mysqli_error($db));
     $logsss = mysqli_fetch_assoc($logsSet);
 
-    $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
+    $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
     $members = mysqli_fetch_assoc($result);
 
     $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db, $sql) or die(mysqli_error($db));
     while ($log = mysqli_fetch_assoc($result)) {
-        echo $log['title'];
-        echo '<br>';
     }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-	<title>divinglog</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/mypage.css">
+
+    <title>mypage</title>
+ </head>
+ <body>
+ <?php require('header.php'); ?>
 
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
@@ -40,6 +48,7 @@
 
             <div class="rgba4">
                 <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
+
             </div>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -71,13 +80,13 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
                                             <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
                                         </div>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody></table>
                     </div>
@@ -85,5 +94,9 @@
             </div>
         </div>
     </div>
+    </div>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

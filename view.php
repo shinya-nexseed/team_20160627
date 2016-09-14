@@ -1,6 +1,10 @@
 <?php
   session_start();
   require('dbconnect.php');
+  require('function.php');
+  $member = islogin($db);
+
+
 
   // localhost/seed_sns/view.php?id=3
   // localhost/seed_sns/view.php?tweet_id=3
@@ -25,7 +29,6 @@ function h($value) {
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -41,7 +44,8 @@ function h($value) {
     <link href="assets/css/form.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
-
+    <link href="assets/css/view.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,83 +55,86 @@ function h($value) {
     <![endif]-->
   </head>
   <body>
-  <br>
-  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
-  <br>
-  [<a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
-  
+  <?php
+        if ($log = mysqli_fetch_assoc($logs)):
+        ?> 
+  <?php require("header.php"); ?>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 content-margin-top">
-        <?php
-        if ($log = mysqli_fetch_assoc($logs)):
-        ?>   
-            <br>
-            <span name="depth"><?php 
-            if($log['depth'] == -1000){
-              echo "不明";
-            }else{
-              echo h($log['depth']);
-            } 
-            ?>  
-            </span>
-            <br>
-            <span name="temperature"><?php if($log['temperature'] == -1000){
-              echo "不明";
-            }else{echo h($log['temperature']);} ?></span>
-            <br>
-            <span name="surface"><?php if($log['surface'] == -1000){
-              echo "不明";
-            }else{ echo h($log['surface']);} ?></span>
-            <br>
-            <span name="underwater"><?php if($log['underwater'] == -1000){
-              echo "不明";
-            }else{ echo h($log['underwater']);} ?></span>
-            <br>
-            <span name="suits"><?php if($log['suits'] == -1000){
-              echo "不明";
-            }else{ echo h($log['suits']);} ?></span>
-            <br>
-            <span name="comment"><?php if($log['comment'] == -1000){
-              echo "不明";
-            }else{ echo h($log['comment']);} ?></span>
-            <br>
-            <span name="tank"><?php if($log['tank'] == -1000){
-              echo "不明";
-            }else{echo h($log['tank']);} ?></span>
-            <br>
-            <span name="ltank"><?php if($log['ltank'] == -1000){
-              echo "不明";
-            }else{echo h($log['ltank']);} ?></span>
-            <br>
-            <img src="logs_picture/<?php echo h($log['image_path']);?> " width="48" hight="48"
-        alt="<?php echo h($log['image_path']); ?>" >
-            <br>
-            [<a href="mypage.php?id=<?php echo h($log['member_id']); ?>" style="color: #F33;">プロフィール</a>]
-            <?php if($_SESSION['id'] == $log['member_id']): ?>
-            [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
-            <?php endif; ?>
-             <?php if($_SESSION['id'] == $log['member_id']): ?>
-            [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
-            <?php endif; ?>
-            [<a href="home.php" style="color: #F33;">戻る</a>]
-          </p>
-          <?php else: ?>
-            <p>その投稿は削除されたか、URLが間違っています</p>
-          <?php endif; ?>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <a href="mypage.php?id=<?php echo($log['member_id']); ?>"><img src="logs_picture/<?php echo h($log['image_path']);?> " width="180" hight="160" alt="<?php echo h($log['image_path']); ?>" ></a>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4><?php if($log['title'] == -1000){echo "不明";}else{echo h($log['title']);} ?></h4>
+                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                           水深：<span name="depth"><?php if($log['depth'] == -1000){
+       		               echo "不明";
+                           }else{echo h($log['depth']);}?> </span>
+                           <br>
+                           気温：<span name="temperature"><?php if($log['temperature'] == -1000){
+                             echo "不明";
+                           }else{echo h($log['temperature']);} ?></span>
+                           <br>
+                           水面温度<span name="surface"><?php if($log['surface'] == -1000){
+                             echo "不明";
+                           }else{ echo h($log['surface']);} ?></span>
+                           <br>
+                           水中温度<span name="underwater"><?php if($log['underwater'] == -1000){
+                             echo "不明";
+                           }else{ echo h($log['underwater']);} ?></span>
+                           <br>
+                           スーツの種類：<span name="suits"><?php if($log['suits'] == -1000){
+                             echo "不明";
+                           }else{ echo h($log['suits']);} ?></span>
+                           <br>
+                           コメント：<span name="comment"><?php if($log['comment'] == -1000){
+                             echo "不明";
+                           }else{ echo h($log['comment']);} ?></span>
+                           <br>
+                           開始時タンク残量：<span name="tank"><?php if($log['tank'] == -1000){
+                             echo "不明";
+                           }else{echo h($log['tank']);} ?></span>
+                           <br>
+                           終了時タンク残量：<span name="ltank"><?php if($log['ltank'] == -1000){
+                             echo "不明";
+                           }else{echo h($log['ltank']);} ?></span>
+                           <br> 
+                           <?php if($_SESSION['id'] == $log['member_id']): ?>
+            			   [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
+            				<?php endif; ?>
+             				<?php if($_SESSION['id'] == $log['member_id']): ?>
+            				[<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
+           					 <?php endif; ?>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Social</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span><span class="sr-only">Social</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Github</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- <a href="home.php">&laquo;&nbsp;一覧へ戻る</a> -->
-      </div>
     </div>
-  </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+</div>
+<?php else: ?>
+            <p>その投稿は削除されたか、URLが間違っています</p>
+<?php endif; ?>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery-3.1.0.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+</body>
 </html>

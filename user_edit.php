@@ -2,18 +2,14 @@
   session_start();
   require('dbconnect.php');
   require('function.php');
-  $member = islogin($db);
-
-  echo "<br>";
-  echo "<br>";
-  echo "<br>";
-
-  //var_dump($_SESSION);
+  $member = checklogin($db);
+  // var_dump($member);
+   //var_dump($_SESSION);
   //if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
     // ログインしている場合
 
     // ログインユーザの情報をデータベースより取得
-    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
+    $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
                                                           //mysqli_real_escape_string($db,$_SESSION['id'])
     $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     $member = mysqli_fetch_assoc($record);
@@ -122,12 +118,11 @@
     }
     
   // ユーザー情報の取得
-  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
+  $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
-  //var_dump($member);
-  echo '<br>';
-  echo '==================================================';
+  // var_dump($member);
+  
 ?>
 
 
@@ -145,11 +140,14 @@
     <title>divinglog</title>
 
     <!-- Bootstrap -->
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/form.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+
+    <link href="assets/css/header.css" rel="stylesheet">
     <!--
       designフォルダ内では2つパスの位置を戻ってからcssにアクセスしていることに注意！
      -->
@@ -163,15 +161,8 @@
     <![endif]-->
   </head>
   <body>
-  <br>
-  [<a href="log_add.php" style="color: #F33;">LOG付け</a>]
-  <br>
-  [<a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="color: #F33;">プロフィール</a>]
- <br>
- [<a href="map.php" style="color: #F33;">MAP</a>]
- <br>
- [<a href="home.php" style="color: #F33;">HOME</a>]
- <br>
+  <?php require('header.php'); ?>
+
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 content-margin-top">
@@ -272,9 +263,11 @@
       </div>
     </div>
   </div>
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
   </body>
 </html>
