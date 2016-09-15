@@ -28,15 +28,6 @@
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
 
-    // $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
-    //     mysqli_real_escape_string($db,$_REQUEST['id']));
-    // $result = mysqli_query($db, $sql) or die(mysqli_error($db));
-    // while ($follow = mysqli_fetch_assoc($result)) {
-    // echo $follow['follow_id'];
-    // echo $follow['follower_id'];
-    // echo "<br>";
-    // }
-
     $sql = sprintf('SELECT follower_id FROM following WHERE follow_id=%d AND follower_id=%d',
         mysqli_real_escape_string($db,$_REQUEST['id']),
         mysqli_real_escape_string($db,$_SESSION['id']));
@@ -58,6 +49,9 @@
  </head>
  <body>
  <?php require('header.php'); ?>
+ <?php while ($follow = mysqli_fetch_assoc($result)): ?>
+    <?php var_dump($follow); ?>
+ <?php endwhile; ?>
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
@@ -114,14 +108,6 @@
                                     </div>
                                 </td>
                                 <section>
-
-                                <!-- <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </td> -->
                             </tr>
                         </tbody></table>
                     </div>
