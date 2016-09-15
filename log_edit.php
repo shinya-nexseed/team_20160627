@@ -19,12 +19,12 @@
    $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
      $record = mysqli_query($db, $sql) or die(mysqli_error($db));
      $logs = mysqli_fetch_assoc($record);
-    
+
     //var_dump($logs);
     //if ($_POST['lat,long'] !='') {
       // CRUD
     if (!empty($_POST)) {
-    
+
           $fileName = $_FILES['image_path']['name'];
             if (!empty($fileName)) {
                 $ext = substr($fileName, -3);
@@ -105,8 +105,8 @@
    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDBSThaqq2xCRztEVFrTiTqpsDdgibAPxk&sensor=false">
 </script>
 
-   
-    
+
+
     <script src="code3_1.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -211,7 +211,7 @@
                       } else {
                         echo "<option value='-1000'>不明</option>";
                       }
-          
+
                       for ($i=$min; $i <= $max; $i++) {
                         if($i == $log['depth']){
                           echo  "<option value='" . $i . "'selected>" . $i . "m" . "</option>";
@@ -222,7 +222,7 @@
                       echo "</select>";
                       ?>
 
-                        
+
                   　</div>
                 </div>
 
@@ -299,7 +299,7 @@
                             }else{
                               echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
                             }
-            
+
                         }
                         echo "</select>";
                       ?>
@@ -386,14 +386,13 @@
                 <div class="form-group">
                   　<label class="col-md-4 control-label" for="singlebutton"></label>
                   　<div class="col-md-4">
-                    　　<input id="singlebutton" type="submit" value="登録" name="singlebutton" class="btn btn-primary">
+                    　　<input id="singlebutton" type="submit" value="更新" name="singlebutton" class="btn btn-primary">
                   　</div>
                 </div>
             </fieldset>
         </form>
     </div>
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
-<script src="assets/js/jquery-3.1.0.js"></script>
+    <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
-</body>
+  </body>
 </html>
