@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 9 月 08 日 08:15
--- サーバのバージョン： 10.1.13-MariaDB
--- PHP Version: 5.5.35
+-- Generation Time: 2016 年 9 月 14 日 09:00
+-- サーバのバージョン： 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,11 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `following`
+--
+
+CREATE TABLE `following` (
+  `follow_id` int(11) NOT NULL,
+  `follower_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `licenses`
 --
 
 CREATE TABLE `licenses` (
-  `id` int(11) NOT NULL,
+  `license_id` int(11) NOT NULL,
   `license` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -35,7 +46,7 @@ CREATE TABLE `licenses` (
 -- テーブルのデータのダンプ `licenses`
 --
 
-INSERT INTO `licenses` (`id`, `license`) VALUES
+INSERT INTO `licenses` (`license_id`, `license`) VALUES
 (2, 'レスキュー'),
 (3, 'マスター'),
 (0, 'オープン'),
@@ -139,7 +150,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

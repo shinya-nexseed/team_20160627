@@ -1,4 +1,3 @@
-
 <?php
     session_start();
     require('dbconnect.php');
@@ -13,29 +12,43 @@
     $sql = sprintf('SELECT m.*, l.* FROM members m, licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db,$sql) or die(mysqli_error($db));
     $members = mysqli_fetch_assoc($result);
+    //var_dump($members);
 
     $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
     $result = mysqli_query($db, $sql) or die(mysqli_error($db));
     while ($log = mysqli_fetch_assoc($result)) {
     }
+
+    // $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
+    //     mysqli_real_escape_string($db,$_REQUEST['id']));
+    // $result = mysqli_query($db, $sql) or die(mysqli_error($db));
+    // while ($follow = mysqli_fetch_assoc($result)) {
+    // echo $follow['follow_id'];
+    // echo $follow['follower_id'];
+    // echo "<br>";
+    // }
+
+    $sql = sprintf('SELECT follower_id FROM following WHERE follow_id=%d AND follower_id=%d',
+        mysqli_real_escape_string($db,$_REQUEST['id']),
+        mysqli_real_escape_string($db,$_SESSION['id']));
+    $result = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $testfollow = mysqli_fetch_assoc($result);
+    $test = count($testfollow);
 ?>
 <!DOCTYPE html>
-
- <html lang="en">
+ <html lang="ja">
  <head>
     <meta charset="UTF-8">
-
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mypage.css">
-     <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/custom.css" rel="stylesheet">
     <title>mypage</title>
  </head>
  <body>
  <?php require('header.php'); ?>
-
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
@@ -45,6 +58,16 @@
                     <p><span class="sample1"><?php echo $members['name']; ?></span></p>
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
                 <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
+                <br>
+                <form>
+                <?php if($_SESSION['id'] != $_REQUEST['id']): ?>
+                    <?php if($test==1): ?>
+                        <a class="btn btn-unfollow" href="unfollow.php?id=<?php echo $members['id']; ?>">フォロー解除</a>
+                    <?php else: ?>
+                        <a class="btn btn-follow" href="follow.php?id=<?php echo $members['id']; ?>">フォローする</a>
+                    <?php endif; ?>
+            <?php endif; ?>
+            </form>
             </div>
 
             <div class="rgba4">
@@ -95,8 +118,6 @@
             </div>
         </div>
     </div>
-    </div>
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 </body>
