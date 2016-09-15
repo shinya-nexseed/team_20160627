@@ -149,7 +149,7 @@
 <?php require('header.php'); ?>
 
 
-    <div class="container">
+    <div>
         <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>LOG編集</legend>
