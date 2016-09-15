@@ -115,6 +115,7 @@ $member = checklogin($db);
       }
     }
 
+
 	</script>
 
 </head>
@@ -135,8 +136,7 @@ $member = checklogin($db);
  <br>
  [<a href="home.php" style="color: #F33;">HOME</a>]
  <br> -->
-  <input id="address" type="textbox" value="東京都">
-  <input type="button" value="ジオコーディン" onclick="codeAddress()">
+  
 
   <div id="map_canvas" style="width:100%; height:600px"></div>
 

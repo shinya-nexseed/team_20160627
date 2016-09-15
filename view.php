@@ -59,45 +59,45 @@ function h($value) {
   ?>
   <div>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-xs-12">
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <a href="mypage.php?id=<?php echo($log['member_id']); ?>"><img src="logs_picture/<?php echo h($log['image_path']);?> " width="180" hight="160" alt="<?php echo h($log['image_path']); ?>" ></a>
+                        <a href="mypage.php?id=<?php echo($log['member_id']); ?>"><img src="logs_picture/<?php echo h($log['image_path']);?> " class="img-responsive" alt="<?php echo h($log['image_path']); ?>" ></a>
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4><?php if($log['title'] == -1000){echo "不明";}else{echo h($log['title']);} ?></h4>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        <h2><?php if($log['title'] == -1000){echo "不明";}else{echo h($log['title']);} ?></h2>
+                        <!-- <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker"> -->
                         </i></cite></small>
-                           水深：<span name="depth"><?php if($log['depth'] == -1000){
+                           水深:<span name="depth"><?php if($log['depth'] == -1000){
        		               echo "不明";
                            }else{echo h($log['depth']);}?> </span>
                            <br>
-                           気温：<span name="temperature"><?php if($log['temperature'] == -1000){
+                           気温:<span name="temperature"><?php if($log['temperature'] == -1000){
                              echo "不明";
                            }else{echo h($log['temperature']);} ?></span>
                            <br>
-                           水面温度<span name="surface"><?php if($log['surface'] == -1000){
+                           水面温度:<span name="surface"><?php if($log['surface'] == -1000){
                              echo "不明";
                            }else{ echo h($log['surface']);} ?></span>
                            <br>
-                           水中温度<span name="underwater"><?php if($log['underwater'] == -1000){
+                           水中温度:<span name="underwater"><?php if($log['underwater'] == -1000){
                              echo "不明";
                            }else{ echo h($log['underwater']);} ?></span>
                            <br>
-                           スーツの種類：<span name="suits"><?php if($log['suits'] == -1000){
+                           スーツの種類:<span name="suits"><?php if($log['suits'] == -1000){
                              echo "不明";
                            }else{ echo h($log['suits']);} ?></span>
                            <br>
-                           コメント：<span name="comment"><?php if($log['comment'] == -1000){
+                           コメント:<span name="comment"><?php if($log['comment'] == -1000){
                              echo "不明";
                            }else{ echo h($log['comment']);} ?></span>
                            <br>
-                           開始時タンク残量：<span name="tank"><?php if($log['tank'] == -1000){
+                           開始時タンク残量:<span name="tank"><?php if($log['tank'] == -1000){
                              echo "不明";
                            }else{echo h($log['tank']);} ?></span>
                            <br>
-                           終了時タンク残量：<span name="ltank"><?php if($log['ltank'] == -1000){
+                           終了時タンク残量:<span name="ltank"><?php if($log['ltank'] == -1000){
                              echo "不明";
                            }else{echo h($log['ltank']);} ?></span>
                            <br>
@@ -115,7 +115,7 @@ function h($value) {
                       <?php endif; ?>
                      </form>
                         <!-- Split button -->
-                        <div class="btn-group">
+                        <!-- <div class="btn-group">
                             <button type="button" class="btn btn-primary">
                                 Social</button>
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -128,7 +128,7 @@ function h($value) {
                                 <li class="divider"></li>
                                 <li><a href="#">Github</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

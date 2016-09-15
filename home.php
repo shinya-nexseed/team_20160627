@@ -3,13 +3,13 @@ session_start();
 require('function.php');
 require('dbconnect.php');
 
-islogin($db);
-$member = islogin($db);
+checklogin($db);
+$member = checklogin($db);
 
-if ($_SESSION['id']) {
+
 	$sql = 'SELECT * FROM logs WHERE 1';
 	$record = mysqli_query($db,$sql) or die(mysqli_error($db));
-}
+
 
 function h($value) {
 		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
