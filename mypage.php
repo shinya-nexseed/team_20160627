@@ -2,7 +2,7 @@
     session_start();
     require('dbconnect.php');
     require('function.php');
-    $member = checklogin($db);
+    $member = islogin($db);
 
     $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);
@@ -19,15 +19,12 @@
     while ($log = mysqli_fetch_assoc($result)) {
     }
 
-    islogin($db);
-$member = islogin($db);
+    if ($_SESSION['id']) {
+        $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
+        $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+    }
 
-if ($_SESSION['id']) {
-    $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
-    $record = mysqli_query($db,$sql) or die(mysqli_error($db));
-}
-
-function h($value) {
+    function h($value) {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
 
@@ -117,7 +114,7 @@ function h($value) {
                                     </div>
                                 </td>
                                 <section>
-      
+
                                 <!-- <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
