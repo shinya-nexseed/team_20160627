@@ -53,6 +53,8 @@
         <li><a href="join/login.php">PROFILE</a></li>
       <?php endif; ?>
       <li><a href="log_add.php">NEW LOG</a></li>
+      <li><a href="show_follower.php">FOLLOW</a></li>
+      <li><a href="show_favorites.php">LIKE</a></li>
     </ul>
   </div>
   <div class="col-md-10 content">

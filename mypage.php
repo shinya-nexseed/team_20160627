@@ -19,6 +19,18 @@
     while ($log = mysqli_fetch_assoc($result)) {
     }
 
+    islogin($db);
+$member = islogin($db);
+
+if ($_SESSION['id']) {
+    $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
+    $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+}
+
+function h($value) {
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+
     // $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
     //     mysqli_real_escape_string($db,$_REQUEST['id']));
     // $result = mysqli_query($db, $sql) or die(mysqli_error($db));
@@ -104,6 +116,8 @@
                                         </div>
                                     </div>
                                 </td>
+                                <section>
+      
                                 <!-- <td>
                                     <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
                                         <div class="icon-circle">
@@ -117,7 +131,66 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-8.5 col-md-8.5 col-sm-8.5">
+        <?php $count = 0; ?>
+        <?php while($log = mysqli_fetch_assoc($record)): ?>
+
+          <?php $count = $count+1; ?>
+
+          <?php if($count==1 || $count==10 ): ?>
+            <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+              <div class="box">
+                <a href='#' data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                </a>
+                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <div class="modal-body">
+                          <a href="view.php?id=<?php echo h($log['log_id']); ?>">
+                            <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                          </a>
+                        </div>
+                        <div class="col-md-12 description">
+                         <h4><?php echo $log['title']; ?></h4>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <?php else: ?>
+            <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+              <div class="box">
+                <a href="#" data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                </a>
+                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <div class="modal-body">
+                        <a href="view.php?id=<?php echo h($log['log_id']); ?>">
+                          <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                        </a>
+                      </div>
+                      <div class="col-md-12 description">
+                        <h4><?php echo $log['title']; ?></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endif; ?>
+        <?php endwhile;?>
+      </div>
+    </section>
+  </div>
     </div>
+
     <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 </body>
