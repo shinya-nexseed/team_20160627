@@ -60,138 +60,125 @@ function h($value) {
     <title>mypage</title>
  </head>
  <body>
- <?php require('header.php'); ?>
-    <div class="auth-box" style="float:right" >
-        <div class="row"></div>
-            <div class="rgba2">
-                <img src="member_picture/<?php echo $members['picture_path']; ?>" width="190" height="190">
-            </div>
-            <div class="rgba3">
-                    <p><span class="sample1"><?php echo $members['name']; ?></span></p>
-                <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
-                <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
-                <br>
-                <form>
-                <?php if($_SESSION['id'] != $_REQUEST['id']): ?>
-                    <?php if($test==1): ?>
-                        <a class="btn btn-unfollow" href="unfollow.php?id=<?php echo $members['id']; ?>">フォロー解除</a>
-                    <?php else: ?>
-                        <a class="btn btn-follow" href="follow.php?id=<?php echo $members['id']; ?>">フォローする</a>
-                    <?php endif; ?>
-            <?php endif; ?>
-            </form>
-            </div>
-
-            <div class="rgba4">
-                <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
-
-            </div>
-
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="sicon">
-
-                        <table cellpadding="0" cellspacing="0"><tbody>
-                            <tr>
-                                <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="https://web.facebook.com" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="http://twitter.com" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                 <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="https://plus.google.com" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <section>
-      
-                                <!-- <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </td> -->
-                            </tr>
-                        </tbody></table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8 col-md-12 col-sm-12">
-        <?php $count = 0; ?>
-        <?php while($log = mysqli_fetch_assoc($record)): ?>
-
-          <?php $count = $count+1; ?>
-
-          <?php if($count==1 || $count==10 ): ?>
-            <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-              <div class="box">
-                <a href='#' data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
-                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-                </a>
-                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <div class="modal-body">
-                          <a href="view.php?id=<?php echo h($log['log_id']); ?>">
-                            <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-                          </a>
-                        </div>
-                        <div class="col-md-12 description">
-                         <h4><?php echo $log['title']; ?></h4>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          <?php else: ?>
-            <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-              <div class="box">
-                <a href="#" data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
-                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-                </a>
-                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <?php require('header.php'); ?>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      <?php $count = 0; ?>
+      <?php while($log = mysqli_fetch_assoc($record)): ?>
+        <?php $count = $count+1; ?>
+        <?php if($count==1 || $count==10 ): ?>
+          <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+            <div class="box">
+              <a href='#' data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+              </a>
+              <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                       <div class="modal-body">
                         <a href="view.php?id=<?php echo h($log['log_id']); ?>">
                           <img src="logs_picture/<?php echo h($log['image_path']); ?>">
                         </a>
                       </div>
                       <div class="col-md-12 description">
-                        <h4><?php echo $log['title']; ?></h4>
+                       <h4><?php echo $log['title']; ?></h4>
                       </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php else: ?>
+          <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+            <div class="box">
+              <a href="#" data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+              </a>
+              <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <div class="modal-body">
+                      <a href="view.php?id=<?php echo h($log['log_id']); ?>">
+                        <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                      </a>
+                    </div>
+                    <div class="col-md-12 description">
+                      <h4><?php echo $log['title']; ?></h4>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          <?php endif; ?>
-        <?php endwhile;?>
-      </div>
-    </section>
-  </div>
+          </div>
+        <?php endif; ?>
+      <?php endwhile;?>
     </div>
 
-    <script src="assets/js/jquery-3.1.0.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
+    <div class="auth-box col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <!-- <div class="row"></div> -->
+      <div class="rgba2">
+        <img src="member_picture/<?php echo $members['picture_path']; ?>" width="190" height="190">
+      </div>
+      <div class="rgba3">
+        <p><span class="sample1"><?php echo $members['name']; ?></span></p>
+        <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_sim_card_black_18dp.png" width="30" height="30"><?php echo $members['license']; ?></p>
+        <p style="margin: 35px; font-size: 20px;"><img src="icon_picture/ic_assignment_ind_black_18dp.png" width="30" height="30"><?php echo $members['country']; ?></p>
+        <br>
+        <form>
+          <?php if($_SESSION['id'] != $_REQUEST['id']): ?>
+              <?php if($test==1): ?>
+                  <a class="btn btn-unfollow" href="unfollow.php?id=<?php echo $members['id']; ?>">フォロー解除</a>
+              <?php else: ?>
+                  <a class="btn btn-follow" href="follow.php?id=<?php echo $members['id']; ?>">フォローする</a>
+              <?php endif; ?>
+          <?php endif; ?>
+        </form>
+      </div>
+
+      <div class="rgba4">
+        <?php print("<p>全 " . $logsss["num"] . " 件ログ登録されています</p>"); ?>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="sicon">
+            <table cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                      <div class="icon-circle">
+                        <a href="https://web.facebook.com" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                      <div class="icon-circle">
+                        <a href="http://twitter.com" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
+                      <div class="icon-circle">
+                        <a href="https://plus.google.com" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a>
+                      </div>
+                    </div>
+                  </td>
+                  <!-- <section> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/jquery-3.1.0.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+
 </body>
 </html>
