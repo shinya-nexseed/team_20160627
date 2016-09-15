@@ -131,7 +131,7 @@ function h($value) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-8.5 col-md-8.5 col-sm-8.5">
+        <div class="col-lg-8 col-md-12 col-sm-12">
         <?php $count = 0; ?>
         <?php while($log = mysqli_fetch_assoc($record)): ?>
 
