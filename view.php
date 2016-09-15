@@ -55,9 +55,9 @@ function h($value) {
   <body>
   <?php
         if ($log = mysqli_fetch_assoc($logs)):
-        ?> 
+        ?>
   <?php require("header.php"); ?>
-  <div class="container">
+  <div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="well well-sm">
@@ -100,7 +100,7 @@ function h($value) {
                            終了時タンク残量：<span name="ltank"><?php if($log['ltank'] == -1000){
                              echo "不明";
                            }else{echo h($log['ltank']);} ?></span>
-                           <br> 
+                           <br>
                            <?php if($_SESSION['id'] == $log['member_id']): ?>
             			   [<a href="log_edit.php?id=<?php echo h($log['log_id']); ?>" style="color: #00994C;">編集</a>]
             				<?php endif; ?>
@@ -131,6 +131,7 @@ function h($value) {
 <?php else: ?>
             <p>その投稿は削除されたか、URLが間違っています</p>
 <?php endif; ?>
+</div>
 <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
