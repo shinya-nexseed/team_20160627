@@ -107,8 +107,8 @@
 
                  mysqli_query($db, $sql) or die(mysqli_error($db));
 
-                 header('Location: index.php');
-                  exit();
+                  header('Location: mypage.php?id=' . $_SESSION['id']);
+                   exit();
           }
       // 現在のパスワードが間違っていた場合
       } else {
@@ -159,115 +159,122 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-  <?php require('header.php'); ?>
+</head>
+<body>
+<?php require('header.php'); ?>
+    <div>
+        <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>登録情報編集</legend>
+                <!--ニックネーム-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">ニックネーム</label>
+                    <div class="col-md-4"> 
+                        <?php if (isset($_POST['name'])): ?>
+                        <input type="text" id="textinput" class="form-control input-md" name="name" size="16" maxlength="255" value="<?php echo $_POST['name']; ?>">
+                        <?php else: ?>
+                            <input type="text" id="textinput" class="form-control input-md" name="name" size="16" maxlength="255" value="<?php echo $member['name']; ?>">
+                        <?php endif; ?>
+                        <?php if (isset($error['name']) && $error['name'] == 'blank'): ?>
+                            <p class="error">* ニックネームを入力してください。</p>
+                        <?php endif; ?>
+                    </div>
+                       
+                </div>
 
-  <div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3 content-margin-top">
-        <legend>登録情報編集</legend>
-        <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
-          <!-- ニックネーム -->
-          <div class="form-group">
-            <label class="col-sm-4 control-label">ニックネーム</label>
-            <div class="col-sm-8">
-              <?php if (isset($_POST['name'])): ?>
-                  <input type="text" name="name" size="35" maxlength="255" value="<?php echo $_POST['name']; ?>">
-              <?php else: ?>
-                  <input type="text" name="name" size="35" maxlength="255" value="<?php echo $member['name']; ?>">
-              <?php endif; ?>
-              <?php if (isset($error['name']) && $error['name'] == 'blank'): ?>
-                  <p class="error">* ニックネームを入力してください。</p>
-              <?php endif; ?>
-            </div>
-          </div>
-          <!-- メールアドレス -->
-          <div class="form-group">
-            <label class="col-sm-4 control-label">メールアドレス</label>
-            <div class="col-sm-8">
-              <?php if (isset($_POST['email'])): ?>
-                  <input type="email" name="email" size="35" maxlength="255" value="<?php echo $_POST['email']; ?>">
-              <?php else: ?>
-                  <input type="email" name="email" size="35" maxlength="255" value="<?php echo $member['email']; ?>">
-              <?php endif; ?>
-              <?php if (isset($error['email']) && $error['email'] == 'blank'): ?>
-                  <p class="error">* メールアドレスを入力してください。</p>
-              <?php endif; ?>
-              <?php if (isset($error['email']) && $error["email"] == 'duplicate'): ?>
-                  <p class="error">* 指定されたメールアドレスはすでに登録されています。</p>
-              <?php endif; ?>
-            </div>
-          </div>
-          <!-- ライセンス -->
-          <label>ライセンス</label>
-          <select name="license_id">
-          <?php while($license = mysqli_fetch_assoc($licenses)): ?>
-              <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
-          <?php endwhile; ?>
-          </select>
-          <!-- パスワード -->
-          <div class="form-group">
-          <label class="col-sm-4 control-label">パスワード</label>
-          <div class="col-sm-8">
-          <dd>
-          <input type="password" name="password" size="35" maxlength="255">
-            <?php if (isset($error['password']) && $error['password'] == 'blank'): ?>
-          <p class="error">* パスワードを入力してください。</p>
-            <?php endif; ?>
-            <?php if (isset($error['password']) && $error['password'] == 'incorrect'): ?>
-          <p class="error">* パスワードが間違っています。</p>
-            <?php endif; ?>
-          </dd>
-          </div>
-          </div>
-          <div class="form-group">
-          <label class="col-sm-4 control-label">新規パスワード</label>
-          <div class="col-sm-8">
-          <dd>
-          <input type="password" name="new_password" size="35" maxlength="255">
-            <?php if (isset($error['new_password']) && $error['new_password'] == 'length'): ?>
-          <p class="error">* パスワードは4文字以上で入力してください。</p>
-            <?php endif; ?>
-            <?php if (isset($error['new_password']) && $error['new_password'] == 'incorrect'): ?>
-          <p class="error">* 確認用パスワードと一致しません。</p>
-            <?php endif; ?>
-          </dd>
-          </div>
-          </div>
-          <div class="form-group">
-          <label class="col-sm-4 control-label">確認用パスワード</label>
-          <div class="col-sm-8">
-          <dd>
-          <input type="password" name="confirm_password" size="35" maxlength="255">
-          </dd>
-          </div>
-          </div>
-          <!-- プロフィール写真 -->
-          <div class="form-group">
-            <label class="col-sm-4 control-label">プロフィール写真</label>
-            <div class="col-sm-8">
-              <img src="member_picture/<?php echo $member['picture_path']; ?>" width="100" height="100">
-              <input type="file" name="picture_path" size="35">
-                  <?php if (isset($error['picture_path']) && $error['picture_path'] == 'type'): ?>
-              <p class="error">* プロフィール写真には「.gif」「.jpg」「.png」の画像を指定してください。</p>
-                  <?php endif; ?>
-                  <?php if (!empty($error)): ?>
-              <p class="error">* 画像を指定していた場合は恐れ入りますが、画像を改めて指定してください。</p>
-                  <?php endif; ?>
-            </div>
-          </div>
+                <!--メールアドレス-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">メールアドレス<span class="required">*</span></label>
+                    <div class="col-md-4">
+                        <?php if (isset($_POST['email'])): ?>
+                        <input type="email" id="textinput" name="email" class="form-control input-md" size="35" maxlength="255" value="<?php echo $_POST['email']; ?>">
+                        <?php else: ?>
+                        <input type="email" id="textinput" name="email" class="form-control input-md" size="35" maxlength="255" value="<?php echo $member['email']; ?>">
+                        <?php endif; ?>
+                        <?php if (isset($error['email']) && $error['email'] == 'blank'): ?>
+                            <p class="error">* メールアドレスを入力してください。</p>
+                        <?php endif; ?>
+                        <?php if (isset($error['email']) && $error["email"] == 'duplicate'): ?>
+                            <p class="error">* 指定されたメールアドレスはすでに登録されています。</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
-          <input type="submit" value="会員情報更新" />
+                <!--ライセンス-->
+                    <div class="form-group">
+                       <label class="col-md-4 control-label" for="selectbasic">ライセンス</label>
+                       <div class="col-md-4">
+                            <select name="license_id" id='selectbasic' class='form-control'>
+                                <?php while($license = mysqli_fetch_assoc($licenses)): ?>
+                                    <option value="<?php echo $license['id']; ?>"><?php echo $license['license']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
+                       </div>
+                    </div>
+
+                <!--パスワード-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">パスワード<span class="required">*</span></label>
+                    <div class="col-md-4">
+                        <input type="password" name="password" id="textinput" class="form-control input-md" size="35" maxlength="255">
+                            <?php if (isset($error['password']) && $error['password'] == 'blank'): ?>
+                        <p class="error">* パスワードを入力してください。</p>
+                            <?php endif; ?>
+                            <?php if (isset($error['password']) && $error['password'] == 'incorrect'): ?>
+                        <p class="error">* パスワードが間違っています。</p>
+                          <?php endif; ?>
+                   </div>
+                </div>
+                <!--新規パスワード-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">新規パスワード<span class="required">*</span></label>
+                    <div class="col-md-4">
+                        <dd>
+                            <input type="password" name="new_password" id="textinput" class="form-control input-md" size="35" maxlength="255">
+                            <?php if (isset($error['new_password']) && $error['new_password'] == 'length'): ?>
+                                <p class="error">* パスワードは4文字以上で入力してください。</p>
+                            <?php endif; ?>
+                            <?php if (isset($error['new_password']) && $error['new_password'] == 'incorrect'): ?>
+                                <p class="error">* 確認用パスワードと一致しません。</p>
+                             <?php endif; ?>
+                        </dd>
+                   </div>
+                </div>
+                <!--確認用パスワード-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">確認用パスワード<span class="required">*</span></label>
+                    <div class="col-md-4">
+                        <dd>
+                            <input type="password" name="confirm_password" id="textinput" class="form-control input-md" size="35" maxlength="255">
+                        </dd>
+                    </div>
+                </div>
+                <!--プロフィール写真-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">プロフィール写真</label>
+                    <div class="col-md-4">
+                        <img src="member_picture/<?php echo $member['picture_path']; ?>" width="100" height="100">
+                        <input type="file" name="picture_path" id="filebutton" class="input-file" size="35">
+                        <?php if (isset($error['picture_path']) && $error['picture_path'] == 'type'): ?>
+                            <p class="error">* プロフィール写真には「.gif」「.jpg」「.png」の画像を指定してください。</p>
+                        <?php endif; ?>
+                        <?php if (!empty($error)): ?>
+                            <p class="error">* 画像を指定していた場合は恐れ入りますが、画像を改めて指定してください。</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!--登録-->
+                <div class="form-group">
+                   <label class="col-md-4 control-label" for="singlebutton"></label>
+                   <div class="col-md-4">
+                        <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="会員情報更新" />
+                    </div>
+                </div>
+            </fieldset>
         </form>
-      </div>
     </div>
-  </div>
-  </div>
-  </div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
-  </body>
+</body>
 </html>
