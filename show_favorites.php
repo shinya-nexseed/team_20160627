@@ -3,28 +3,29 @@ session_start();
 require('function.php');
 require('dbconnect.php');
 
-checklogin($db);
-$member = checklogin($db);
+islogin($db);
+$member = islogin($db);
 
-
-	$sql = 'SELECT * FROM logs WHERE 1';
-	$record = mysqli_query($db,$sql) or die(mysqli_error($db));
-
+if ($_SESSION['id']) {
+  $sql = sprintf('SELECT * FROM logs l,favorites f WHERE f.favorite_log_id=l.log_id AND f.favoriter_id=%d',
+    mysqli_real_escape_string($db,$_SESSION['id']));
+  $record = mysqli_query($db,$sql) or die(mysqli_error($db));
+}
 
 function h($value) {
-		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-	}
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+  }
 
  ?>
  <!DOCTYPE html>
  <html lang="ja">
  <head>
- 	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="assets/css/bootstrap.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="assets/css/header.css" rel="stylesheet">
- 	<title>home</title>
+  <title>home</title>
  </head>
  <body>
 

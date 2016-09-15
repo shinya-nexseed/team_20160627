@@ -15,12 +15,17 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" method="GET" role="search">
-        <div class="form-group">
-          <input type="text" name="q" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-      </form>
+      <?php if (isset($_REQUEST['searchbar'])): ?>
+        <?php if ($_REQUEST['searchbar'] == 'true'): ?>
+          <form class="navbar-form navbar-left" method="GET" role="search">
+            <div class="form-group">
+              <input id="address" name="q" class="form-control" placeholder="Search">
+            </div>
+            <button type="button" onclick="codeAddress()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+        <?php endif; ?>
+      <?php endif; ?>
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://nexseed.net/" target="_blank">Visit Site</a></li>
         <li class="dropdown ">
@@ -46,7 +51,7 @@
   <div class="col-md-2 sidebar">
     <ul class="nav nav-pills nav-stacked">
       <li><a href="home.php">HOME</a></li>
-      <li><a href="map.php">MAP</a></li>
+      <li><a href="map.php?searchbar=true">MAP</a></li>
       <?php if(!empty($member['id'])): ?>
         <li><a href="mypage.php?id=<?php echo htmlspecialchars($member['id']); ?>">PROFILE</a></li>
       <?php else: ?>

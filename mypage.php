@@ -2,7 +2,7 @@
     session_start();
     require('dbconnect.php');
     require('function.php');
-    $member = checklogin($db);
+    $member = islogin($db);
 
     $res = sprintf('SELECT COUNT(*) AS num FROM logs WHERE member_id=%d',$_REQUEST['id']);
     $ser = mysqli_real_escape_string($db,$res);
@@ -19,26 +19,14 @@
     while ($log = mysqli_fetch_assoc($result)) {
     }
 
-    islogin($db);
-$member = islogin($db);
-
-if ($_SESSION['id']) {
-    $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
-    $record = mysqli_query($db,$sql) or die(mysqli_error($db));
-}
-
-function h($value) {
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    if ($_SESSION['id']) {
+        $sql = sprintf('SELECT * FROM logs WHERE member_id=%d ORDER BY created DESC',mysqli_real_escape_string($db,$_REQUEST['id']));
+        $record = mysqli_query($db,$sql) or die(mysqli_error($db));
     }
 
-    // $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
-    //     mysqli_real_escape_string($db,$_REQUEST['id']));
-    // $result = mysqli_query($db, $sql) or die(mysqli_error($db));
-    // while ($follow = mysqli_fetch_assoc($result)) {
-    // echo $follow['follow_id'];
-    // echo $follow['follower_id'];
-    // echo "<br>";
-    // }
+    function h($value) {
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
 
     $sql = sprintf('SELECT follower_id FROM following WHERE follow_id=%d AND follower_id=%d',
         mysqli_real_escape_string($db,$_REQUEST['id']),
