@@ -24,7 +24,6 @@
     $result = mysqli_query($db, $sql) or die(mysqli_error($db));
     while ($follow = mysqli_fetch_assoc($result)) {
     echo $follow['follow_id'];
-    echo $follow['follower_id'];
     echo "<br>";
     }
 
