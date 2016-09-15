@@ -20,7 +20,12 @@
       );
     $logs = mysqli_query($db, $sql) or die(mysqli_error($db));
 
-
+$sql = sprintf('SELECT favorite_log_id FROM favorites WHERE favorite_log_id=%d AND favoriter_id=%d',
+        mysqli_real_escape_string($db,$_REQUEST['id']),
+        mysqli_real_escape_string($db,$_SESSION['id']));
+    $result = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $testfavorite = mysqli_fetch_assoc($result);
+    $test = count($testfavorite);
 
 
 function h($value) {
@@ -43,6 +48,7 @@ function h($value) {
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/view.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 
   </head>
   <body>
@@ -51,7 +57,7 @@ function h($value) {
   <?php
     if ($log = mysqli_fetch_assoc($logs)):
   ?>
-  <div class="container">
+  <div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="well well-sm">
@@ -101,6 +107,13 @@ function h($value) {
              				<?php if($_SESSION['id'] == $log['member_id']): ?>
             				[<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
            					 <?php endif; ?>
+                     <form>
+                    <?php if($test==1): ?>
+                        <a href="unfavorite.php?id=<?php echo $log['log_id']; ?>">お気に入り解除</a>
+                    <?php else: ?>
+                        <a href="favorite.php?id=<?php echo $log['log_id']; ?>">お気に入り</a>
+                      <?php endif; ?>
+                     </form>
                         <!-- Split button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary">
@@ -125,6 +138,7 @@ function h($value) {
 <?php else: ?>
   <p>その投稿は削除されたか、URLが間違っています</p>
 <?php endif; ?>
+</div>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 </body>

@@ -4,13 +4,14 @@ require('dbconnect.php');
 require('function.php');
 $member = checklogin($db);
 ?>
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="assets/css/header.css" rel="stylesheet">
+   <link rel="stylesheet" href="assets/css/style.css">
 	<title></title>
 
 	<script type="text/javascript"
@@ -137,13 +138,13 @@ $member = checklogin($db);
   <input id="address" type="textbox" value="東京都">
   <input type="button" value="ジオコーディン" onclick="codeAddress()">
 
-  <div id="map_canvas" style="width:1140px; height:600px"></div>
+  <div id="map_canvas" style="width:100%; height:600px"></div>
 
   <form method="post" action="">
-	
+
   </form>
 </div>
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+</div>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 </body>

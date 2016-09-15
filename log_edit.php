@@ -19,12 +19,12 @@
    $sql = sprintf('SELECT * FROM `logs` WHERE `log_id`=%d',mysqli_real_escape_string($db, $_REQUEST['id']));
      $record = mysqli_query($db, $sql) or die(mysqli_error($db));
      $logs = mysqli_fetch_assoc($record);
-    
+
     //var_dump($logs);
     //if ($_POST['lat,long'] !='') {
       // CRUD
     if (!empty($_POST)) {
-    
+
           $fileName = $_FILES['image_path']['name'];
             if (!empty($fileName)) {
                 $ext = substr($fileName, -3);
@@ -95,6 +95,7 @@
     <link href="assets/css/form.css" rel="stylesheet">
     <link href="assets/css/timeline.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -106,7 +107,7 @@
   </head>
   <body>
   <?php require("header.php"); ?>
-  
+
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4 content-margin-top">
@@ -208,11 +209,11 @@
             }
             for ($i=$min; $i <= $max; $i++) {
                 if($i == $log['underwater']){
-                echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";  
+                echo  "<option value='" . $i . "'selected>" . $i . "度" . "</option>";
                 }else{
                   echo  "<option value='" . $i . "'>" . $i . "度" . "</option>";
                 }
-                
+
             }
             echo "</select>";
             ?>
@@ -290,11 +291,11 @@
             </form>
           </p>
           <!-- 仮 -->
-            
-            
+
+
             [<a href="delete.php?id=<?php echo h($log['log_id']); ?>" style="color: #F33;">削除</a>]
           </p>
-          
+
         </div>
         <!-- <a href="mypage.php">&laquo;&nbsp;一覧へ戻る</a> -->
       </div>

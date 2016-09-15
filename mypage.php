@@ -42,11 +42,15 @@
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mypage.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="assets/css/custom.css" rel="stylesheet">
     <title>mypage</title>
  </head>
  <body>
  <?php require('header.php'); ?>
+ <?php while ($follow = mysqli_fetch_assoc($result)): ?>
+    <?php var_dump($follow); ?>
+ <?php endwhile; ?>
     <div class="auth-box" style="float:right" >
         <div class="row"></div>
             <div class="rgba2">
@@ -102,13 +106,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <!-- <td>
-                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 text-center">
-                                        <div class="icon-circle">
-                                            <a href="http://instagram.com" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </td> -->
+
                             </tr>
                         </tbody></table>
                     </div>
