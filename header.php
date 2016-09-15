@@ -35,7 +35,7 @@
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">SETTINGS</li>
             <li class="dropdown-header"><a href="user_edit.php">EDIT</a></li>
-            <li class="dropdown-header"><a href="login.php">LOGOUT</a></li>
+            <li class="dropdown-header"><a href="logout.php">LOGOUT</a></li>
             <?php if(empty($member['id'])): ?>
             <li class="dropdown-header"><a href="join/index.php">NEW ACCOUNT</a></li>
             <?php endif; ?>
