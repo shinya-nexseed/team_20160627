@@ -19,13 +19,6 @@
     while ($log = mysqli_fetch_assoc($result)) {
     }
 
-    $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
-        mysqli_real_escape_string($db,$_REQUEST['id']));
-    $result = mysqli_query($db, $sql) or die(mysqli_error($db));
-    while ($follow = mysqli_fetch_assoc($result)) {
-    echo $follow['follow_id'];
-    echo "<br>";
-    }
 
     $sql = sprintf('SELECT follower_id FROM following WHERE follow_id=%d AND follower_id=%d',
         mysqli_real_escape_string($db,$_REQUEST['id']),
