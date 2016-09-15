@@ -61,8 +61,8 @@ function h($value) {
                         <a href="mypage.php?id=<?php echo($log['member_id']); ?>"><img src="logs_picture/<?php echo h($log['image_path']);?> " class="img-responsive" alt="<?php echo h($log['image_path']); ?>" ></a>
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4><?php if($log['title'] == -1000){echo "不明";}else{echo h($log['title']);} ?></h4>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        <h2><?php if($log['title'] == -1000){echo "不明";}else{echo h($log['title']);} ?></h2>
+                        <!-- <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker"> -->
                         </i></cite></small>
                            水深:<span name="depth"><?php if($log['depth'] == -1000){
        		               echo "不明";
