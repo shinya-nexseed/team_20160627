@@ -22,7 +22,7 @@
 
     //loginページへリダイレクト
     // header('location: join/login.php');
-     //exit(); 
+     //exit();
   //}
 
   $error = Array();
@@ -95,7 +95,7 @@
                   $picture = $member['picture_path'];
               }
               // TODO : アップデート処理
-                $sql = sprintf('UPDATE members SET `name`="%s", `email`="%s", `password`="%s", 
+                $sql = sprintf('UPDATE members SET `name`="%s", `email`="%s", `password`="%s",
                                 `picture_path`="%s",modified=NOW(),`license_id`=%d WHERE `id`=%d',
                        $_POST['name'],
                        $_POST['email'],
@@ -116,13 +116,13 @@
           //echo "string";
       }
     }
-    
+
   // ユーザー情報の取得
   $sql = sprintf('SELECT m.*, l.* FROM members m,licenses l WHERE m.license_id=l.license_id AND m.id=%d',mysqli_real_escape_string($db,$_SESSION['id']));
   $record = mysqli_query($db, $sql) or die(mysqli_error($db));
   $member = mysqli_fetch_assoc($record);
   // var_dump($member);
-  
+
 ?>
 
 
@@ -140,7 +140,6 @@
     <title>divinglog</title>
 
     <!-- Bootstrap -->
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/form.css" rel="stylesheet">
@@ -148,6 +147,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
 
     <link href="assets/css/header.css" rel="stylesheet">
+     <link rel="stylesheet" href="assets/css/style.css">
     <!--
       designフォルダ内では2つパスの位置を戻ってからcssにアクセスしていることに注意！
      -->
@@ -163,7 +163,7 @@
   <body>
   <?php require('header.php'); ?>
 
-  <div class="container">
+  <div>
     <div class="row">
       <div class="col-md-6 col-md-offset-3 content-margin-top">
         <legend>登録情報編集</legend>
@@ -264,9 +264,9 @@
     </div>
   </div>
   </div>
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script src="assets/js/jquery-3.1.0.js"></script>
     <script src="assets/js/bootstrap.js"></script>
   </body>

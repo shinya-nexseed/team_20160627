@@ -27,68 +27,68 @@ function h($value) {
  	<title>home</title>
  </head>
  <body>
- <section>
-  <div class="container gal-container">
 
-    <?php $count = 0; ?>
-    <?php while($log = mysqli_fetch_assoc($record)): ?>
+  <?php require('header.php'); ?>
 
-      <?php $count = $count+1; ?>
+    <section>
+      <div class="gal-container">
+        <?php $count = 0; ?>
+        <?php while($log = mysqli_fetch_assoc($record)): ?>
 
-      <?php if($count==1 || $count==10 ): ?>
-        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-          <div class="box">
-            <a href='#' data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
-              <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-            </a>
-            <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <div class="modal-body">
-                      <a href="view.php?id=<?php echo h($log['log_id']); ?>">
-                        <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-                      </a>
+          <?php $count = $count+1; ?>
+
+          <?php if($count==1 || $count==10 ): ?>
+            <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+              <div class="box">
+                <a href='#' data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                </a>
+                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <div class="modal-body">
+                          <a href="view.php?id=<?php echo h($log['log_id']); ?>">
+                            <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                          </a>
+                        </div>
+                        <div class="col-md-12 description">
+                         <h4><?php echo $log['title']; ?></h4>
+                        </div>
                     </div>
-                    <div class="col-md-12 description">
-                     <h4><?php echo $log['title']; ?></h4>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <?php else: ?>
-        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-          <div class="box">
-            <a href="#" data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
-              <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-            </a>
-            <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <div class="modal-body">
-                     <a href="view.php?id=<?php echo h($log['log_id']); ?>">
-                      <img src="logs_picture/<?php echo h($log['image_path']); ?>">
-                    </a>
                   </div>
-                  <div class="col-md-12 description">
-                    <h4><?php echo $log['title']; ?></h4>
-                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      <?php endif; ?>
 
-    <?php endwhile;?>
-
+          <?php else: ?>
+            <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+              <div class="box">
+                <a href="#" data-toggle="modal" data-target="#<?php echo h($log['log_id']); ?>">
+                  <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                </a>
+                <div class="modal fade" id="<?php echo h($log['log_id']); ?>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <div class="modal-body">
+                        <a href="view.php?id=<?php echo h($log['log_id']); ?>">
+                          <img src="logs_picture/<?php echo h($log['image_path']); ?>">
+                        </a>
+                      </div>
+                      <div class="col-md-12 description">
+                        <h4><?php echo $log['title']; ?></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endif; ?>
+        <?php endwhile;?>
+      </div>
+    </section>
   </div>
-
-</section>
 
   <script src="assets/js/jquery-3.1.0.js"></script>
   <script src="assets/js/bootstrap.js"></script>

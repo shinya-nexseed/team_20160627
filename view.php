@@ -43,6 +43,7 @@ function h($value) {
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/view.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 
   </head>
   <body>
@@ -51,7 +52,7 @@ function h($value) {
   <?php
     if ($log = mysqli_fetch_assoc($logs)):
   ?>
-  <div class="container">
+  <div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="well well-sm">
@@ -125,6 +126,7 @@ function h($value) {
 <?php else: ?>
   <p>その投稿は削除されたか、URLが間違っています</p>
 <?php endif; ?>
+</div>
 <script src="assets/js/jquery-3.1.0.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 </body>

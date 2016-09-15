@@ -19,14 +19,14 @@
     while ($log = mysqli_fetch_assoc($result)) {
     }
 
-    $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
-        mysqli_real_escape_string($db,$_REQUEST['id']));
-    $result = mysqli_query($db, $sql) or die(mysqli_error($db));
-    while ($follow = mysqli_fetch_assoc($result)) {
-    echo $follow['follow_id'];
-    echo $follow['follower_id'];
-    echo "<br>";
-    }
+    // $sql = sprintf('SELECT * FROM following WHERE follower_id=%d',
+    //     mysqli_real_escape_string($db,$_REQUEST['id']));
+    // $result = mysqli_query($db, $sql) or die(mysqli_error($db));
+    // while ($follow = mysqli_fetch_assoc($result)) {
+    // echo $follow['follow_id'];
+    // echo $follow['follower_id'];
+    // echo "<br>";
+    // }
 
     $sql = sprintf('SELECT follower_id FROM following WHERE follow_id=%d AND follower_id=%d',
         mysqli_real_escape_string($db,$_REQUEST['id']),
@@ -43,6 +43,7 @@
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mypage.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="assets/css/custom.css" rel="stylesheet">
     <title>mypage</title>
  </head>
